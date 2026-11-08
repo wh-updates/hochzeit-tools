@@ -1,0 +1,16 @@
+.shop .phero{display:grid;gap:2rem;grid-template-columns:1.1fr 1fr;align-items:center;margin:1rem 0 2rem}
+@media(max-width:800px){.shop .phero{grid-template-columns:1fr}.shop .phero>div:last-child{order:-1}}
+.shop .pimg{width:100%;height:auto;border-radius:18px;box-shadow:0 10px 30px -18px rgba(138,74,80,.5)}
+.shop .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;margin:0}
+.buybox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.2rem 1.4rem;margin-top:1.2rem}
+.buybox .price{font-family:var(--serif);font-size:2.2rem;color:var(--accent-d);margin:0}
+.buybox .kind{color:var(--muted);margin:.1rem 0 .8rem}
+.buybox .btn{font-size:1.05rem;padding:.85rem 2rem}
+.buybox .btn[aria-disabled="true"]{background:var(--muted);cursor:default;pointer-events:none}
+.fine{font-size:.8rem;color:var(--muted);margin:.7rem 0 0}
+.ticks{list-style:none;padding:0}.ticks li{padding-left:1.6rem;position:relative;margin:.45rem 0}
+.ticks li:before{content:"\2665";position:absolute;left:0;color:var(--gold)}
+.inside{columns:2;column-gap:2rem}@media(max-width:700px){.inside{columns:1}}.inside li{margin:.35rem 0;break-inside:avoid}
+.shop details{border-top:1px solid var(--line);padding:.7rem 0}.shop summary{cursor:pointer;font-weight:600}
+.shop .center{text-align:center}.shop .center .buybox{max-width:420px;margin:1rem auto 0}
+.tile .tprice{color:var(--accent-d);font-weight:700;margin-top:.5rem}
