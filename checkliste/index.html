@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hochzeit Checkliste mit Countdown – was wann erledigen?</title>
+<meta name="description" content="Kostenlose Hochzeits-Checkliste mit Countdown: Datum eingeben und sehen, welche Aufgaben 12, 6, 3 und 1 Monat vor der Hochzeit anstehen. Zum Abhaken, ohne Anmeldung.">
+<link rel="canonical" href="https://tools.bride-light.de/checkliste/">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="../">Hochzeit<span>Tools</span></a>
+<nav><a href="../budgetrechner/">Budget</a><a href="../gaesteliste/">Gästeliste</a><a href="../checkliste/">Checkliste</a></nav></div></header>
+<main class="wrap">
+<h1>Hochzeits-Checkliste mit Countdown</h1>
+<p class="lead">Euer Datum eingeben – die Checkliste zeigt, was bereits fällig ist und was noch Zeit hat.</p>
+
+<div class="card">
+<div class="row">
+<div><label for="date">Hochzeitsdatum</label><input id="date" type="date"></div>
+<div><label>Noch</label><div class="big" id="days">–</div></div>
+<div><label>Erledigt</label><div class="big" id="prog">0 %</div></div>
+</div>
+<div class="bar" style="margin-top:.8rem"><i id="pbar" style="width:0"></i></div>
+</div>
+
+<div id="phases"></div>
+<p class="noprint"><button class="ghost" onclick="print()">Drucken / als PDF speichern</button> <button class="ghost" id="reset">Haken zurücksetzen</button></p>
+
+<section class="faq">
+<h2>Häufige Fragen</h2>
+<h3>Wann sollte man mit der Hochzeitsplanung anfangen?</h3>
+<p>Viele Paare starten etwa 12 Monate vorher. Beliebte Locations, Fotografen und Brautstylisten sind für Samstage in der Hauptsaison oft früh ausgebucht – diese Punkte stehen deshalb ganz oben.</p>
+<h3>Was ist, wenn wir weniger Zeit haben?</h3>
+<p>Kein Problem: Bereits fällige Aufgaben werden markiert. Arbeitet sie von oben nach unten ab – Termine mit Dienstleistern zuerst, Details wie Gastgeschenke zuletzt.</p>
+</section>
+</main>
+<footer class="site"><div class="wrap"><a href="https://bride-light.de/impressum">Impressum</a><a href="https://bride-light.de/datenschutz">Datenschutz</a><span>© Bride &amp; Light</span></div></footer>
+<script src="../assets/site.js"></script>
+<script>
+(function () {
+  var P = [
+    [12, '12 Monate vorher', ['Budget festlegen', 'Grobe Gästezahl überlegen', 'Datum und Wunschregion festlegen', 'Location besichtigen und buchen', 'Fotograf/Videograf buchen', 'Trauzeugen fragen']],
+    [9, '9 Monate vorher', ['Standesamt-Termin klären', 'Freie Trauung oder Kirche anfragen', 'Catering auswählen', 'DJ oder Band buchen', 'Brautstyling (Haare & Make-up) anfragen', 'Save-the-Date verschicken']],
+    [6, '6 Monate vorher', ['Brautkleid aussuchen', 'Anzug aussuchen', 'Einladungen gestalten und verschicken', 'Floristik und Deko planen', 'Hotelkontingent für Gäste reservieren', 'Flitterwochen planen']],
+    [3, '3 Monate vorher', ['Ringe kaufen/bestellen', 'Probe-Styling für Haare & Make-up', 'Menü und Torte festlegen', 'Ablaufplan mit Dienstleistern abstimmen', 'Unterlagen fürs Standesamt besorgen']],
+    [1, '1 Monat vorher', ['Zusagen nachfassen, finale Gästezahl melden', 'Sitzplan erstellen', 'Letzte Kleidanprobe', 'Gastgeschenke und Deko vorbereiten', 'Zeitplan an Trauzeugen und Dienstleister schicken']],
+    [0.25, '1 Woche vorher', ['Bargeld/Trinkgelder vorbereiten', 'Notfallset packen', 'Ringe und Dokumente bereitlegen', 'Früh schlafen gehen 😊']]
+  ];
+  var $ = function (id) { return document.getElementById(id); };
+  var st = HT.load('check', { date: '', done: {} });
+  $('date').value = st.date;
+  function render() {
+    var d = st.date ? new Date(st.date + 'T12:00:00') : null, now = new Date();
+    var left = d ? Math.ceil((d - now) / 864e5) : null;
+    $('days').textContent = left === null ? '–' : left > 0 ? left + ' Tage' : left === 0 ? 'Heute! 🎉' : 'vorbei';
+    var total = 0, done = 0;
+    $('phases').innerHTML = P.map(function (ph, pi) {
+      var due = left !== null && left <= ph[0] * 30.4;
+      return '<div class="card"><h2>' + ph[1] + (due ? ' <span class="pill">fällig</span>' : '') + '</h2><ul class="check">' +
+        ph[2].map(function (t, ti) {
+          var k = pi + '.' + ti, c = !!st.done[k]; total++; if (c) done++;
+          return '<li><label><input type="checkbox" data-k="' + k + '"' + (c ? ' checked' : '') + '><span' + (c ? ' class="done"' : (due ? ' class="over"' : '')) + '>' + t + '</span></label></li>';
+        }).join('') + '</ul></div>';
+    }).join('');
+    var p = Math.round(done / total * 100);
+    $('prog').textContent = p + ' %'; $('pbar').style.width = p + '%';
+    HT.save('check', st);
+  }
+  $('date').addEventListener('change', function () { st.date = this.value; render(); });
+  $('phases').addEventListener('change', function (e) { var k = e.target.dataset.k; if (k) { if (e.target.checked) st.done[k] = 1; else delete st.done[k]; render(); } });
+  $('reset').onclick = function () { if (confirm('Alle Haken entfernen?')) { st.done = {}; render(); } };
+  render();
+})();
+</script>
+</body>
+</html>

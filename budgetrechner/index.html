@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hochzeitsbudget-Rechner – kostenlos & ohne Anmeldung</title>
+<meta name="description" content="Kostenloser Hochzeitsbudget-Rechner: Gesamtbudget eingeben, automatisch auf Location, Essen, Fotograf, Kleid & Co. verteilen und tatsächliche Kosten vergleichen.">
+<link rel="canonical" href="https://tools.bride-light.de/budgetrechner/">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="../">Hochzeit<span>Tools</span></a>
+<nav><a href="../budgetrechner/">Budget</a><a href="../gaesteliste/">Gästeliste</a><a href="../checkliste/">Checkliste</a></nav></div></header>
+<main class="wrap">
+<h1>Hochzeitsbudget-Rechner</h1>
+<p class="lead">Gesamtbudget und Gästezahl eingeben – der Rechner verteilt das Geld nach üblichen Anteilen. Danach könnt ihr jeden Posten anpassen und die tatsächlichen Kosten eintragen.</p>
+
+<div class="card">
+<div class="row">
+<div><label for="total">Gesamtbudget (€)</label><input id="total" inputmode="numeric" value="15000"></div>
+<div><label for="guests">Anzahl Gäste</label><input id="guests" inputmode="numeric" value="60"></div>
+</div>
+<p class="muted" id="perguest"></p>
+</div>
+
+<div class="card">
+<table>
+<thead><tr><th>Posten</th><th class="num">Anteil %</th><th class="num">Geplant</th><th class="num">Tatsächlich (€)</th></tr></thead>
+<tbody id="rows"></tbody>
+<tfoot><tr><th>Summe</th><th class="num" id="sumpct"></th><th class="num" id="sumplan"></th><th class="num" id="sumreal"></th></tr></tfoot>
+</table>
+<div style="margin-top:1rem"><div class="bar"><i id="usedbar" style="width:0"></i></div><p id="status" class="muted"></p></div>
+<p class="noprint"><button class="ghost" id="reset">Auf Standardwerte zurücksetzen</button> <button class="ghost" onclick="print()">Drucken / als PDF speichern</button></p>
+</div>
+
+<section class="faq">
+<h2>Häufige Fragen zum Hochzeitsbudget</h2>
+<h3>Wie viel kostet eine Hochzeit in Deutschland?</h3>
+<p>Das hängt stark von Gästezahl, Region und Ansprüchen ab. Viele Paare planen grob mit einem Betrag pro Gast für Location, Essen und Getränke und rechnen Kleid, Fotograf, Musik und Ringe obendrauf. Am verlässlichsten ist, konkrete Angebote einzuholen und hier einzutragen.</p>
+<h3>Welcher Posten ist meistens der größte?</h3>
+<p>Fast immer Location und Verpflegung – zusammen oft rund die Hälfte des Budgets. Deshalb hat die Gästezahl den größten Einfluss auf die Gesamtkosten.</p>
+<h3>Sollte man einen Puffer einplanen?</h3>
+<p>Ja. Ein Puffer von etwa 5–10 % fängt Kleinigkeiten ab, die man am Anfang vergisst – Trinkgelder, Deko-Nachkäufe, Änderungen am Kleid. Der Rechner plant ihn als eigenen Posten ein.</p>
+<h3>Werden meine Daten gespeichert?</h3>
+<p>Nur in eurem eigenen Browser (localStorage). Es wird nichts an einen Server gesendet. Wenn ihr den Browserverlauf löscht, sind die Eingaben weg.</p>
+</section>
+</main>
+<footer class="site"><div class="wrap"><a href="https://bride-light.de/impressum">Impressum</a><a href="https://bride-light.de/datenschutz">Datenschutz</a><span>© Bride &amp; Light</span></div></footer>
+<script src="../assets/site.js"></script>
+<script>
+(function () {
+  var DEF = [
+    ['Location & Miete', 20], ['Essen & Getränke', 28], ['Fotografie & Video', 10], ['Brautkleid & Accessoires', 7],
+    ['Anzug & Accessoires', 3], ['Haare & Make-up', 3], ['Musik / DJ / Band', 6], ['Deko & Blumen', 7],
+    ['Ringe', 5], ['Papeterie (Einladungen etc.)', 2], ['Standesamt & Trauung', 2], ['Transport', 1], ['Puffer', 6]
+  ];
+  var st = HT.load('budget', null);
+  if (!st || !st.items) st = { total: 15000, guests: 60, items: DEF.map(function (d) { return { n: d[0], p: d[1], r: '' }; }) };
+  var $ = function (id) { return document.getElementById(id); };
+  $('total').value = st.total; $('guests').value = st.guests;
+
+  function build() {
+    $('rows').innerHTML = st.items.map(function (it, i) {
+      return '<tr><td>' + HT.esc(it.n) + '</td>' +
+        '<td class="num"><input style="width:4.5em;text-align:right" data-i="' + i + '" data-k="p" inputmode="decimal" value="' + it.p + '"></td>' +
+        '<td class="num" id="plan' + i + '"></td>' +
+        '<td class="num"><input style="width:7em;text-align:right" data-i="' + i + '" data-k="r" inputmode="numeric" value="' + it.r + '" placeholder="–"></td></tr>';
+    }).join('');
+  }
+  function calc() {
+    st.total = HT.num($('total').value); st.guests = HT.num($('guests').value);
+    var sp = 0, splan = 0, sreal = 0;
+    st.items.forEach(function (it, i) {
+      var plan = st.total * HT.num(it.p) / 100; sp += HT.num(it.p); splan += plan;
+      var real = it.r === '' ? 0 : HT.num(it.r); sreal += real;
+      var c = $('plan' + i); c.textContent = HT.eur(plan);
+      c.className = 'num' + (it.r !== '' && real > plan ? ' over' : '');
+    });
+    $('sumpct').textContent = sp.toLocaleString('de-DE') + ' %'; $('sumpct').className = 'num' + (Math.abs(sp - 100) > 0.01 ? ' over' : '');
+    $('sumplan').textContent = HT.eur(splan); $('sumreal').textContent = HT.eur(sreal);
+    $('perguest').textContent = st.guests > 0 ? 'Das sind etwa ' + HT.eur(st.total / st.guests) + ' pro Gast.' : '';
+    var pct = st.total > 0 ? Math.min(100, sreal / st.total * 100) : 0;
+    $('usedbar').style.width = pct + '%';
+    var rest = st.total - sreal;
+    $('status').innerHTML = Math.abs(sp - 100) > 0.01 ? '<span class="over">Die Anteile ergeben zusammen ' + sp.toLocaleString('de-DE') + ' % statt 100 %.</span>' :
+      (rest >= 0 ? 'Bisher ausgegeben: ' + HT.eur(sreal) + ' – noch verfügbar: <b class="ok">' + HT.eur(rest) + '</b>' : '<span class="over">Budget überschritten um ' + HT.eur(-rest) + '</span>');
+    HT.save('budget', st);
+  }
+  document.addEventListener('input', function (e) {
+    var t = e.target;
+    if (t.dataset.i !== undefined) st.items[t.dataset.i][t.dataset.k] = t.value;
+    calc();
+  });
+  $('reset').onclick = function () { if (confirm('Alle Eingaben auf Standardwerte zurücksetzen?')) { localStorage.removeItem('ht.budget'); location.reload(); } };
+  build(); calc();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gästeliste Hochzeit – kostenloser Online-Planer mit Zusagen</title>
+<meta name="description" content="Kostenloser Gästelisten-Planer für die Hochzeit: Gäste, Begleitung, Kinder, Zusagen und Essenswünsche erfassen, automatisch zählen und Kosten pro Kopf berechnen. Export als CSV.">
+<link rel="canonical" href="https://tools.bride-light.de/gaesteliste/">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="../">Hochzeit<span>Tools</span></a>
+<nav><a href="../budgetrechner/">Budget</a><a href="../gaesteliste/">Gästeliste</a><a href="../checkliste/">Checkliste</a></nav></div></header>
+<main class="wrap">
+<h1>Gästelisten-Planer für eure Hochzeit</h1>
+<p class="lead">Gäste eintragen, Zusagen abhaken, Essenswünsche notieren – die Zählung und die Kosten pro Kopf laufen automatisch mit.</p>
+
+<div class="card">
+<div class="row">
+<div><label>Zugesagt (Personen)</label><div class="big" id="cYes">0</div></div>
+<div><label>Offen</label><div class="big" id="cOpen">0</div></div>
+<div><label>Abgesagt</label><div class="big" id="cNo">0</div></div>
+<div><label for="ppp">Kosten pro Erwachsenem (€)</label><input id="ppp" inputmode="numeric" value="90"><p class="muted" id="cost" style="margin:.3rem 0 0"></p></div>
+</div>
+<p class="muted" id="cExtra"></p>
+</div>
+
+<div class="card">
+<form id="add" class="row noprint" autocomplete="off">
+<div><label for="nName">Name</label><input id="nName" required placeholder="z. B. Familie Müller"></div>
+<div><label for="nAdults">Erwachsene</label><input id="nAdults" type="number" min="0" value="1"></div>
+<div><label for="nKids">Kinder</label><input id="nKids" type="number" min="0" value="0"></div>
+<div><label for="nSide">Seite</label><select id="nSide"><option>Braut</option><option>Bräutigam</option><option>Beide</option></select></div>
+<div style="align-self:end"><button>Hinzufügen</button></div>
+</form>
+<div style="overflow-x:auto;margin-top:1rem">
+<table>
+<thead><tr><th>Name</th><th class="num">Erw.</th><th class="num">Kinder</th><th>Seite</th><th>Status</th><th>Essen</th><th class="noprint"></th></tr></thead>
+<tbody id="list"></tbody>
+</table>
+</div>
+<p class="noprint" style="margin-top:1rem"><button class="ghost" id="csv">Als CSV (Excel) exportieren</button> <button class="ghost" onclick="print()">Drucken</button></p>
+</div>
+
+<section class="faq">
+<h2>Tipps zur Gästeliste</h2>
+<h3>Wie viele Gäste sagen ab?</h3>
+<p>Erfahrungsgemäß sagt ein Teil der Eingeladenen ab – bei weiter Anreise oder Terminen in der Ferienzeit mehr. Plant Location und Catering erst mit den echten Zusagen fest.</p>
+<h3>Zählen Kinder voll?</h3>
+<p>Bei vielen Caterern gibt es Kinderpreise. Der Planer zählt Kinder deshalb getrennt und rechnet sie mit der Hälfte der Kosten pro Erwachsenem – passt das an euer Angebot an, indem ihr den Betrag pro Erwachsenem entsprechend wählt.</p>
+<h3>Wo werden die Daten gespeichert?</h3>
+<p>Ausschließlich in eurem Browser. Namen eurer Gäste verlassen euren Rechner nicht. Für ein Backup nutzt den CSV-Export.</p>
+</section>
+</main>
+<footer class="site"><div class="wrap"><a href="https://bride-light.de/impressum">Impressum</a><a href="https://bride-light.de/datenschutz">Datenschutz</a><span>© Bride &amp; Light</span></div></footer>
+<script src="../assets/site.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var st = HT.load('gaeste', { ppp: 90, list: [] });
+  $('ppp').value = st.ppp;
+  var STAT = ['offen', 'zugesagt', 'abgesagt'], FOOD = ['–', 'Fleisch', 'Fisch', 'Vegetarisch', 'Vegan'];
+  function opts(arr, cur) { return arr.map(function (o) { return '<option' + (o === cur ? ' selected' : '') + '>' + o + '</option>'; }).join(''); }
+  function render() {
+    $('list').innerHTML = st.list.length ? st.list.map(function (g, i) {
+      return '<tr><td>' + HT.esc(g.n) + '</td><td class="num">' + g.a + '</td><td class="num">' + g.k + '</td><td>' + HT.esc(g.s) + '</td>' +
+        '<td><select data-i="' + i + '" data-k="st">' + opts(STAT, g.st) + '</select></td>' +
+        '<td><select data-i="' + i + '" data-k="f">' + opts(FOOD, g.f) + '</select></td>' +
+        '<td class="noprint"><button class="ghost" data-del="' + i + '" title="Entfernen">✕</button></td></tr>';
+    }).join('') : '<tr><td colspan="7" class="muted">Noch keine Gäste eingetragen.</td></tr>';
+    count();
+  }
+  function count() {
+    st.ppp = HT.num($('ppp').value);
+    var y = 0, o = 0, n = 0, ya = 0, yk = 0, food = {};
+    st.list.forEach(function (g) {
+      var p = g.a + g.k;
+      if (g.st === 'zugesagt') { y += p; ya += g.a; yk += g.k; if (g.f !== '–') food[g.f] = (food[g.f] || 0) + p; }
+      else if (g.st === 'abgesagt') n += p; else o += p;
+    });
+    $('cYes').textContent = y; $('cOpen').textContent = o; $('cNo').textContent = n;
+    var cost = ya * st.ppp + yk * st.ppp / 2;
+    $('cost').textContent = 'Zusagen kosten ca. ' + HT.eur(cost);
+    var f = Object.keys(food).map(function (k) { return k + ': ' + food[k]; }).join(' · ');
+    $('cExtra').textContent = 'Zugesagt: ' + ya + ' Erwachsene, ' + yk + ' Kinder' + (f ? ' — Essen: ' + f : '') + (o ? ' — falls alle Offenen zusagen: ' + (y + o) + ' Personen' : '');
+    HT.save('gaeste', st);
+  }
+  $('add').onsubmit = function (e) {
+    e.preventDefault();
+    var n = $('nName').value.trim(); if (!n) return;
+    st.list.push({ n: n, a: Math.max(0, parseInt($('nAdults').value, 10) || 0), k: Math.max(0, parseInt($('nKids').value, 10) || 0), s: $('nSide').value, st: 'offen', f: '–' });
+    $('nName').value = ''; $('nAdults').value = 1; $('nKids').value = 0; $('nName').focus();
+    render();
+  };
+  $('list').addEventListener('change', function (e) { var t = e.target; if (t.dataset.i !== undefined) { st.list[t.dataset.i][t.dataset.k] = t.value; count(); } });
+  $('list').addEventListener('click', function (e) { var d = e.target.dataset.del; if (d !== undefined && confirm('Eintrag entfernen?')) { st.list.splice(d, 1); render(); } });
+  $('ppp').addEventListener('input', count);
+  $('csv').onclick = function () {
+    var rows = [['Name', 'Erwachsene', 'Kinder', 'Seite', 'Status', 'Essen']].concat(st.list.map(function (g) { return [g.n, g.a, g.k, g.s, g.st, g.f]; }));
+    var csv = '﻿' + rows.map(function (r) { return r.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(';'); }).join('\r\n');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'gaesteliste.csv'; a.click();
+  };
+  render();
+})();
+</script>
+</body>
+</html>

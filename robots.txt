@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tools.bride-light.de/sitemap.xml
