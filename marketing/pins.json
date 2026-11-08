@@ -1,0 +1,74 @@
+[
+ {
+  "slug": "budgetrechner",
+  "board": "planung",
+  "title": "Hochzeitsbudget berechnen – kostenloser Rechner",
+  "desc": "Gesamtbudget eingeben und automatisch auf Location, Essen, Fotograf, Kleid & Co. verteilen. Kostenlos und ohne Anmeldung. #hochzeitsplanung #hochzeitsbudget",
+  "link": "budgetrechner/",
+  "live": true,
+  "date": "2026-11-08T12:00:00+00:00"
+ },
+ {
+  "slug": "ruegen",
+  "board": "ostsee",
+  "title": "Heiraten auf Rügen – Trauorte & Tipps",
+  "desc": "Kap Arkona, Binz, Schlösser: so plant ihr eure Inselhochzeit an der Ostsee. #rügen #ostseehochzeit",
+  "link": "ratgeber/heiraten-auf-ruegen/",
+  "live": true,
+  "date": "2026-11-08T12:00:00+00:00"
+ },
+ {
+  "slug": "strand",
+  "board": "ostsee",
+  "title": "Strandhochzeit an der Ostsee",
+  "desc": "Was in Mecklenburg-Vorpommern standesamtlich und frei am Strand möglich ist. #strandhochzeit #ostsee",
+  "link": "ratgeber/strandhochzeit-mv/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00"
+ },
+ {
+  "slug": "gaesteliste",
+  "board": "planung",
+  "title": "Gästeliste Hochzeit – kostenloser Planer",
+  "desc": "Zusagen, Kinder und Essenswünsche erfassen, Kosten pro Kopf automatisch berechnen. #gästeliste #hochzeitsplanung",
+  "link": "gaesteliste/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00"
+ },
+ {
+  "slug": "sitzplan",
+  "board": "planung",
+  "title": "Sitzplan Hochzeit einfach erstellen",
+  "desc": "Tische anlegen, Gäste zuordnen und ausdrucken – kostenlos online. #sitzplan #hochzeitsplanung",
+  "link": "sitzplan/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00"
+ },
+ {
+  "slug": "getraenkerechner",
+  "board": "planung",
+  "title": "Wie viel Wein & Bier für die Hochzeit?",
+  "desc": "Getränkemengen-Rechner mit Flaschen- und Kistenzahl für Sekt, Wein, Bier und Wasser. #hochzeitsplanung #hochzeitsfeier",
+  "link": "getraenkerechner/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00"
+ },
+ {
+  "slug": "checkliste",
+  "board": "planung",
+  "title": "Hochzeits-Checkliste mit Countdown",
+  "desc": "Was ihr 12, 6, 3 und 1 Monat vorher erledigen müsst – zum Abhaken. #hochzeitscheckliste #verlobt",
+  "link": "checkliste/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00"
+ },
+ {
+  "slug": "pdf",
+  "board": "planung",
+  "title": "Hochzeitsplaner zum Ausdrucken (PDF)",
+  "desc": "Kostenlos: Budget, Gästeliste, Checkliste, Tagesablauf und Kontakte. #hochzeitsplaner #printable",
+  "link": "download/hochzeitsplaner.pdf",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00"
+ }
+]

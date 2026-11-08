@@ -29,9 +29,13 @@ Pro Woche 1–2 Pins hochladen. Board-Vorschlag: „Hochzeitsplanung Tipps“ un
 | strand.png | Strandhochzeit an der Ostsee | Was in Mecklenburg-Vorpommern standesamtlich und frei am Strand möglich ist. #strandhochzeit #ostsee | https://tools.bride-light.de/ratgeber/strandhochzeit-mv/ |
 | pdf.png | Hochzeitsplaner zum Ausdrucken (PDF) | Kostenlos: Budget, Gästeliste, Checkliste, Tagesablauf und Kontakte. #hochzeitsplaner #printable | https://tools.bride-light.de/download/hochzeitsplaner.pdf |
 
-## 3. Pinterest-Massen-Upload (`pinterest-bulk.csv`)
+## 3. Pinterest automatisch befüllen (RSS-Feed)
 
-1. Pinterest-Business-Konto anlegen (kostenlos), Domain `tools.bride-light.de` bestätigen (Einstellungen → Beanspruchte Konten → Website).
-2. Zwei Boards anlegen, **Namen exakt so**: „Hochzeitsplanung Tipps“ und „Heiraten an der Ostsee“.
-3. Erstellen → „Pins in großen Mengen erstellen“ → `pinterest-bulk.csv` hochladen. Veröffentlichungsdaten: 9.11. bis 30.11., alle 3 Tage 18 Uhr (Pinterest erlaubt höchstens 30 Tage im Voraus).
-4. Passt Pinterest die Spaltennamen an, die Datei einfach in Excel öffnen und die Überschriften angleichen.
+Pinterest erzeugt Pins selbst aus einem Feed (Funktion „Auto-publish“, nur mit bestätigter Website). Einmal einrichten:
+
+1. Pinterest am Computer (Desktop-Ansicht) → Einstellungen → **Link zu Pinterest** („Beanspruchte Konten“) → Bereich **Auto-publish**.
+2. Feed 1 eintragen: `https://tools.bride-light.de/feed.xml` → Board **Hochzeitsplanung Tipps** → Speichern.
+3. Feed 2 eintragen: `https://tools.bride-light.de/feed-ostsee.xml` → Board **Heiraten an der Ostsee** → Speichern.
+
+Neue Pins erscheinen laut Pinterest innerhalb von etwa 24 Stunden. Ab dann braucht es keinen Handgriff mehr: Pro Lauf der geplanten Aufgabe wird der nächste Pin freigegeben und für neue Tools ein neuer Pin vorbereitet (`marketing/pins.json`, `tools/build_feed.py`, `tools/make_pin.py`).
+Falls „Auto-publish“ bei deinem Konto nicht erscheint, bietet Pinterest die Funktion nur schrittweise an – dann bleibt der manuelle Weg mit `pins-zum-kopieren.txt`.

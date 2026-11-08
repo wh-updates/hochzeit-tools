@@ -17,3 +17,4 @@ Alle Eingaben bleiben im Browser der Nutzer (localStorage).
 - 2026-11-08: Gerüst + 3 Tools, CNAME, Sitemap.
 - 2026-11-08: Regionsfrage „Wo heiratet ihr?“ + MV-Banner (in assets/site.js, gilt automatisch für alle Seiten).
 - 2026-11-08: Sitzplan, Getränkerechner, 2 Ratgeber (MV), PDF-Planer, Pins. Nav: Budget · Gästeliste · Sitzplan · Getränke · Checkliste · Ratgeber.
+- 2026-11-08: Pinterest-RSS: `feed.xml` (Board Hochzeitsplanung Tipps) + `feed-ostsee.xml`, Warteschlange `marketing/pins.json` (live=true erscheint im Feed). Skripte `tools/make_pin.py`, `tools/build_feed.py` (`release` gibt den nächsten Pin frei). pinterest-bulk.csv entfernt.
