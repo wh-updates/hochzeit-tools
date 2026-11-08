@@ -82,7 +82,7 @@
     var cost = ya * st.ppp + yk * st.ppp / 2;
     $('cost').textContent = 'Zusagen kosten ca. ' + HT.eur(cost);
     var f = Object.keys(food).map(function (k) { return k + ': ' + food[k]; }).join(' · ');
-    $('cExtra').textContent = 'Zugesagt: ' + ya + ' Erwachsene, ' + yk + ' Kinder' + (f ? ' — Essen: ' + f : '') + (o ? ' — falls alle Offenen zusagen: ' + (y + o) + ' Personen' : '');
+    $('cExtra').textContent = 'Zugesagt: ' + ya + (ya === 1 ? ' Erwachsener, ' : ' Erwachsene, ') + yk + (yk === 1 ? ' Kind' : ' Kinder') + (f ? ' — Essen: ' + f : '') + (o ? ' — falls alle Offenen zusagen: ' + (y + o) + ' Personen' : '');
     HT.save('gaeste', st);
   }
   $('add').onsubmit = function (e) {
