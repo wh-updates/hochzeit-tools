@@ -28,3 +28,10 @@ Pro Woche 1–2 Pins hochladen. Board-Vorschlag: „Hochzeitsplanung Tipps“ un
 | ruegen.png | Heiraten auf Rügen – Trauorte & Tipps | Kap Arkona, Binz, Schlösser: so plant ihr eure Inselhochzeit. #rügen #ostseehochzeit | https://tools.bride-light.de/ratgeber/heiraten-auf-ruegen/ |
 | strand.png | Strandhochzeit an der Ostsee | Was in Mecklenburg-Vorpommern standesamtlich und frei am Strand möglich ist. #strandhochzeit #ostsee | https://tools.bride-light.de/ratgeber/strandhochzeit-mv/ |
 | pdf.png | Hochzeitsplaner zum Ausdrucken (PDF) | Kostenlos: Budget, Gästeliste, Checkliste, Tagesablauf und Kontakte. #hochzeitsplaner #printable | https://tools.bride-light.de/download/hochzeitsplaner.pdf |
+
+## 3. Pinterest-Massen-Upload (`pinterest-bulk.csv`)
+
+1. Pinterest-Business-Konto anlegen (kostenlos), Domain `tools.bride-light.de` bestätigen (Einstellungen → Beanspruchte Konten → Website).
+2. Zwei Boards anlegen, **Namen exakt so**: „Hochzeitsplanung Tipps“ und „Heiraten an der Ostsee“.
+3. Erstellen → „Pins in großen Mengen erstellen“ → `pinterest-bulk.csv` hochladen. Veröffentlichungsdaten: 9.11. bis 30.11., alle 3 Tage 18 Uhr (Pinterest erlaubt höchstens 30 Tage im Voraus).
+4. Passt Pinterest die Spaltennamen an, die Datei einfach in Excel öffnen und die Überschriften angleichen.
