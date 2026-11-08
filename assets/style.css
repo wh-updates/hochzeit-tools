@@ -45,3 +45,10 @@ footer.site a{margin-right:1rem}
 .check input{width:auto;margin-top:.35rem}
 .check .done{text-decoration:line-through;color:var(--muted)}
 @media print{header.site,footer.site,button,.noprint{display:none!important}.card{border:0}}
+.region{margin:.5rem 0 1rem}
+.region-q{font-size:.9rem;color:var(--muted);display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin:0}
+.region-q select{width:auto;padding:.3rem .5rem}
+.mv-banner{position:relative;background:#f3ece6;border:1px solid var(--accent);border-radius:12px;padding:1rem 2.5rem 1rem 1rem;line-height:1.5}
+.mv-banner .btn{margin-top:.6rem}
+.mv-x{position:absolute;top:.4rem;right:.4rem;background:transparent;color:var(--muted);padding:.2rem .5rem}
+.mv-x:hover{background:transparent;color:var(--ink)}

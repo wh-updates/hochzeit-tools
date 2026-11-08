@@ -10,3 +10,4 @@ Alle Eingaben bleiben im Browser der Nutzer (localStorage).
 
 ## Logbuch
 - 2026-11-08: Gerüst + 3 Tools, CNAME, Sitemap.
+- 2026-11-08: Regionsfrage „Wo heiratet ihr?“ + MV-Banner (in assets/site.js, gilt automatisch für alle Seiten).
