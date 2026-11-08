@@ -160,4 +160,56 @@ def pdf():
 <path d="M700 600 L596 420 L614 408 L718 588 Z" fill="#faf7f4"/><path d="M596 420 L580 448 L588 456 L614 408Z" {H2}/><path d="M700 600 L718 588 L722 610Z" {H2}/><path d="M648 500 L666 489" stroke-width="3"/>
 <path d="M270 590 q-14 -70 30 -90 q30 50 -30 90 M270 590 L286 500" /><path d="M255 520 q-30 -24 -10 -50 q34 10 10 50" stroke-width="3"/>
 <circle cx="285" cy="400" r="28"/><circle cx="321" cy="400" r="28"/>'''
-MOTIVE={'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf}
+
+def locations():
+    # Gutshaus mit Giebel, Fenstern, Bäumen
+    win=''.join(f'<rect x="{x}" y="{y}" width="34" height="46"/><path d="M{x+17} {y} L{x+17} {y+46} M{x} {y+22} L{x+34} {y+22}" stroke-width="2.5"/>' for x in (350,420,546,616) for y in (400,490))
+    return f'''
+<path d="M300 380 L300 600 L700 600 L700 380 Z"/><path d="M300 380 L300 600 L700 600 L700 380 Z" {H}/>
+<path d="M300 380 L500 230 L700 380 Z"/><path d="M270 392 L500 215 L730 392"/>
+<path d="M440 380 L440 330 L560 330 L560 380 Z"/><circle cx="500" cy="300" r="26"/><path d="M500 280 L500 300 L514 306" stroke-width="3"/>
+<rect x="300" y="380" width="400" height="14" fill="#faf7f4"/>
+{win}
+<path d="M460 600 L460 520 Q500 480 540 520 L540 600" fill="#faf7f4"/><path d="M500 492 L500 600 M460 556 L540 556" stroke-width="2.5"/>
+<path d="M440 600 L440 612 L560 612 L560 600 M420 612 L420 624 L580 624 L580 612" stroke-width="3"/>
+<path d="M230 600 L230 480 M230 480 q-60 -20 -40 -90 q40 -30 70 -10 q40 -40 70 20 q20 60 -40 80z"/><path d="M770 600 L770 490 M770 490 q60 -20 40 -90 q-40 -30 -70 -10 q-40 -40 -70 20 q-20 60 40 80z"/>
+<path d="M200 640 Q500 610 800 640" />{grass(330,640,5,30)}{grass(640,640,5,30)}
+{cloud(215,215,1)}{cloud(680,200,.9)}{gulls(560,170,.8)}'''
+
+def kosten():
+    # Münzstapel, Sparschwein-ähnlich vereinfacht: Münzen + Herz + Euro
+    coins=''.join(f'<ellipse cx="500" cy="{590-i*34}" rx="120" ry="34"/><path d="M380 {590-i*34} L380 {620-i*34} Q500 {660-i*34} 620 {620-i*34} L620 {590-i*34}"/>' for i in range(4))
+    return f'''
+{coins}
+<ellipse cx="500" cy="454" rx="120" ry="34" fill="#faf7f4"/><text x="500" y="468" font-family="DejaVu Serif" font-size="44" text-anchor="middle" stroke="none" fill="#2b2622">€</text>
+<path d="M380 454 L380 590 M620 454 L620 590" stroke-width="3"/><path d="M386 530 L614 530 M386 560 L614 560" {H}/>
+<circle cx="250" cy="330" r="62"/><text x="250" y="352" font-family="DejaVu Serif" font-size="64" text-anchor="middle" stroke="none" fill="#2b2622">€</text>
+<circle cx="760" cy="280" r="48"/><text x="760" y="300" font-family="DejaVu Serif" font-size="50" text-anchor="middle" stroke="none" fill="#2b2622">€</text>
+<path d="M500 330 q-70 -60 -70 -100 q0 -45 45 -45 q25 0 25 28 q0 -28 25 -28 q45 0 45 45 q0 40 -70 100z" transform="translate(0 -10)"/>
+<path d="M200 640 L800 640" stroke-width="3"/>{grass(250,640,5,28)}{grass(700,640,5,28)}'''
+
+def fotograf():
+    return f'''
+<path d="M290 330 L350 330 L375 290 L625 290 L650 330 L710 330 Q740 330 740 360 L740 560 Q740 590 710 590 L290 590 Q260 590 260 560 L260 360 Q260 330 290 330Z"/>
+<path d="M290 330 L350 330 L375 290 L625 290 L650 330 L710 330 Q740 330 740 360 L740 400 L260 400 L260 360 Q260 330 290 330Z" {H}/>
+<circle cx="500" cy="470" r="105"/><circle cx="500" cy="470" r="76"/><circle cx="500" cy="470" r="42"/><circle cx="500" cy="470" r="76" {H2}/>
+<path d="M470 440 q14 -14 34 -10" stroke-width="3"/>
+<rect x="296" y="352" width="56" height="30" rx="6"/><circle cx="690" cy="360" r="12"/><path d="M640 262 L690 262 L690 290 L640 290Z"/>
+<path d="M300 590 q-10 40 -40 50 M700 590 q10 40 40 50" stroke-width="3"/>
+<path d="M200 640 Q500 620 800 640"/>{gulls(240,250)}{gulls(700,200,.8)}'''
+
+def winter():
+    flake=''
+    for k in range(6):
+        flake+=f'<g transform="rotate({k*60} 500 330)"><path d="M500 330 L500 205 M500 240 L470 215 M500 240 L530 215 M500 275 L478 258 M500 275 L522 258"/></g>'
+    return f'''
+{flake}<circle cx="500" cy="330" r="14"/>
+<path d="M200 560 Q350 500 500 540 Q650 580 800 520 L800 665 L200 665 Z"/><path d="M200 560 Q350 500 500 540 Q650 580 800 520 L800 665 L200 665 Z" {H}/>
+<path d="M360 560 L360 480 Q420 430 480 480 L480 560" /><path d="M360 560 L480 560 M368 540 L472 540" stroke-width="3"/>
+<path d="M356 482 Q420 420 484 482" {H2}/><path d="M350 482 q70 -70 140 0 l-10 -12 q-60 -50 -120 0z"/>
+<path d="M600 600 q-20 -70 25 -120 q30 40 -25 120 M600 600 L625 480" /><path d="M600 560 q-30 -10 -28 -40 q30 4 28 40"/>
+<path d="M610 480 q20 -22 40 0" stroke-width="3"/>
+{''.join(f'<circle cx="{x}" cy="{y}" r="5" stroke-width="3"/>' for x,y in [(250,250),(300,400),(720,260),(780,380),(650,180),(340,170),(220,470),(760,470)])}
+{waves(230,640,90,1)}'''
+
+MOTIVE={'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf}

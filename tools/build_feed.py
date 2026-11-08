@@ -8,14 +8,17 @@ R=pathlib.Path(__file__).resolve().parent.parent; B='https://tools.bride-light.d
 FEEDS={'planung':('feed.xml','Hochzeitsplanung Tipps – Hochzeit-Tools von Bride & Light'),'ostsee':('feed-ostsee.xml','Heiraten an der Ostsee – Bride & Light')}
 def load(): return json.loads((R/'marketing'/'pins.json').read_text(encoding='utf-8'))
 def save(d): (R/'marketing'/'pins.json').write_text(json.dumps(d,ensure_ascii=False,indent=1),encoding='utf-8')
-def release_next():
-    """Gibt je Board den nächsten wartenden Pin frei (1 Pin pro Board und Aufruf)."""
+def release_next(n=1):
+    """Gibt je Board die nächsten n wartenden Pins frei. Reihenfolge: Pins verschiedener Seiten abwechselnd (nicht dieselbe Seite hintereinander)."""
     d=load(); done=[]
     for board in FEEDS:
-        for p in d:
-            if not p['live'] and p['board']==board:
-                p['live']=True; p['date']=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00'); done.append(p['slug']); break
-        else: done.append(f'(Warteschlange {board} leer)')
+        for k in range(n):
+            wait=[p for p in d if not p['live'] and p['board']==board]
+            last=[p['link'] for p in d if p['live'] and p['board']==board]; last=last[-1] if last else None
+            wait.sort(key=lambda p:(p['link']==last, p['variant']))   # erst andere Seite, dann niedrigere Variante
+            if not wait: done.append(f'(Warteschlange {board} leer)'); break
+            p=wait[0]; p['live']=True
+            p['date']=(datetime.datetime.now(datetime.timezone.utc)-datetime.timedelta(minutes=k)).strftime('%Y-%m-%dT%H:%M:%S+00:00'); done.append(p['slug'])
     save(d); return ', '.join(done)
 def build():
     d=load()
@@ -49,5 +52,5 @@ def build_flipboard(d=None):
 </channel></rss>
 ''',encoding='utf-8')
 if __name__=='__main__':
-    if len(sys.argv)>1 and sys.argv[1]=='release': print('freigegeben:',release_next())
+    if len(sys.argv)>1 and sys.argv[1]=='release': print('freigegeben:',release_next(int(sys.argv[2]) if len(sys.argv)>2 else 1))
     build(); build_flipboard()

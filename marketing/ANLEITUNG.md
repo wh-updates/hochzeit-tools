@@ -39,3 +39,11 @@ Pinterest erzeugt Pins selbst aus einem Feed (Funktion „Auto-publish“, nur m
 
 Neue Pins erscheinen laut Pinterest innerhalb von etwa 24 Stunden. Ab dann braucht es keinen Handgriff mehr: Pro Lauf der geplanten Aufgabe wird der nächste Pin freigegeben und für neue Tools ein neuer Pin vorbereitet (`marketing/pins.json`, `tools/build_feed.py`, `tools/make_pin.py`).
 Falls „Auto-publish“ bei deinem Konto nicht erscheint, bietet Pinterest die Funktion nur schrittweise an – dann bleibt der manuelle Weg mit `pins-zum-kopieren.txt`.
+
+
+## 4. Pinterest-Turbo (Stand 08.11.2026)
+
+- **Pins:** 39 Pins (je Seite 3–4 Varianten mit unterschiedlichen Suchbegriffen in Titel und Beschreibung). Die tägliche Aufgabe gibt je Board 2 Pins frei (`python3 tools/build_feed.py release 2`), abwechselnd von verschiedenen Seiten, damit nie dieselbe Seite mehrfach hintereinander erscheint.
+- **Neue Seiten:** Die Aufgabe „neues Tool bauen“ legt pro Seite 3 Pin-Varianten an (Slug beginnt mit dem Motivnamen aus `tools/pencil.py`). Titel: Suchbegriff zuerst, max. 100 Zeichen; Beschreibung mit 2 Hashtags, max. 500 Zeichen.
+- **Merken-Box:** `python3 tools/layout.py` setzt auf jeder Seite mit Pin eine Box „Auf Pinterest merken“ (reiner Link, kein Skript). Danach `python3 tools/seo_apply.py`.
+- **Einmalig durch dich (Pinterest-Konto):** Website bestätigen („Beanspruchte Konten“), Auto-publish-Feeds eintragen (siehe Punkt 3), Konto als Unternehmenskonto führen.

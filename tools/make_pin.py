@@ -24,6 +24,7 @@ DEFS='''<defs>
 <pattern id="h" width="13" height="13" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="13" stroke="#4a4540" stroke-width="1.8"/></pattern>
 <pattern id="h2" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="8" stroke="#4a4540" stroke-width="1.6"/></pattern>
 </defs>'''
+RATGEBER={'ruegen','strand','locations','kosten','fotograf','winter'}
 def wrap(t,n=30):
     L=['']
     for x in t.split():
@@ -32,13 +33,14 @@ def wrap(t,n=30):
     return L
 def make(slug,t1,t2,sub,board,variant=0):
     bg,acc=COL[board][int(variant)%3]; root=pathlib.Path(__file__).resolve().parent.parent
+    label='RATGEBER · KOSTENLOS' if slug.split('-')[0] in RATGEBER else 'KOSTENLOS · OHNE ANMELDUNG'
     motif=MOTIVE.get(slug.split('-')[0],MOTIVE['ruegen'])()
     subl=''.join(f'<text x="500" y="{1050+i*52}" font-family="DejaVu Sans" font-size="38" fill="#5a4f47" text-anchor="middle">{html.escape(l)}</text>' for i,l in enumerate(wrap(sub)))
     ink='fill="none" stroke="#3d3935" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"'
     svg=f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1500">{DEFS}
 <rect width="1000" height="1500" fill="#faf7f4"/><rect width="1000" height="700" fill="{bg}"/>
 <path d="M0 700 Q250 668 500 700 T1000 700 V716 H0Z" fill="#faf7f4"/>
-<text x="500" y="92" font-family="DejaVu Sans" font-size="30" letter-spacing="8" fill="{acc}" text-anchor="middle">KOSTENLOS · OHNE ANMELDUNG</text>
+<text x="500" y="92" font-family="DejaVu Sans" font-size="30" letter-spacing="8" fill="{acc}" text-anchor="middle">{label}</text>
 <g id="m" {ink}>{motif}</g>
 <use xlink:href="#m" filter="url(#pen1)"/><use xlink:href="#m" filter="url(#pen2)" opacity="0.55"/>
 <text x="500" y="870" font-family="DejaVu Serif" font-size="86" fill="#2b2622" text-anchor="middle">{html.escape(t1)}</text>

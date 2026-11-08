@@ -99,3 +99,10 @@ footer.site h3{font-family:var(--serif);font-weight:normal;font-size:1.05rem;col
 @media(max-width:720px){.hero,.about-in{grid-template-columns:1fr}.hero{padding:1.4rem}.hero h1{font-size:2rem}.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}.brand img{width:48px;height:48px}.hero-ill{max-height:200px}}
 
 .crumbs{font-size:.88rem;color:var(--muted,#6b5a58);margin:0 0 14px}.crumbs a{color:inherit}.crumbs [aria-current]{font-weight:600}
+
+/* Pinterest-Merken-Box */
+.pinbox{display:flex;gap:1.4rem;align-items:center;margin:2rem 0;padding:1.2rem;border:1px solid var(--line,#eadfd8);border-radius:14px;background:#fffaf7}
+.pinbox img{width:100px;height:auto;border-radius:10px;flex:none}
+.pinbox h2{margin:0 0 .3rem;font-size:1.2rem}
+.pinbox p{margin:0 0 .8rem}
+@media(max-width:520px){.pinbox{flex-direction:column;text-align:center}}
