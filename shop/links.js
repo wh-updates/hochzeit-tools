@@ -7,8 +7,8 @@ window.SHOP_LINKS = {
   "hochzeit-kleines-budget": "https://www.checkout-ds24.com/product/762271",
   "heiraten-an-der-ostsee": "https://www.checkout-ds24.com/product/762272",
   "winterhochzeit-guide": "https://www.checkout-ds24.com/product/762273",
-  "hochzeitsrede": "",
-  "jga-planer": "",
-  "trauzeugen-handbuch": "",
+  "hochzeitsrede": "https://www.checkout-ds24.com/product/762274",
+  "jga-planer": "https://www.checkout-ds24.com/product/762275",
+  "trauzeugen-handbuch": "https://www.checkout-ds24.com/product/762276",
   "hochzeits-bundle": "",
 };
