@@ -1,0 +1,68 @@
+[
+ {
+  "name": "Hochzeitsguide (DE)",
+  "url": "https://www.hochzeitsguide.com/feed/",
+  "ok": true,
+  "http": 200,
+  "items": 10,
+  "mit_bild": 9,
+  "volltext": 10,
+  "neuester": "2026-11-02",
+  "alter_tage": 5
+ },
+ {
+  "name": "Green Wedding Shoes",
+  "url": "https://www.greenweddingshoes.com/feed/",
+  "ok": true,
+  "http": 200,
+  "items": 24,
+  "mit_bild": 24,
+  "volltext": 0,
+  "neuester": "2026-11-07",
+  "alter_tage": 1
+ },
+ {
+  "name": "100 Layer Cake",
+  "url": "https://www.100layercake.com/blog/feed/",
+  "ok": true,
+  "http": 200,
+  "items": 10,
+  "mit_bild": 10,
+  "volltext": 10,
+  "neuester": "2026-11-05",
+  "alter_tage": 3
+ },
+ {
+  "name": "Rock n Roll Bride",
+  "url": "https://www.rocknrollbride.com/feed/",
+  "ok": true,
+  "http": 200,
+  "items": 5,
+  "mit_bild": 5,
+  "volltext": 5,
+  "neuester": "2026-11-06",
+  "alter_tage": 2
+ },
+ {
+  "name": "Style Me Pretty",
+  "url": "https://www.stylemepretty.com/feed/",
+  "ok": true,
+  "http": 200,
+  "items": 8,
+  "mit_bild": 3,
+  "volltext": 3,
+  "neuester": "2026-11-07",
+  "alter_tage": 1
+ },
+ {
+  "name": "Reddit r/weddingplanning",
+  "url": "https://www.reddit.com/r/weddingplanning/.rss",
+  "ok": true,
+  "http": 200,
+  "items": 25,
+  "mit_bild": 3,
+  "volltext": 6,
+  "neuester": "2026-11-08",
+  "alter_tage": 0
+ }
+]
