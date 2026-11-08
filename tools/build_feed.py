@@ -32,6 +32,22 @@ def build():
 {chr(10).join(x)}
 </channel></rss>
 ''',encoding='utf-8')
+def build_flipboard(d=None):
+    """feed-flipboard.xml: alle freigegebenen Pins beider Boards in einem Feed für Flipboard (Titel, Bild, Text ohne Hashtags, Link zur Seite)."""
+    import re
+    d=d if d is not None else load(); items=[p for p in d if p['live']]; items.sort(key=lambda p:p['date'],reverse=True); x=[]
+    for p in items[:50]:
+        img=R/'marketing'/'pins'/f"{p['slug']}.png"; url=B+f"marketing/pins/{p['slug']}.png"; dt=datetime.datetime.fromisoformat(p['date'])
+        txt=html.escape(re.sub(r'\s*#\w+','',p['desc']).strip()); t=html.escape(p['title']); l=html.escape(B+p['link'])
+        x.append(f'''<item><title>{t}</title><link>{l}</link><guid isPermaLink="false">flip-{p['slug']}</guid><pubDate>{email.utils.format_datetime(dt)}</pubDate>
+<description>{txt}</description><content:encoded><![CDATA[<img src="{url}" alt="{t}"/><p>{re.sub(r'\s*#\w+','',p['desc']).strip()}</p><p><a href="{B+p['link']}">Zum kostenlosen Tool</a></p>]]></content:encoded>
+<enclosure url="{url}" length="{img.stat().st_size if img.exists() else 0}" type="image/png"/><media:content url="{url}" medium="image" type="image/png"/></item>''')
+    (R/'feed-flipboard.xml').write_text(f'''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Hochzeit-Tools &amp; Ratgeber – Bride &amp; Light</title><link>{B}</link>
+<description>Kostenlose Hochzeitsplaner-Tools und Ratgeber für Heiraten an der Ostsee – von Bride &amp; Light</description><language>de-de</language>
+{chr(10).join(x)}
+</channel></rss>
+''',encoding='utf-8')
 if __name__=='__main__':
     if len(sys.argv)>1 and sys.argv[1]=='release': print('freigegeben:',release_next())
-    build()
+    build(); build_flipboard()
