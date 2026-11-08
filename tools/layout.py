@@ -20,7 +20,7 @@ def about(p):
 <div class="about-txt"><p class="eyebrow">Über uns</p><h2>Hinter den Tools: <em>Bride &amp; Light</em></h2>
 <p>Wir begleiten Brautpaare mit Hochzeitsfotografie und Brautstyling – auf Rügen, in Stralsund und in ganz Mecklenburg-Vorpommern. Diese Tools sind unser Geschenk an euch, damit ihr eure Planung mit Ruhe angeht.</p>
 <p>Und wenn ihr jemanden für schöne Bilder und ein entspanntes Styling sucht: Wir freuen uns auf eure Geschichte.</p>
-<p class="about-btns"><a class="btn" href="https://bride-light.de/{UTM('about','ueber-uns')}#kontakt">Unverbindlich anfragen</a> <a class="btn ghost" href="https://bride-light.de/hochzeitsfotograf-ruegen{UTM('about','ueber-uns')}">Hochzeitsfotos ansehen</a></p></div>
+<p class="about-btns"><a class="btn" href="https://bride-light.de/{UTM('about','ueber-uns')}">Bride &amp; Light kennenlernen</a></p></div>
 </div></section><!--/ABOUT-->'''
 def footer(p):
     tl=''.join(f'<a href="{p}{d}/">{t}</a>' for d,t in NAV[:5])
