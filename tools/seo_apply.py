@@ -7,7 +7,9 @@ LOGO = "https://bride-light.de/medien/70/480-weisses-herz-logo-mit-make-up-puder
 OGIMG = "https://bride-light.de/medien/44/1600-waehrend-der-trauung.webp?v=1"
 E = html.escape
 TOOLS = {"budgetrechner": "Hochzeitsbudget-Rechner", "gaesteliste": "Gästelisten-Planer", "sitzplan": "Sitzplan-Planer", "getraenkerechner": "Getränkerechner für die Hochzeit", "checkliste": "Hochzeits-Checkliste mit Countdown"}
-ARTICLES = {"ratgeber/heiraten-auf-ruegen": "Heiraten auf Rügen", "ratgeber/strandhochzeit-mv": "Strandhochzeit in Mecklenburg-Vorpommern"}
+ARTICLES = {"ratgeber/heiraten-auf-ruegen": "Heiraten auf Rügen", "ratgeber/strandhochzeit-mv": "Strandhochzeit in Mecklenburg-Vorpommern",
+            "ratgeber/hochzeitslocations-ruegen-ostsee": "Hochzeitslocations auf Rügen und an der Ostsee", "ratgeber/kosten-hochzeit-mv": "Kosten einer Hochzeit in Mecklenburg-Vorpommern",
+            "ratgeber/hochzeitsfotograf-finden": "Hochzeitsfotograf finden – 10 Fragen", "ratgeber/heiraten-im-winter-ostsee": "Heiraten im Winter an der Ostsee"}
 def git(*a): return subprocess.run(["git", "-C", str(R), *a], capture_output=True, text=True).stdout.strip()
 def dates(rel):
     l = git("log", "--format=%cs", "--", rel).splitlines()
