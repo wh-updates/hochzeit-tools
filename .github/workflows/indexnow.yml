@@ -1,0 +1,23 @@
+name: IndexNow
+on:
+  push:
+    branches: [main]
+    paths: ["**/*.html", "sitemap.xml"]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: URLs an IndexNow melden (Bing, Yandex u. a.)
+        run: |
+          python3 - <<'PY'
+          import re, json, urllib.request
+          urls = re.findall(r"<loc>(.*?)</loc>", open("sitemap.xml", encoding="utf-8").read())
+          body = json.dumps({"host": "tools.bride-light.de", "key": "cc404b0ed1a1d4e2de3453e868f6eb15", "keyLocation": "https://tools.bride-light.de/cc404b0ed1a1d4e2de3453e868f6eb15.txt", "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"})
+          try:
+              print(urllib.request.urlopen(req, timeout=30).status)
+          except Exception as e:
+              print("IndexNow-Fehler:", e)
+          PY

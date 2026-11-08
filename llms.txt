@@ -1,0 +1,23 @@
+# Hochzeits-Tools von Bride & Light
+
+> Kostenlose Online-Tools und Ratgeber für die Hochzeitsplanung, besonders für Hochzeiten an der Ostsee, auf Rügen und in Mecklenburg-Vorpommern. Alle Tools laufen ohne Anmeldung im Browser; Eingaben bleiben im eigenen Browser gespeichert (localStorage). Herausgeber ist Bride & Light, Hochzeitsfotografie und Brautstyling auf Rügen, in Stralsund und in ganz Mecklenburg-Vorpommern (https://bride-light.de/).
+
+## Planungs-Tools (kostenlos)
+- [Hochzeitsbudget-Rechner](https://tools.bride-light.de/budgetrechner/): Kostenloser Hochzeitsbudget-Rechner: Budget auf Location, Essen, Fotograf, Kleid & Co. verteilen und tatsächliche Kosten vergleichen. Ohne Anmeldung.
+- [Gästelisten-Planer](https://tools.bride-light.de/gaesteliste/): Kostenloser Gästelisten-Planer: Zusagen, Begleitung, Kinder und Essenswünsche erfassen, Kosten pro Kopf berechnen und als CSV exportieren.
+- [Sitzplan-Planer](https://tools.bride-light.de/sitzplan/): Kostenloser Sitzplan-Planer für die Hochzeit: Tische anlegen, Gäste zuordnen, freie Plätze sehen und den Sitzplan ausdrucken. Ohne Anmeldung.
+- [Getränkerechner für die Hochzeit](https://tools.bride-light.de/getraenkerechner/): Kostenloser Getränkerechner für die Hochzeit: Wie viel Sekt, Wein, Bier und Softdrinks braucht ihr? Mit Flaschen- und Kistenzahl, Werte anpassbar.
+- [Hochzeits-Checkliste mit Countdown](https://tools.bride-light.de/checkliste/): Kostenlose Hochzeits-Checkliste mit Countdown: Datum eingeben und sehen, was 12, 6, 3 und 1 Monat vor der Hochzeit ansteht. Zum Abhaken, ohne Anmeldung.
+
+## Ratgeber Mecklenburg-Vorpommern
+- [Heiraten auf Rügen](https://tools.bride-light.de/ratgeber/heiraten-auf-ruegen/): Heiraten auf Rügen: Trauorte wie Kap Arkona oder das Kurhaus Binz, Anmeldung beim Standesamt, beste Jahreszeit und Tipps für eure Inselhochzeit.
+- [Strandhochzeit in Mecklenburg-Vorpommern](https://tools.bride-light.de/ratgeber/strandhochzeit-mv/): Strandhochzeit an der Ostsee: standesamtlich oder freie Trauung, was mit Standesamt und Gemeinde zu klären ist und Tipps gegen Wind und Wetter.
+- [Alle Ratgeber](https://tools.bride-light.de/ratgeber/)
+
+## Über den Anbieter
+- [Bride & Light – Hochzeitsfotografie und Brautstyling](https://bride-light.de/): Startseite des Studios
+- [Hochzeitsfotograf Rügen](https://bride-light.de/hochzeitsfotograf-ruegen)
+
+## Hinweise
+- Sprache: Deutsch. Preise: alle Tools kostenlos. Es werden keine personenbezogenen Daten an einen Server gesendet.
+- Zitieren erwünscht, bitte mit Link auf die jeweilige Seite von https://tools.bride-light.de/.
