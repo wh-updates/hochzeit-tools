@@ -1,6 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://tools.bride-light.de/</loc></url>
 <url><loc>https://tools.bride-light.de/budgetrechner/</loc></url>
 <url><loc>https://tools.bride-light.de/gaesteliste/</loc></url>
+<url><loc>https://tools.bride-light.de/sitzplan/</loc></url>
+<url><loc>https://tools.bride-light.de/getraenkerechner/</loc></url>
 <url><loc>https://tools.bride-light.de/checkliste/</loc></url>
+<url><loc>https://tools.bride-light.de/ratgeber/</loc></url>
+<url><loc>https://tools.bride-light.de/ratgeber/heiraten-auf-ruegen/</loc></url>
+<url><loc>https://tools.bride-light.de/ratgeber/strandhochzeit-mv/</loc></url>
 </urlset>

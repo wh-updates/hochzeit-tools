@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /marketing/
 Sitemap: https://tools.bride-light.de/sitemap.xml

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sitzplan Hochzeit erstellen – kostenloser Online-Planer</title>
+<meta name="description" content="Kostenloser Sitzplan-Planer für die Hochzeit: Tische anlegen, Gäste zuordnen, freie Plätze sehen und den fertigen Sitzplan ausdrucken. Ohne Anmeldung.">
+<link rel="canonical" href="https://tools.bride-light.de/sitzplan/">
+<link rel="stylesheet" href="../assets/style.css?v=2">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="../">Hochzeit<span>Tools</span></a>
+<nav><a href="../budgetrechner/">Budget</a><a href="../gaesteliste/">Gästeliste</a><a href="../sitzplan/">Sitzplan</a><a href="../getraenkerechner/">Getränke</a><a href="../checkliste/">Checkliste</a><a href="../ratgeber/">Ratgeber</a></nav></div></header>
+<main class="wrap">
+
+<h1>Sitzplan-Planer für eure Hochzeit</h1>
+<p class="lead">Tische anlegen, Gäste zuordnen, freie Plätze im Blick behalten – und am Ende sauber ausdrucken.</p>
+<div class="card noprint">
+<form id="addT" class="row" autocomplete="off">
+<div><label for="tName">Tisch</label><input id="tName" placeholder="z. B. Brauttisch, Tisch 1"></div>
+<div><label for="tSeats">Plätze</label><input id="tSeats" type="number" min="1" value="8"></div>
+<div style="align-self:end"><button>Tisch anlegen</button></div>
+</form>
+<form id="addG" class="row" autocomplete="off" style="margin-top:.5rem">
+<div><label for="gName">Gast</label><input id="gName" placeholder="Vor- und Nachname"></div>
+<div><label for="gTab">Tisch</label><select id="gTab"></select></div>
+<div style="align-self:end"><button>Gast hinzufügen</button></div>
+</form>
+<p class="muted" id="sum" style="margin-bottom:0"></p>
+</div>
+<div class="grid" id="tables"></div>
+<div class="card" id="unass"></div>
+<p class="noprint"><button class="ghost" id="imp">Zugesagte Gäste aus der Gästeliste übernehmen</button> <button class="ghost" onclick="print()">Sitzplan drucken</button> <button class="ghost" id="reset">Alles löschen</button></p>
+<section class="faq">
+<h2>Tipps für den Sitzplan</h2>
+<h3>Runde oder lange Tische?</h3>
+<p>Runde Tische mit 8 bis 10 Personen fördern Gespräche am Tisch. Lange Tafeln wirken festlich und sparen Platz, dafür redet man vor allem mit den direkten Nachbarn. Fragt eure Location, welche Varianten in den Raum passen.</p>
+<h3>Wer sitzt am Brauttisch?</h3>
+<p>Klassisch sitzen dort Trauzeugen und Eltern. Viele Paare entscheiden sich heute für einen kleinen Tisch nur mit Trauzeugen und Partnern – das vermeidet Diskussionen in Patchwork-Familien.</p>
+<h3>Wann sollte der Sitzplan fertig sein?</h3>
+<p>Etwa zwei bis drei Wochen vor der Hochzeit, wenn alle Zusagen da sind. Die Location braucht die finale Tischzahl meist früher.</p>
+</section>
+
+</main>
+<footer class="site"><div class="wrap"><a href="https://bride-light.de/impressum">Impressum</a><a href="https://bride-light.de/datenschutz">Datenschutz</a><span>© Bride &amp; Light</span></div></footer>
+<script src="../assets/site.js?v=2"></script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var st=HT.load('sitzplan',{t:[],g:[]});
+function save(){HT.save('sitzplan',st)}
+function render(){
+  $('gTab').innerHTML='<option value="">– noch kein Tisch –</option>'+st.t.map(function(t,i){return '<option value="'+i+'">'+HT.esc(t.n)+'</option>'}).join('');
+  $('tables').innerHTML=st.t.map(function(t,i){
+    var gs=st.g.filter(function(g){return g.t===i}),free=t.s-gs.length;
+    return '<div class="card"><h2 style="margin-top:0">'+HT.esc(t.n)+' <span class="pill'+(free<0?' over':'')+'">'+gs.length+'/'+t.s+'</span></h2><ol>'+
+      gs.map(function(g){return '<li>'+HT.esc(g.n)+' <a href="#" class="noprint" data-un="'+st.g.indexOf(g)+'" title="Vom Tisch nehmen">↩</a></li>'}).join('')+'</ol>'+
+      (free<0?'<p class="over">'+(-free)+' Person(en) zu viel</p>':'<p class="muted">'+free+' frei</p>')+
+      '<button class="ghost noprint" data-delt="'+i+'">Tisch löschen</button></div>';
+  }).join('');
+  var un=st.g.filter(function(g){return g.t===null});
+  $('unass').innerHTML='<h2 style="margin-top:0">Ohne Tisch ('+un.length+')</h2>'+(un.length?'<table>'+un.map(function(g){var gi=st.g.indexOf(g);
+    return '<tr><td>'+HT.esc(g.n)+'</td><td><select data-mv="'+gi+'"><option value="">Tisch wählen…</option>'+st.t.map(function(t,i){return '<option value="'+i+'">'+HT.esc(t.n)+'</option>'}).join('')+'</select></td><td><button class="ghost" data-delg="'+gi+'">✕</button></td></tr>'}).join('')+'</table>':'<p class="muted">Alle Gäste haben einen Platz.</p>');
+  var seats=st.t.reduce(function(a,t){return a+t.s},0),as=st.g.length-un.length;
+  $('sum').textContent=st.t.length+' Tische · '+seats+' Plätze · '+st.g.length+' Gäste ('+as+' platziert)';
+  save();
+}
+$('addT').onsubmit=function(e){e.preventDefault();var n=$('tName').value.trim()||('Tisch '+(st.t.length+1));st.t.push({n:n,s:Math.max(1,parseInt($('tSeats').value,10)||8)});$('tName').value='';render()};
+$('addG').onsubmit=function(e){e.preventDefault();var n=$('gName').value.trim();if(!n)return;var v=$('gTab').value;st.g.push({n:n,t:v===''?null:+v});$('gName').value='';$('gName').focus();render()};
+document.addEventListener('click',function(e){var d=e.target.dataset;
+  if(d.un!==undefined){e.preventDefault();st.g[d.un].t=null;render()}
+  if(d.delg!==undefined){st.g.splice(+d.delg,1);render()}
+  if(d.delt!==undefined&&confirm('Tisch löschen? Die Gäste bleiben in der Liste „Ohne Tisch“.')){var i=+d.delt;st.t.splice(i,1);st.g.forEach(function(g){if(g.t===i)g.t=null;else if(g.t>i)g.t--});render()}
+});
+document.addEventListener('change',function(e){var d=e.target.dataset;if(d.mv!==undefined&&e.target.value!==''){st.g[d.mv].t=+e.target.value;render()}});
+$('imp').onclick=function(){var gl=HT.load('gaeste',{list:[]}).list.filter(function(g){return g.st==='zugesagt'});
+  if(!gl.length){alert('In der Gästeliste sind noch keine zugesagten Gäste.');return}
+  var have={};st.g.forEach(function(g){have[g.n]=1});var n=0;
+  gl.forEach(function(g){var c=g.a+g.k;for(var k=1;k<=c;k++){var name=c>1?g.n+' ('+k+')':g.n;if(!have[name]){st.g.push({n:name,t:null});n++}}});
+  alert(n+' Gäste übernommen.');render()};
+$('reset').onclick=function(){if(confirm('Alle Tische und Gäste löschen?')){st={t:[],g:[]};render()}};
+render();
+})();
+</script>
+</body>
+</html>

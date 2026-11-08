@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Getränke Hochzeit berechnen – Mengenrechner für Wein, Bier & Sekt</title>
+<meta name="description" content="Kostenloser Getränkemengen-Rechner für die Hochzeit: Wie viel Sekt, Wein, Bier, Wasser und Softdrinks braucht ihr? Mit Faustwerten zum Anpassen und Flaschen- und Kistenzahl.">
+<link rel="canonical" href="https://tools.bride-light.de/getraenkerechner/">
+<link rel="stylesheet" href="../assets/style.css?v=2">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="../">Hochzeit<span>Tools</span></a>
+<nav><a href="../budgetrechner/">Budget</a><a href="../gaesteliste/">Gästeliste</a><a href="../sitzplan/">Sitzplan</a><a href="../getraenkerechner/">Getränke</a><a href="../checkliste/">Checkliste</a><a href="../ratgeber/">Ratgeber</a></nav></div></header>
+<main class="wrap">
+
+<h1>Getränkemengen-Rechner für die Hochzeit</h1>
+<p class="lead">Wie viel Sekt, Wein, Bier und Wasser braucht ihr? Der Rechner arbeitet mit gängigen Faustwerten, die ihr an eure Gäste anpassen könnt.</p>
+<div class="card">
+<div class="row">
+<div><label for="ad">Erwachsene Gäste</label><input id="ad" type="number" min="0" value="60"></div>
+<div><label for="ki">Kinder</label><input id="ki" type="number" min="0" value="5"></div>
+<div><label for="hr">Feier-Dauer (Stunden)</label><input id="hr" type="number" min="1" value="8"></div>
+<div><label for="hot">Jahreszeit</label><select id="hot"><option value="1">normal</option><option value="1.25">Sommer / heiß</option></select></div>
+</div>
+<div class="row">
+<div><label for="pW">Anteil Weintrinker %</label><input id="pW" type="number" min="0" max="100" value="50"></div>
+<div><label for="pB">Anteil Biertrinker %</label><input id="pB" type="number" min="0" max="100" value="40"></div>
+<div><label for="sekt">Sektempfang (Gläser p. P.)</label><input id="sekt" type="number" min="0" value="2"></div>
+</div>
+</div>
+<div class="card"><table><thead><tr><th>Getränk</th><th class="num">Menge</th><th class="num">Gebinde</th></tr></thead><tbody id="out"></tbody></table>
+<p class="muted">Mit 10 % Sicherheitsaufschlag gerundet. Fragt euren Getränkehändler nach Kommission – dann gehen ungeöffnete Flaschen zurück.</p></div>
+<section class="faq">
+<h2>So rechnet der Rechner</h2>
+<p>Grundlage sind übliche Planungswerte: Sektempfang mit 0,1 l pro Glas; Weintrinker etwa ein Glas (0,2 l) in der ersten Stunde, danach etwa 0,15 l pro Stunde; Biertrinker 0,5 l in der ersten Stunde, danach 0,33 l pro Stunde. Wasser rund 0,3 l pro Person und Stunde, Softdrinks rund 0,2 l, für Kinder etwas mehr. Bei Hitze steigen Wasser und Softdrinks um ein Viertel. Kaffee: etwa 1,5 Tassen pro Erwachsenem.</p>
+<h3>Sind die Werte verlässlich?</h3>
+<p>Es sind Durchschnittswerte. Eine tanzfreudige Gesellschaft trinkt anders als ein ruhiges Familienfest. Wer seine Gäste kennt, passt die Anteile an – und bestellt lieber auf Kommission als zu knapp.</p>
+</section>
+</main>
+<footer class="site"><div class="wrap"><a href="https://bride-light.de/impressum">Impressum</a><a href="https://bride-light.de/datenschutz">Datenschutz</a><span>© Bride &amp; Light</span></div></footer>
+<script src="../assets/site.js?v=2"></script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},F=['ad','ki','hr','hot','pW','pB','sekt'];
+var st=HT.load('getraenke',null);if(st)F.forEach(function(k){if(st[k]!==undefined)$(k).value=st[k]});
+function n(k){return Math.max(0,parseFloat($(k).value)||0)}
+function calc(){
+  var a=n('ad'),k=n('ki'),h=Math.max(1,n('hr')),hot=n('hot')||1,S=1.1;
+  var sekt=a*n('sekt')*0.1*S;
+  var wein=a*n('pW')/100*(0.2+0.15*(h-1))*S;
+  var bier=a*n('pB')/100*(0.5+0.33*(h-1))*S;
+  var wasser=(a*0.3+k*0.35)*h*hot*S;
+  var soft=(a*0.2+k*0.4)*h*hot*S;
+  var kaffee=a*1.5*S;
+  function r(name,l,size,unit,per,cu){var b=Math.ceil(l/size);return '<tr><td>'+name+'</td><td class="num">'+l.toLocaleString('de-DE',{maximumFractionDigits:0})+' l</td><td class="num">'+b+' '+unit+(per?' ≈ '+Math.ceil(b/per)+' '+cu:'')+'</td></tr>'}
+  $('out').innerHTML=r('Sekt',sekt,0.75,'Fl. à 0,75 l',6,'Kartons (6er)')+r('Wein',wein,0.75,'Fl. à 0,75 l',6,'Kartons (6er)')+r('Bier',bier,0.5,'Fl. à 0,5 l',20,'Kisten (20er)')+
+    r('Wasser',wasser,0.75,'Fl. à 0,75 l',12,'Kisten (12er)')+r('Softdrinks',soft,1,'Fl. à 1 l',12,'Kisten (12er)')+
+    '<tr><td>Kaffee</td><td class="num">'+Math.ceil(kaffee)+' Tassen</td><td class="num">≈ '+Math.ceil(kaffee*8/1000*10)/10+' kg Bohnen</td></tr>';
+  var o={};F.forEach(function(x){o[x]=$(x).value});HT.save('getraenke',o);
+}
+document.addEventListener('input',calc);document.addEventListener('change',calc);calc();
+})();
+</script>
+</body>
+</html>
