@@ -1,11 +1,11 @@
 [
  {
-  "slug": "budgetrechner",
+  "slug": "budgetrechner-4",
   "board": "planung",
   "title": "Hochzeitsbudget berechnen – kostenloser Rechner",
   "desc": "Gesamtbudget eingeben und automatisch auf Location, Essen, Fotograf, Kleid & Co. verteilen. Kostenlos und ohne Anmeldung. #hochzeitsplanung #hochzeitsbudget",
   "link": "budgetrechner/",
-  "live": true,
+  "live": false,
   "date": "2026-11-08T12:00:00+00:00",
   "t1": "Hochzeitsbudget",
   "t2": "berechnen",
@@ -13,12 +13,12 @@
   "variant": 0
  },
  {
-  "slug": "ruegen",
+  "slug": "ruegen-4",
   "board": "ostsee",
   "title": "Heiraten auf Rügen – Trauorte & Tipps",
   "desc": "Kap Arkona, Binz, Schlösser: so plant ihr eure Inselhochzeit an der Ostsee. #rügen #ostseehochzeit",
   "link": "ratgeber/heiraten-auf-ruegen/",
-  "live": true,
+  "live": false,
   "date": "2026-11-08T12:00:00+00:00",
   "t1": "Heiraten",
   "t2": "auf Rügen",
