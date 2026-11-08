@@ -16,7 +16,8 @@ window.HT = (function () {
   function init() {
     var main = document.querySelector('main'); if (!main) return;
     var box = document.createElement('div'); box.className = 'region noprint';
-    main.insertBefore(box, main.querySelector('h1') ? main.querySelector('h1').nextSibling : main.firstChild);
+    var h1 = main.querySelector('h1'), hero = main.querySelector('.hero');
+    main.insertBefore(box, h1 && h1.parentNode === main ? h1.nextSibling : (hero ? hero.nextSibling : main.firstChild));
     function render() {
       var r = HT.load('region', ''), hide = HT.load('regionHide', '');
       if (r === MV && hide !== r) {

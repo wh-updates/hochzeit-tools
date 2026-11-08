@@ -20,3 +20,5 @@ Alle Eingaben bleiben im Browser der Nutzer (localStorage).
 - 2026-11-08: Pinterest-RSS: `feed.xml` (Board Hochzeitsplanung Tipps) + `feed-ostsee.xml`, Warteschlange `marketing/pins.json` (live=true erscheint im Feed). Skripte `tools/make_pin.py`, `tools/build_feed.py` (`release` gibt den nächsten Pin frei). pinterest-bulk.csv entfernt.
 
 - 2026-11-08: Pins im Bleistift-Stil (tools/pencil.py: je Thema ein Motiv, make_pin.py legt es mit Wackel-Filter auf die Hintergrundfarbe). Neue Seite = neues Motiv in pencil.py (Funktion + Eintrag in MOTIVE, Schlüssel = erstes Wort des Pin-Slugs).
+
+- 2026-11-08: Marken-Look (Rosé & Champagner wie bride-light.de): Kopf mit Logo, Fuß mit Verweisen auf die Hauptseite, Über-uns-Box auf jeder Seite, Willkommens-Hero auf der Startseite, Bleistift-Icons auf den Kacheln. Kopf/Fuß/Über-uns kommen aus EINER Quelle: `python3 tools/layout.py` (setzt auch ?v= für CSS/JS). Logo und Foto werden direkt von bride-light.de geladen. Neue Seite: Kopf/Fuß-Platzhalter `<header class="site"></header>` und `<footer class="site"></footer>` setzen, `tools/layout.py` ausführen, Icon in tools/make_icons.py erzeugen.
