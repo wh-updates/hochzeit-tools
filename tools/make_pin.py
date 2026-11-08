@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """Pinterest-Pin (1000x1500 PNG) erzeugen.
-Aufruf: python3 tools/make_pin.py <slug> "<Zeile 1>" "<Zeile 2>" "<Untertitel>" <planung|ostsee>
+Aufruf: python3 tools/make_pin.py <slug> "<Zeile 1>" "<Zeile 2>" "<Untertitel>" <planung|ostsee> [Variante 0-2 = Farbe]
 Ergebnis: marketing/pins/<slug>.png  (braucht rsvg-convert + DejaVu-Schriften)"""
 import sys,html,subprocess,pathlib
-COL={'planung':'#b0806a','ostsee':'#5f7a86'}
+COL={'planung':['#b0806a','#8f6452','#9a7b5f'],'ostsee':['#5f7a86','#486573','#7a9aa8']}
 def wrap(t,n=30):
     L=['']
     for x in t.split():
         if len(L[-1])+len(x)+1>n:L.append(x)
         else:L[-1]=(L[-1]+' '+x).strip()
     return L
-def make(slug,t1,t2,sub,board):
-    col=COL[board]; root=pathlib.Path(__file__).resolve().parent.parent
+def make(slug,t1,t2,sub,board,variant=0):
+    col=COL[board][int(variant)%3]; root=pathlib.Path(__file__).resolve().parent.parent
     subl=''.join(f'<text x="500" y="{1010+i*52}" font-family="DejaVu Sans" font-size="38" fill="#5a4f47" text-anchor="middle">{html.escape(l)}</text>' for i,l in enumerate(wrap(sub)))
     svg=f'''<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1500">
 <rect width="1000" height="1500" fill="#faf7f4"/><rect width="1000" height="560" fill="{col}"/><circle cx="500" cy="560" r="150" fill="#faf7f4"/>

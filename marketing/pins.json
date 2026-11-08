@@ -6,7 +6,11 @@
   "desc": "Gesamtbudget eingeben und automatisch auf Location, Essen, Fotograf, Kleid & Co. verteilen. Kostenlos und ohne Anmeldung. #hochzeitsplanung #hochzeitsbudget",
   "link": "budgetrechner/",
   "live": true,
-  "date": "2026-11-08T12:00:00+00:00"
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Hochzeitsbudget",
+  "t2": "berechnen",
+  "sub": "Kostenloser Rechner: Budget auf alle Posten verteilen & Kosten im Blick",
+  "variant": 0
  },
  {
   "slug": "ruegen",
@@ -15,7 +19,11 @@
   "desc": "Kap Arkona, Binz, Schlösser: so plant ihr eure Inselhochzeit an der Ostsee. #rügen #ostseehochzeit",
   "link": "ratgeber/heiraten-auf-ruegen/",
   "live": true,
-  "date": "2026-11-08T12:00:00+00:00"
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Heiraten",
+  "t2": "auf Rügen",
+  "sub": "Trauorte, Standesamt & Tipps für eure Inselhochzeit",
+  "variant": 0
  },
  {
   "slug": "strand",
@@ -24,7 +32,11 @@
   "desc": "Was in Mecklenburg-Vorpommern standesamtlich und frei am Strand möglich ist. #strandhochzeit #ostsee",
   "link": "ratgeber/strandhochzeit-mv/",
   "live": false,
-  "date": "2026-11-08T12:00:00+00:00"
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Strandhochzeit",
+  "t2": "an der Ostsee",
+  "sub": "Was in Mecklenburg-Vorpommern erlaubt ist",
+  "variant": 0
  },
  {
   "slug": "gaesteliste",
@@ -33,7 +45,11 @@
   "desc": "Zusagen, Kinder und Essenswünsche erfassen, Kosten pro Kopf automatisch berechnen. #gästeliste #hochzeitsplanung",
   "link": "gaesteliste/",
   "live": false,
-  "date": "2026-11-08T12:00:00+00:00"
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Gästeliste",
+  "t2": "für eure Hochzeit",
+  "sub": "Zusagen, Kinder & Essenswünsche – mit Kosten pro Kopf",
+  "variant": 0
  },
  {
   "slug": "sitzplan",
@@ -42,7 +58,11 @@
   "desc": "Tische anlegen, Gäste zuordnen und ausdrucken – kostenlos online. #sitzplan #hochzeitsplanung",
   "link": "sitzplan/",
   "live": false,
-  "date": "2026-11-08T12:00:00+00:00"
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Sitzplan",
+  "t2": "ganz einfach erstellen",
+  "sub": "Tische anlegen, Gäste zuordnen, ausdrucken",
+  "variant": 0
  },
  {
   "slug": "getraenkerechner",
@@ -51,7 +71,11 @@
   "desc": "Getränkemengen-Rechner mit Flaschen- und Kistenzahl für Sekt, Wein, Bier und Wasser. #hochzeitsplanung #hochzeitsfeier",
   "link": "getraenkerechner/",
   "live": false,
-  "date": "2026-11-08T12:00:00+00:00"
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Wie viel Wein & Bier",
+  "t2": "für die Hochzeit?",
+  "sub": "Getränkemengen-Rechner mit Flaschen- & Kistenzahl",
+  "variant": 0
  },
  {
   "slug": "checkliste",
@@ -60,7 +84,11 @@
   "desc": "Was ihr 12, 6, 3 und 1 Monat vorher erledigen müsst – zum Abhaken. #hochzeitscheckliste #verlobt",
   "link": "checkliste/",
   "live": false,
-  "date": "2026-11-08T12:00:00+00:00"
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Hochzeits-Checkliste",
+  "t2": "mit Countdown",
+  "sub": "Was ihr 12, 6, 3 und 1 Monat vorher erledigen müsst",
+  "variant": 0
  },
  {
   "slug": "pdf",
@@ -69,6 +97,257 @@
   "desc": "Kostenlos: Budget, Gästeliste, Checkliste, Tagesablauf und Kontakte. #hochzeitsplaner #printable",
   "link": "download/hochzeitsplaner.pdf",
   "live": false,
-  "date": "2026-11-08T12:00:00+00:00"
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Hochzeitsplaner",
+  "t2": "zum Ausdrucken",
+  "sub": "Kostenloses PDF: Budget, Gäste, Checkliste, Ablauf",
+  "variant": 0
+ },
+ {
+  "slug": "budgetrechner-2",
+  "board": "planung",
+  "title": "Wie teuer wird unsere Hochzeit? Kostenloser Budgetplaner",
+  "desc": "Trag Gesamtbudget und Gästezahl ein und sieh sofort, was Location, Essen, Fotograf und Kleid kosten dürfen. #hochzeitskosten #budgetplaner",
+  "link": "budgetrechner/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Wie teuer wird",
+  "t2": "unsere Hochzeit?",
+  "sub": "Budget auf 13 Posten verteilen – kostenloser Rechner",
+  "variant": 1
+ },
+ {
+  "slug": "gaesteliste-2",
+  "board": "planung",
+  "title": "Wer kommt zur Hochzeit? Gästeliste mit Zusagen",
+  "desc": "Gäste erfassen, Zusagen abhaken und die Zahl der Erwachsenen und Kinder automatisch zählen. #gästeliste #hochzeitsplanung",
+  "link": "gaesteliste/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Wer kommt",
+  "t2": "zu unserer Hochzeit?",
+  "sub": "Zusagen, Kinder & Essenswünsche an einem Ort",
+  "variant": 1
+ },
+ {
+  "slug": "sitzplan-2",
+  "board": "planung",
+  "title": "Tischordnung Hochzeit: Sitzplan online planen",
+  "desc": "Tische anlegen, Gäste zuordnen und den fertigen Sitzplan ausdrucken. Zugesagte Gäste lassen sich aus der Gästeliste übernehmen. #tischordnung #sitzplan",
+  "link": "sitzplan/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Tischordnung",
+  "t2": "ohne Chaos",
+  "sub": "Gäste Tischen zuordnen, freie Plätze sehen",
+  "variant": 1
+ },
+ {
+  "slug": "getraenkerechner-2",
+  "board": "planung",
+  "title": "Getränke Hochzeit: Wie viele Flaschen pro Gast?",
+  "desc": "Gästezahl, Dauer und Jahreszeit eingeben – der Rechner nennt Flaschen und Kisten für Sekt, Wein, Bier, Wasser und Softdrinks. #getränkeplanung #hochzeitsfeier",
+  "link": "getraenkerechner/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Reicht der Wein",
+  "t2": "für alle Gäste?",
+  "sub": "Mengenrechner für Sekt, Wein, Bier & Wasser",
+  "variant": 1
+ },
+ {
+  "slug": "checkliste-2",
+  "board": "planung",
+  "title": "Hochzeitsplanung Zeitplan: Was ist wann zu erledigen?",
+  "desc": "Die Checkliste zeigt, welche Aufgaben bei eurem Datum schon fällig sind – von 12 Monaten bis 1 Woche vorher. #hochzeitsplanung #zeitplan",
+  "link": "checkliste/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Was ist wann",
+  "t2": "zu erledigen?",
+  "sub": "Hochzeitsdatum eingeben, Countdown starten",
+  "variant": 1
+ },
+ {
+  "slug": "pdf-2",
+  "board": "planung",
+  "title": "Hochzeitsplaner PDF kostenlos zum Ausdrucken",
+  "desc": "Budget, Gästeliste, Checkliste, Tagesablauf und Kontakte – 7 Seiten zum Ausdrucken. #hochzeitsplaner #printable",
+  "link": "download/hochzeitsplaner.pdf",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Hochzeitsplaner",
+  "t2": "als PDF",
+  "sub": "7 Seiten zum Ausdrucken, kostenlos",
+  "variant": 1
+ },
+ {
+  "slug": "ruegen-2",
+  "board": "ostsee",
+  "title": "Heiraten im Leuchtturm auf Rügen – Kap Arkona und mehr",
+  "desc": "Standesamtliche Trauung im Schinkelturm, im Kurhaus Binz oder im Schloss: Trauorte und Tipps für Rügen. #rügen #leuchtturm",
+  "link": "ratgeber/heiraten-auf-ruegen/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Ja-Wort",
+  "t2": "im Leuchtturm",
+  "sub": "Heiraten am Kap Arkona und weitere Trauorte auf Rügen",
+  "variant": 1
+ },
+ {
+  "slug": "strand-2",
+  "board": "ostsee",
+  "title": "Barfuß heiraten: Strandhochzeit an der Ostsee in MV",
+  "desc": "Standesamtlich oder freie Trauung am Strand: Was erlaubt ist und was ihr klären müsst. #strandhochzeit #freietrauung",
+  "link": "ratgeber/strandhochzeit-mv/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Barfuß",
+  "t2": "Ja sagen",
+  "sub": "Strandhochzeit an der Ostsee: was ist möglich?",
+  "variant": 1
+ },
+ {
+  "slug": "budgetrechner-3",
+  "board": "planung",
+  "title": "Hochzeitskosten im Griff: Planer mit Soll-Ist-Vergleich",
+  "desc": "Geplante und tatsächliche Kosten pro Posten eintragen und die Warnung bei Überschreitung nutzen. Kostenlos, ohne Anmeldung. #hochzeitsbudget #sparen",
+  "link": "budgetrechner/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Hochzeit",
+  "t2": "ohne Kostenschock",
+  "sub": "Geplant vs. tatsächlich: jeden Euro im Blick",
+  "variant": 2
+ },
+ {
+  "slug": "gaesteliste-3",
+  "board": "planung",
+  "title": "Hochzeits-Gästeliste online führen und als CSV sichern",
+  "desc": "Mit Essenswunsch, Seite und Kosten pro Kopf – am Ende als Excel-Datei exportieren. #hochzeit #gästeplanung",
+  "link": "gaesteliste/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Gästeliste",
+  "t2": "als Excel sichern",
+  "sub": "Kostenlos planen und als CSV exportieren",
+  "variant": 2
+ },
+ {
+  "slug": "sitzplan-3",
+  "board": "planung",
+  "title": "Sitzplan Hochzeit zum Ausdrucken – kostenloser Planer",
+  "desc": "Vom Brauttisch bis zur Kindertafel: Plätze zählen, Überbelegung erkennen, drucken. #hochzeitsdeko #sitzplan",
+  "link": "sitzplan/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Sitzplan",
+  "t2": "zum Ausdrucken",
+  "sub": "Kostenloser Planer für Brauttisch und Gästetische",
+  "variant": 2
+ },
+ {
+  "slug": "getraenkerechner-3",
+  "board": "planung",
+  "title": "Getränkemenge Hochzeit berechnen – mit Sicherheitsaufschlag",
+  "desc": "Rechnet mit 10 % Puffer und zeigt, wie viele Kisten ihr bestellen solltet. Tipp: auf Kommission bestellen. #hochzeit #getränke",
+  "link": "getraenkerechner/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Nie wieder",
+  "t2": "zu wenig Getränke",
+  "sub": "Faustwerte für die Feier einfach anpassen",
+  "variant": 2
+ },
+ {
+  "slug": "checkliste-3",
+  "board": "planung",
+  "title": "Hochzeits-Checkliste zum Abhaken – 12 Monate Zeitplan",
+  "desc": "Von der Location bis zum Notfallset: alle Aufgaben, sortiert nach Zeitpunkt. #checkliste #verlobt",
+  "link": "checkliste/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Der Countdown",
+  "t2": "läuft",
+  "sub": "Checkliste zum Abhaken, kostenlos und ohne Anmeldung",
+  "variant": 2
+ },
+ {
+  "slug": "pdf-3",
+  "board": "planung",
+  "title": "Druckbarer Hochzeitsplaner – Budget, Gäste, Checkliste",
+  "desc": "Ein Planer für Ordner oder Brautmappe, mit Platz für Namen, Datum und Ort. #hochzeitsplanung #brautmappe",
+  "link": "download/hochzeitsplaner.pdf",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Alles auf Papier",
+  "t2": "für eure Hochzeit",
+  "sub": "Budget, Gäste, Ablauf & Kontakte zum Abhaken",
+  "variant": 2
+ },
+ {
+  "slug": "ruegen-3",
+  "board": "ostsee",
+  "title": "Standesamt Rügen: So meldet ihr eure Hochzeit an",
+  "desc": "Anmeldung zu Hause, Trauung auf der Insel: der Ablauf und die wichtigsten Tipps. #heiratenaufrügen #standesamt",
+  "link": "ratgeber/heiraten-auf-ruegen/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Inselhochzeit",
+  "t2": "Schritt für Schritt",
+  "sub": "Anmeldung, Termin, Gäste: so läuft es auf Rügen",
+  "variant": 2
+ },
+ {
+  "slug": "strand-3",
+  "board": "ostsee",
+  "title": "Strandhochzeit: Haare, Make-up und Fotos bei Wind",
+  "desc": "Sturmfeste Frisuren, wasserfestes Make-up und die besten Foto-Tipps für die Ostseeküste. #strandhochzeit #brautstyling",
+  "link": "ratgeber/strandhochzeit-mv/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Wind im Haar",
+  "t2": "und trotzdem schön",
+  "sub": "Tipps für Frisur, Make-up und Fotos am Strand",
+  "variant": 2
+ },
+ {
+  "slug": "budgetrechner-ostsee",
+  "board": "ostsee",
+  "title": "Ostsee-Hochzeit planen: Budgetrechner für Paare",
+  "desc": "Gesamtbudget eingeben und auf Location, Essen, Fotograf und Styling verteilen – ideal für eure Hochzeit an der Ostsee. #ostseehochzeit #hochzeitsbudget",
+  "link": "budgetrechner/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Ostsee-Hochzeit",
+  "t2": "Budget planen",
+  "sub": "Was darf eure Hochzeit an der Küste kosten?",
+  "variant": 0
+ },
+ {
+  "slug": "checkliste-ostsee",
+  "board": "ostsee",
+  "title": "Hochzeit an der Ostsee: Checkliste mit Countdown",
+  "desc": "Unterkünfte, Trauort und Dienstleister früh klären: der Zeitplan für eure Küstenhochzeit. #ostsee #hochzeitscheckliste",
+  "link": "checkliste/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Heiraten an der",
+  "t2": "Ostsee: Checkliste",
+  "sub": "Was ihr wann erledigen müsst – mit Countdown",
+  "variant": 0
+ },
+ {
+  "slug": "gaesteliste-ostsee",
+  "board": "ostsee",
+  "title": "Hochzeit an der Ostsee: Gästeliste für weite Anreisen",
+  "desc": "Zusagen im Blick behalten, wenn Gäste von weiter her kommen – Unterkünfte rechtzeitig planen. #ostseehochzeit #gästeliste",
+  "link": "gaesteliste/",
+  "live": false,
+  "date": "2026-11-08T12:00:00+00:00",
+  "t1": "Gäste auf",
+  "t2": "Anreise planen",
+  "sub": "Gästeliste für die Hochzeit an der Küste",
+  "variant": 0
  }
 ]

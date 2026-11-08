@@ -9,10 +9,14 @@ FEEDS={'planung':('feed.xml','Hochzeitsplanung Tipps – Hochzeit-Tools von Brid
 def load(): return json.loads((R/'marketing'/'pins.json').read_text(encoding='utf-8'))
 def save(d): (R/'marketing'/'pins.json').write_text(json.dumps(d,ensure_ascii=False,indent=1),encoding='utf-8')
 def release_next():
-    d=load()
-    for p in d:
-        if not p['live']:
-            p['live']=True; p['date']=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00'); save(d); return p['slug']
+    """Gibt je Board den nächsten wartenden Pin frei (1 Pin pro Board und Aufruf)."""
+    d=load(); done=[]
+    for board in FEEDS:
+        for p in d:
+            if not p['live'] and p['board']==board:
+                p['live']=True; p['date']=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00'); done.append(p['slug']); break
+        else: done.append(f'(Warteschlange {board} leer)')
+    save(d); return ', '.join(done)
 def build():
     d=load()
     for board,(fn,title) in FEEDS.items():
