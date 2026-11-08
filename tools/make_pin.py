@@ -7,6 +7,7 @@ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
 from pencil import MOTIVE
 # (Hintergrund, Akzent) je Board und Variante
 COL={'planung':[('#e6cdbf','#8f6452'),('#dccaae','#7d6548'),('#e3d0d3','#8a5f6b')],
+     'winter':[('#d3dde6','#4e6178'),('#dfe6ea','#5a7384'),('#cdd8e0','#3f5568')],
      'ostsee':[('#adc4cd','#3f6272'),('#bcd2c9','#41675a'),('#c5cfe2','#4d5d85')]}
 DEFS='''<defs>
 <filter id="pen1" filterUnits="userSpaceOnUse" x="0" y="0" width="1000" height="720">
@@ -33,7 +34,7 @@ def wrap(t,n=30):
     return L
 def make(slug,t1,t2,sub,board,variant=0):
     bg,acc=COL[board][int(variant)%3]; root=pathlib.Path(__file__).resolve().parent.parent
-    label='RATGEBER · KOSTENLOS' if slug.split('-')[0] in RATGEBER else 'KOSTENLOS · OHNE ANMELDUNG'
+    label='RATGEBER · KOSTENLOS' if (slug in RATGEBER or slug.split('-')[0] in RATGEBER) else 'KOSTENLOS · OHNE ANMELDUNG'
     motif=MOTIVE.get(slug.split('-')[0],MOTIVE['ruegen'])()
     subl=''.join(f'<text x="500" y="{1050+i*52}" font-family="DejaVu Sans" font-size="38" fill="#5a4f47" text-anchor="middle">{html.escape(l)}</text>' for i,l in enumerate(wrap(sub)))
     ink='fill="none" stroke="#3d3935" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"'

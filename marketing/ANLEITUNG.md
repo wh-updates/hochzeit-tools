@@ -47,3 +47,5 @@ Falls „Auto-publish“ bei deinem Konto nicht erscheint, bietet Pinterest die 
 - **Neue Seiten:** Die Aufgabe „neues Tool bauen“ legt pro Seite 3 Pin-Varianten an (Slug beginnt mit dem Motivnamen aus `tools/pencil.py`). Titel: Suchbegriff zuerst, max. 100 Zeichen; Beschreibung mit 2 Hashtags, max. 500 Zeichen.
 - **Merken-Box:** `python3 tools/layout.py` setzt auf jeder Seite mit Pin eine Box „Auf Pinterest merken“ (reiner Link, kein Skript). Danach `python3 tools/seo_apply.py`.
 - **Einmalig durch dich (Pinterest-Konto):** Website bestätigen („Beanspruchte Konten“), Auto-publish-Feeds eintragen (siehe Punkt 3), Konto als Unternehmenskonto führen.
+
+- **Drittes Board „Winterhochzeit“:** Feed `https://tools.bride-light.de/feed-winter.xml` in Pinterest unter Auto-publish eintragen und dem Board „Winterhochzeit“ zuordnen (8 Pins, 3 davon freigegeben). Die tägliche Freigabe bedient alle drei Boards.
