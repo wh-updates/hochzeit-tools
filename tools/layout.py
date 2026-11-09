@@ -5,7 +5,7 @@ in jeder index.html und setzt die Cache-Version. Neue Seiten: einfach Kopf/Fuß 
 <header class="site"></header> / <footer class="site"></footer> setzen und dieses Skript ausführen."""
 import re,pathlib,json,subprocess,urllib.parse,html
 R=pathlib.Path(__file__).resolve().parent.parent
-VER=5
+VER=6
 LOGO='https://bride-light.de/medien/70/480-weisses-herz-logo-mit-make-up-puder-pinsel-und-text-bride-un.webp?v=1'
 FOTO='https://bride-light.de/medien/44/1600-waehrend-der-trauung.webp?v=1'
 UTM=lambda m,c:f'?utm_source=tools&amp;utm_medium={m}&amp;utm_campaign={c}'
@@ -27,7 +27,7 @@ def footer(p):
     return f'''<footer class="site"><div class="wrap foot-grid">
 <div class="foot-brand"><img src="{LOGO}" alt="Bride &amp; Light" width="96" height="96" loading="lazy"><p>Hochzeitsfotografie und Brautstyling<br>auf Rügen, in Stralsund und ganz MV.</p></div>
 <div><h3>Planungs-Tools</h3>{tl}<a href="{p}download/hochzeitsplaner.pdf" download>Planer als PDF</a></div>
-<div><h3>Bride &amp; Light</h3><a href="https://bride-light.de/{UTM('footer','footer')}">Startseite</a><a href="https://bride-light.de/hochzeitsfotograf-ruegen{UTM('footer','footer')}">Hochzeitsfotograf Rügen</a><a href="https://bride-light.de/{UTM('footer','footer')}#unserepakete">Pakete</a><a href="https://bride-light.de/{UTM('footer','footer')}#kontakt">Kontakt</a><a href="https://instagram.com/_bride_light_">Instagram</a></div>
+<div><h3>Bride &amp; Light</h3><a href="https://bride-light.de/{UTM('footer','footer')}">Startseite</a><a href="https://bride-light.de/hochzeitsfotograf-ruegen{UTM('footer','footer')}">Hochzeitsfotograf Rügen</a><a href="https://bride-light.de/{UTM('footer','footer')}#unserepakete">Pakete</a><a href="https://bride-light.de/{UTM('footer','footer')}#kontakt">Kontakt</a><a href="https://instagram.com/_bride_light_">Instagram</a><a href="{ETSY}{UTM('footer','footer')}">Website-Vorlagen für Fotograf:innen</a></div>
 <div><h3>Rechtliches</h3><a href="https://bride-light.de/impressum">Impressum</a><a href="https://bride-light.de/datenschutzerklarung">Datenschutz</a><a href="https://bride-light.de/agb">AGB</a></div>
 </div><div class="wrap foot-copy">© Bride &amp; Light · Alle Eingaben bleiben in eurem Browser gespeichert.</div></footer>'''
 def pinbox(p,rel):
@@ -43,6 +43,26 @@ def pinbox(p,rel):
     t=html.escape(x['title'],quote=True)
     return f'''<!--PIN--><aside class="pinbox noprint"><img src="{p}assets/img/pin-{x['slug']}.webp" alt="{t}" width="200" height="300" loading="lazy">
 <div><h2>Auf Pinterest merken</h2><p>Speichert euch diese Seite als Pin, dann findet ihr sie beim Planen schnell wieder.</p><a class="btn" href="{html.escape(url,quote=True)}" target="_blank" rel="noopener">Auf Pinterest merken</a></div></aside><!--/PIN-->'''
+ETSY='https://www.etsy.com/shop/BrideLightShop'
+KUNDEN='https://kunden.bride-light.de/'
+# Eigenwerbung: pro Seitenbereich eine Karte (eine Quelle). Reiner Link, kein Skript, kein Tracking.
+PROMO={
+ 'budgetrechner':('kunden','Budget steht? Plant jetzt eure Fotos mit ein.','Hochzeitsfotografie und Brautstyling von Bride &amp; Light – auf Rügen, in Stralsund und ganz MV.','Fotos anfragen'),
+ 'ratgeber':('kunden','Hochzeit auf Rügen oder an der Ostsee?','Fotos und Brautstyling aus einer Hand – persönlich, entspannt und mit Blick für Details.','Jetzt anfragen'),
+ 'gaesteliste':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'sitzplan':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'getraenkerechner':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'checkliste':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+}
+def promo(rel):
+    """Eigenwerbung-Karte (Label „Eigenwerbung“). Nur für Tool- und Ratgeberseiten, nicht für Start und Shop."""
+    x=PROMO.get(rel[0]) if rel else None
+    if not x: return ''
+    kind,h,t,b=x
+    url=(KUNDEN if kind=='kunden' else ETSY+'/')+UTM('promo',rel[0])
+    if kind=='etsy': url=ETSY+UTM('promo',rel[0])
+    return f'''<!--PROMO--><aside class="promo noprint" aria-label="Eigenwerbung"><p class="promo-label">Eigenwerbung</p>
+<div class="promo-in"><div><h2>{h}</h2><p>{t}</p></div><a class="btn" href="{url}" target="_blank" rel="noopener">{b}</a></div></aside><!--/PROMO-->'''
 def pages():
     return [f for f in R.rglob('index.html') if not any(x in f.parts for x in ('marketing','node_modules','.git'))]
 def run():
@@ -52,9 +72,11 @@ def run():
         s=re.sub(r'<header class="site">.*?</header>',lambda m:header(p,active),s,flags=re.S)
         s=re.sub(r'<footer class="site">.*?</footer>',lambda m:footer(p),s,flags=re.S)
         s=re.sub(r'\n?<!--PIN-->.*?<!--/PIN-->','',s,flags=re.S)
+        s=re.sub(r'\n?<!--PROMO-->.*?<!--/PROMO-->','',s,flags=re.S)
         s=re.sub(r'<!--ABOUT-->.*?<!--/ABOUT-->\s*','',s,flags=re.S)
         pb=pinbox(p,'/'.join(rel)) if rel else ''
-        if pb: s=s.replace('</main>',pb+'\n</main>',1)
+        pm=promo(rel) if rel and rel[0]!='shop' else ''
+        if pm or pb: s=s.replace('</main>',pm+('\n' if pm and pb else '')+pb+'\n</main>',1)
         s=s.replace('</main>',about(p)+'\n</main>',1) if False else s.replace('</main>','</main>\n'+about(p),1)
         s=re.sub(r'(style\.css|site\.js)\?v=\d+',lambda m:f'{m.group(1)}?v={VER}',s)
         f.write_text(s,encoding='utf-8')

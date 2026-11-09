@@ -106,3 +106,10 @@ footer.site h3{font-family:var(--serif);font-weight:normal;font-size:1.05rem;col
 .pinbox h2{margin:0 0 .3rem;font-size:1.2rem}
 .pinbox p{margin:0 0 .8rem}
 @media(max-width:520px){.pinbox{flex-direction:column;text-align:center}}
+.promo{margin:2rem 0;padding:1.1rem 1.3rem 1.2rem;border:1px solid var(--line);border-radius:14px;background:var(--rose)}
+.promo-label{margin:0 0 .5rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.promo-in{display:flex;gap:1.2rem;align-items:center;justify-content:space-between}
+.promo h2{margin:0 0 .25rem;font-size:1.25rem}
+.promo p{margin:0}
+.promo .btn{flex:none}
+@media(max-width:600px){.promo-in{flex-direction:column;align-items:flex-start}}
