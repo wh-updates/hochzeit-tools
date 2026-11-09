@@ -1,23 +1,34 @@
 #!/usr/bin/env python3
 """Baut feed.xml (Board "Hochzeitsplanung Tipps") und feed-ostsee.xml (Board "Heiraten an der Ostsee") und feed-winter.xml (Board "Winterhochzeit")
 aus marketing/pins.json. Nur Einträge mit "live": true kommen in den Feed.
-Neue Pins: Eintrag mit live=false ans Ende von pins.json; pro Lauf wird der nächste auf live=true gesetzt
+Neue Pins: Eintrag mit live=false (optional "from"/"until" als Datum für saisonale Pins) ans Ende von pins.json; pro Lauf wird der nächste auf live=true gesetzt
 (release_next), danach build_feed.py ausführen."""
 import json,pathlib,datetime,email.utils,html,sys
 R=pathlib.Path(__file__).resolve().parent.parent; B='https://tools.bride-light.de/'
 FEEDS={'planung':('feed.xml','Hochzeitsplanung Tipps – Hochzeit-Tools von Bride & Light'),'ostsee':('feed-ostsee.xml','Heiraten an der Ostsee – Bride & Light'),'winter':('feed-winter.xml','Winterhochzeit – Bride & Light')}
 def load(): return json.loads((R/'marketing'/'pins.json').read_text(encoding='utf-8'))
 def save(d): (R/'marketing'/'pins.json').write_text(json.dumps(d,ensure_ascii=False,indent=1),encoding='utf-8')
+def _pick(d,board,today_links):
+    """Wählt den nächsten Pin eines Boards mit maximaler Abwechslung:
+    1) Seite nicht unter den letzten 8 freigegebenen Pins des Boards, 2) Seite heute nicht schon in einem anderen Board,
+    3) Seite mit den wenigsten freigegebenen Pins im Board (Streuung), 4) dann niedrigste Variante."""
+    live=[p for p in d if p['live'] and p['board']==board]; live.sort(key=lambda p:p['date'])
+    recent=[p['link'] for p in live[-8:]]
+    cnt={}
+    for p in live: cnt[p['link']]=cnt.get(p['link'],0)+1
+    heute=datetime.date.today().isoformat()
+    # optionale Saisonfenster je Pin: "from"/"until" (YYYY-MM-DD), z. B. Silvester-Pins nur Ende November bis 28.12.
+    wait=[p for p in d if not p['live'] and p['board']==board and p.get('from','0000')<=heute<=p.get('until','9999')]
+    if not wait: return None
+    return sorted(wait,key=lambda p:(p['link'] in recent, p['link'] in today_links, cnt.get(p['link'],0), p['variant']))[0]
 def release_next(n=1,boards=None):
-    """Gibt je Board die nächsten n wartenden Pins frei. Reihenfolge: Pins verschiedener Seiten abwechselnd (nicht dieselbe Seite hintereinander)."""
-    d=load(); done=[]
-    for board in (boards or FEEDS):
-        for k in range(n):
-            wait=[p for p in d if not p['live'] and p['board']==board]
-            last=[p['link'] for p in d if p['live'] and p['board']==board]; last=last[-1] if last else None
-            wait.sort(key=lambda p:(p['link']==last, p['variant']))   # erst andere Seite, dann niedrigere Variante
-            if not wait: done.append(f'(Warteschlange {board} leer)'); break
-            p=wait[0]; p['live']=True
+    """Gibt je Board die nächsten n wartenden Pins frei (Auswahl siehe _pick: möglichst abwechslungsreich, nie dieselbe Seite in mehreren Boards am selben Tag)."""
+    d=load(); done=[]; today=set()
+    for k in range(n):
+        for board in (boards or FEEDS):
+            p=_pick(d,board,today)
+            if not p: done.append(f'(Warteschlange {board} leer)'); continue
+            p['live']=True; today.add(p['link'])
             p['date']=(datetime.datetime.now(datetime.timezone.utc)-datetime.timedelta(minutes=k)).strftime('%Y-%m-%dT%H:%M:%S+00:00'); done.append(p['slug'])
     save(d); return ', '.join(done)
 def build():
