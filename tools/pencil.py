@@ -212,4 +212,46 @@ def winter():
 {''.join(f'<circle cx="{x}" cy="{y}" r="5" stroke-width="3"/>' for x,y in [(250,250),(300,400),(720,260),(780,380),(650,180),(340,170),(220,470),(760,470)])}
 {waves(230,640,90,1)}'''
 
-MOTIVE={'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf}
+def flake_s(x,y,r=22):
+    return ''.join(f'<path d="M{x} {y} l{r*__import__("math").cos(k*1.0472):.1f} {r*__import__("math").sin(k*1.0472):.1f}" stroke-width="3"/>' for k in range(6))
+
+def winterfoto():
+    sun=''.join(f'<path d="M{660+84*math.cos(k*0.5236):.0f} {250+84*math.sin(k*0.5236):.0f} L{660+118*math.cos(k*0.5236):.0f} {250+118*math.sin(k*0.5236):.0f}" stroke-width="3"/>' for k in range(12))
+    return f'''
+<circle cx="660" cy="250" r="60"/><circle cx="660" cy="250" r="60" {H}/>{sun}
+<g transform="translate(40,120) scale(.9)">
+<path d="M290 330 L350 330 L375 290 L625 290 L650 330 L710 330 Q740 330 740 360 L740 560 Q740 590 710 590 L290 590 Q260 590 260 560 L260 360 Q260 330 290 330Z"/>
+<path d="M290 330 L350 330 L375 290 L625 290 L650 330 L710 330 Q740 330 740 360 L740 400 L260 400 L260 360 Q260 330 290 330Z" {H}/>
+<circle cx="500" cy="470" r="105"/><circle cx="500" cy="470" r="76"/><circle cx="500" cy="470" r="42"/><circle cx="500" cy="470" r="76" {H2}/>
+<path d="M470 440 q14 -14 34 -10" stroke-width="3"/><rect x="296" y="352" width="56" height="30" rx="6"/><circle cx="690" cy="360" r="12"/></g>
+<path d="M200 650 Q350 625 500 645 Q650 665 800 635"/>
+{flake_s(280,230,26)}{flake_s(400,180,18)}{flake_s(790,420,20)}{flake_s(230,380,16)}'''
+
+def wintermakeup():
+    return f'''
+<path d="M240 560 Q240 610 400 610 Q560 610 560 560 L560 540 Q560 590 400 590 Q240 590 240 540Z"/>
+<ellipse cx="400" cy="540" rx="160" ry="52"/><ellipse cx="400" cy="536" rx="122" ry="36" {H}/><ellipse cx="400" cy="536" rx="122" ry="36"/>
+<path d="M250 530 L272 300 Q400 262 528 300 L550 530"/><path d="M272 300 Q400 340 528 300" stroke-width="3"/>
+<ellipse cx="400" cy="400" rx="104" ry="92" stroke-width="3"/><path d="M340 360 q30 -30 70 -24 M345 392 q40 -26 88 -18" stroke-width="3"/>
+<path d="M610 600 L610 470 L690 470 L690 600Z"/><path d="M610 600 L690 600 L690 580 L610 580Z" {H2}/>
+<path d="M618 470 L618 410 L682 410 L682 470"/><path d="M618 410 Q618 330 660 300 L682 410Z"/><path d="M618 410 Q618 330 660 300 L682 410Z" {H}/>
+<path d="M610 500 L690 500" stroke-width="3"/>
+<path d="M722 650 L738 470 L752 470 L760 650Z" {H2}/><path d="M722 650 L738 470 L752 470 L760 650Z"/>
+<rect x="732" y="440" width="28" height="36" rx="3"/><path d="M732 440 Q726 390 746 330 Q770 390 760 440Z"/><path d="M732 440 Q726 390 746 330 Q770 390 760 440Z" {H}/>
+{flake_s(270,200,24)}{flake_s(470,170,18)}{flake_s(620,215,22)}{flake_s(790,250,16)}
+<path d="M200 650 Q500 630 800 650"/>'''
+
+def winterliste():
+    rows=''
+    for i in range(5):
+        y=270+i*66
+        rows+=f'<rect x="388" y="{y}" width="38" height="38" rx="4" stroke-width="3"/><path d="M{432+4*0} {y+20} L{432} {y+20}" stroke-width="1"/><path d="M{444} {y+19} L{600} {y+19}" stroke-width="3"/>'
+        if i in (0,1,3): rows+=f'<path d="M{395} {y+20} l10 11 l18 -26" stroke-width="6"/>'
+    return f'''
+<rect x="350" y="200" width="300" height="420" rx="14"/><path d="M350 200 L650 200 L650 245 L350 245Z" {H}/>
+<rect x="450" y="176" width="100" height="44" rx="10"/>
+{rows}
+{flake_s(300,330,28)}{flake_s(720,300,24)}{flake_s(700,470,18)}{flake_s(260,500,20)}
+<path d="M200 650 Q500 630 800 650"/>'''
+
+MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf}

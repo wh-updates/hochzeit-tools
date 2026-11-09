@@ -4,6 +4,7 @@ Ziel: **1 Pin pro Feed und Tag** (planung, ostsee, winter) vom 10.11. bis 31.12.
 Vorhanden (Stand 9.11.): 29 wartende Pins (planung 19, ostsee 7, winter 3). Der Rest entsteht aus den Seiten unten.
 
 ## Regeln für Abwechslung
+- **Das Bild zeigt genau das Thema des Pins, nie ein allgemeines Bild.** Ringe → Ringe; Brautstyling/Make-up → Pinsel, Puderdose, Lippenstift, Schere, Föhn, Spiegel; Torte → Torte; Foto-Thema → Kamera; Checkliste → Klemmbrett mit Haken usw. Die Zeichnung bildet die Kernobjekte des Titels ab (keine Schneeflocke für „Make-up im Winter“). Jahreszeit nur als kleines Beiwerk (Schneeflocken, Sonne).
 - **Jede Seite bekommt ein eigenes Bleistift-Motiv.** Nie dasselbe Motiv für mehrere Seiten (die bisherigen 8 Winter-Pins zeigen alle dieselbe Schneeflocke – das ist zu ähnlich).
 - **Pro Seite zwei Boards:** je 3 Varianten für das Haupt-Board **und** 3 Varianten für das zweite Board, mit anderem Titel, anderen Zeilen und anderem Untertitel (nicht nur andere Farbe).
 - Titel verschiedener Pins beginnen nicht mit demselben Wort (nicht dreimal „Winterhochzeit …“). Mal Frage, mal Liste, mal Nutzen („So…“, „5 Tipps…“, „Was kostet…“, „Wann…“).

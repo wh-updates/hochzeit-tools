@@ -25,7 +25,14 @@ DEFS='''<defs>
 <pattern id="h" width="13" height="13" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="13" stroke="#4a4540" stroke-width="1.8"/></pattern>
 <pattern id="h2" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="8" stroke="#4a4540" stroke-width="1.6"/></pattern>
 </defs>'''
-RATGEBER={'ruegen','strand','locations','kosten','fotograf','winter'}
+RATGEBER={'ruegen','strand','locations','kosten','fotograf','winter','winterfoto','wintermakeup','winterliste'}
+def is_ratgeber(slug):
+    try:
+        import json; d=json.loads((pathlib.Path(__file__).resolve().parent.parent/'marketing'/'pins.json').read_text(encoding='utf-8'))
+        for x in d:
+            if x['slug']==slug: return x['link'].startswith('ratgeber/')
+    except Exception: pass
+    return slug in RATGEBER or slug.split('-')[0] in RATGEBER
 def wrap(t,n=30):
     L=['']
     for x in t.split():
@@ -34,7 +41,7 @@ def wrap(t,n=30):
     return L
 def make(slug,t1,t2,sub,board,variant=0):
     bg,acc=COL[board][int(variant)%3]; root=pathlib.Path(__file__).resolve().parent.parent
-    label='RATGEBER · KOSTENLOS' if (slug in RATGEBER or slug.split('-')[0] in RATGEBER) else 'KOSTENLOS · OHNE ANMELDUNG'
+    label='RATGEBER · KOSTENLOS' if is_ratgeber(slug) else 'KOSTENLOS · OHNE ANMELDUNG'
     motif=MOTIVE.get(slug.split('-')[0],MOTIVE['ruegen'])()
     subl=''.join(f'<text x="500" y="{1050+i*52}" font-family="DejaVu Sans" font-size="38" fill="#5a4f47" text-anchor="middle">{html.escape(l)}</text>' for i,l in enumerate(wrap(sub)))
     ink='fill="none" stroke="#3d3935" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"'
