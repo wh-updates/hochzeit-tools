@@ -98,7 +98,7 @@ window.HT = (function () {
       if (!f.name.value.trim() || !/^\S+@\S+\.\S+$/.test(f.email.value.trim())) { m.textContent = 'Bitte Namen und eine gültige E-Mail-Adresse eingeben.'; return; }
       if (!f.consent.checked) { m.textContent = 'Bitte der Verarbeitung zustimmen.'; return; }
       var fd = new FormData(f); fd.append('code', encode(collect().d)); b.disabled = true; m.textContent = 'Wird gesendet …';
-      fetch((window.HT_API || 'https://bride-light.de') + '/api/tools-plan', { method: 'POST', body: fd }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
+      fetch((window.HT_API || 'https://bride-light.de') + '/_form/tools-plan', { method: 'POST', body: fd }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
         m.textContent = j.ok ? 'Gesendet. Bitte schaut in euer Postfach' + (f.newsletter.checked ? ' und bestätigt den Newsletter.' : '.') : (j.error || 'Das hat leider nicht geklappt. Bitte versucht es später noch einmal.'); b.disabled = false;
       }, function () { m.textContent = 'Das hat leider nicht geklappt. Bitte versucht es später noch einmal.'; b.disabled = false; });
     };
@@ -133,7 +133,7 @@ window.HT = (function () {
   function watch() { var r = document.getElementById('rows'); if (r && window.MutationObserver) { obs = obs || new MutationObserver(paint); obs.observe(r, { childList: true }); } }
   function init() {
     watch();
-    fetch(API + '/verfuegbarkeit.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { if (j && j.days) { AV = j; paint(); } }, function () {});
+    fetch(API + '/_form/verfuegbarkeit').then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { if (j && j.days) { AV = j; paint(); } }, function () {});
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

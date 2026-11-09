@@ -42,7 +42,7 @@ def page_html(pg):
 <p class="muted"><small>Stand: November 2026. {E(season)}</small></p>
 </main>
 <footer class="site"></footer>
-<script src="../../assets/site.js?v=9"></script>
+<script src="../../assets/site.js?v=10"></script>
 </body>
 </html>
 '''
