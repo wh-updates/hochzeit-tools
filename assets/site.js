@@ -138,3 +138,68 @@ window.HT = (function () {
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
+
+// ---- 10.9.179: Verbindung zu bride-light.de: Chat, Paketempfehlung, Bewertungen, Probetermin ----
+(function () {
+  var API = window.HT_API || 'https://bride-light.de';
+  var seg = location.pathname.replace(/\/+$/, '').split('/').pop();
+  var ALL = ['budgetrechner', 'gaesteliste', 'hochzeitsdatum-finder', 'ablaufplan', 'checkliste', 'fotostunden-rechner', 'getraenkerechner', 'hochzeitstorte-rechner', 'sitzplan', 'tischkarten', 'goldene-stunde', 'einladungs-rechner', 'brautstrauss-konfigurator', 'foto-wunschliste', 'packliste-hochzeit', 'hochzeitstyp', 'fotograf-test', 'gastgeschenke-rechner', 'hochzeitstag-rechner'];
+  var isTool = ALL.indexOf(seg) >= 0;
+  function ready(f) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', f); else f(); }
+  function card(html, cls) { var main = document.querySelector('main'); if (!main) return null; var s = document.createElement('section'); s.className = 'card noprint ' + (cls || ''); s.innerHTML = html; main.appendChild(s); return s; }
+  function q(o) { return Object.keys(o).map(function (k) { return k + '=' + encodeURIComponent(o[k]); }).join('&'); }
+
+  // Chat (nur, wenn er auf bride-light.de eingeschaltet ist)
+  function chat() {
+    var t = (document.title || '').split(/\s[–|-]\s/)[0].trim().slice(0, 60);
+    window.HT_CHAT_CTX = window.HT_CHAT_CTX || (isTool ? 'Tool: ' + t : 'Tools-Startseite');
+    fetch(API + '/_form/chat/status').then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.on) return;
+      var cfg = document.createElement('script'); cfg.type = 'application/json'; cfg.id = 'lc-widget-cfg';
+      cfg.textContent = JSON.stringify({ api: API + '/_form/chat', privacy: 'https://bride-light.de/datenschutzerklarung',
+        th: { primary: '#8A4F55', onprimary: '#ffffff', bg: '#FBF5F0', surface: '#ffffff', text: '#3B2A2A', line: '#e6d9cf', body: '"Hanken Grotesk",system-ui,sans-serif', head: 'Fraunces,Georgia,serif', r: '15px' },
+        t: { title: 'Chat mit Sebastian', on: 'Online – ich antworte sofort', off: 'Gerade nicht da – hinterlasst eine Nachricht', name: 'Vorname', mail: 'E-Mail (optional, für die Antwort)', msg: 'Eure Nachricht', consent: 'Ich bin einverstanden, dass meine Angaben für diesen Chat gespeichert werden.', privacy: 'Datenschutz', start: 'Chat starten', send: 'Senden', write: 'Nachricht schreiben …', err: 'Das hat leider nicht geklappt. Bitte versucht es später noch einmal.', open: 'Chat öffnen', hint_on: 'Fragen zu eurer Hochzeit? Ich bin online und antworte sofort.', hint_off: 'Fragen zu eurer Hochzeit? Hinterlasst mir gern eine Nachricht.', close: 'Schließen' } });
+      document.body.appendChild(cfg);
+      var s = document.createElement('script'); s.src = API + '/assets/livechat10173.js'; document.body.appendChild(s);
+    }, function () {});
+  }
+
+  // Paketempfehlung im Fotostunden-Rechner
+  function pakete() {
+    var res = document.getElementById('res'), rec = document.getElementById('rec'); if (!res || !rec) return;
+    var P = null, box = document.createElement('p'); box.className = 'pc-paket noprint'; rec.parentNode.insertBefore(box, rec.nextSibling);
+    function hours() { var b = res.querySelector('b'); return b ? parseFloat(b.textContent.replace(',', '.')) : 0; }
+    function show() {
+      var h = hours(); if (!P || !h) return;
+      var name = h <= 3.5 ? P.s : h <= 7 ? P.m : P.l; if (!name) return;
+      var d = (HT.load('datum', {}).fav || [])[0], o = { art: 'wedding', leistung: 'foto', paket: 'foto:' + name, von: 'tools-paket', utm_source: 'tools', utm_medium: 'paketempfehlung', utm_campaign: 'fotostunden' };
+      if (d) o.datum = d;
+      window.HT_CHAT_CTX = 'Fotostunden-Rechner: ' + String(h).replace('.', ',') + ' Std., empfohlen: ' + name;
+      box.innerHTML = 'Dazu passt unser Paket <b>„' + HT.esc(name) + '“</b>. <a class="btn ghost" href="' + HT.esc((P.base || API) + '/?' + q(o)) + '" target="_blank" rel="noopener">Dieses Paket anfragen</a>';
+    }
+    fetch(API + '/_form/pakete').then(function (r) { return r.json(); }).then(function (j) { if (j && j.pk && j.pk.length) { P = j; show(); } }, function () {});
+    if (window.MutationObserver) new MutationObserver(show).observe(res, { childList: true });
+  }
+
+  // Bewertungen als Vertrauen
+  function trust() {
+    fetch(API + '/_form/vertrauen').then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.reviews || !j.reviews.length) return;
+      var h = '<h2 style="margin-top:0">Das sagen Paare über Bride &amp; Light</h2>';
+      j.reviews.forEach(function (r) {
+        h += '<blockquote style="margin:.8rem 0"><span aria-label="' + (+r.s) + ' von 5 Sternen" style="color:#B58A5E">' + new Array((+r.s || 5) + 1).join('★') + '</span><br>' + HT.esc(r.t) + '<br><small class="muted">' + HT.esc(r.n) + (r.d ? ' · ' + HT.esc(r.d) : '') + '</small></blockquote>';
+      });
+      h += '<p><a class="btn ghost" href="' + HT.esc((j.base || API) + '/?' + q({ utm_source: 'tools', utm_medium: 'vertrauen', utm_campaign: seg || 'start' })) + '" target="_blank" rel="noopener">Mehr von uns ansehen</a></p>';
+      card(h, 'trust');
+    }, function () {});
+  }
+
+  // Probetermin
+  function probe() {
+    if (seg !== 'checkliste' && seg !== 'packliste-hochzeit') return;
+    var u = API + '/?' + q({ art: 'wedding', leistung: 'styling', probe: 1, von: 'tools-probe', utm_source: 'tools', utm_medium: 'probetermin', utm_campaign: seg });
+    card('<h2 style="margin-top:0">Brautstyling-Probe einplanen</h2><p>Frisur und Make-up in Ruhe ausprobieren, bevor es ernst wird. Ein guter Punkt für eure Liste.</p><p><a class="btn" href="' + HT.esc(u) + '" target="_blank" rel="noopener">Brautstyling-Probe anfragen</a></p>', 'probe');
+  }
+
+  ready(function () { chat(); if (isTool) { pakete(); trust(); probe(); } });
+})();
