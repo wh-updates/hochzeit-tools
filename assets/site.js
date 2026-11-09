@@ -23,7 +23,7 @@ window.HT = (function () {
       if (r === MV && hide !== r) {
         box.innerHTML = '<div class="mv-banner"><button class="mv-x" aria-label="Hinweis schließen">✕</button>' +
           '<strong>Ihr heiratet in Mecklenburg-Vorpommern?</strong> Wir sind Bride &amp; Light – Hochzeitsfotografie und Brautstyling ' +
-          'auf Rügen, in Stralsund und ganz MV. <a class="btn" href="https://bride-light.de/?utm_source=tools&amp;utm_medium=banner&amp;utm_campaign=mv">Bride &amp; Light ansehen</a></div>';
+          'auf Rügen, in Stralsund und ganz MV. <a class="btn" href="https://bride-light.de/?utm_source=tools&amp;utm_medium=banner&amp;utm_campaign=mv&amp;von=tools-banner">Bride &amp; Light ansehen</a></div>';
         box.querySelector('.mv-x').onclick = function () { HT.save('regionHide', r); render(); };
       } else if (!r) {
         box.innerHTML = '<label class="region-q">Wo heiratet ihr? <select><option value="">Bitte wählen (optional)</option>' +
@@ -91,7 +91,8 @@ window.HT = (function () {
       '<p><a class="btn ghost pc-ask" href="#">Jetzt bei Bride &amp; Light anfragen</a> <small class="muted">Den Code könnt ihr im Anfrageformular einfügen.</small></p>';
     main.appendChild(box);
     var ask = box.querySelector('.pc-ask'), fav = (HT.load('datum', {}).fav || [])[0];
-    ask.href = 'https://bride-light.de/?utm_source=tools&utm_medium=paarcode&utm_campaign=anfrage' + (fav ? '&datum=' + encodeURIComponent(fav) : '');
+    var gl = (c.d.g && c.d.g.list) ? c.d.g.list.filter(function (x) { return x.r !== 'nein'; }).length : ((c.d.b && c.d.b.guests) || 0);
+    ask.href = 'https://bride-light.de/?utm_source=tools&utm_medium=paarcode&utm_campaign=anfrage&von=tools-paarcode&art=wedding' + (fav ? '&datum=' + encodeURIComponent(fav) : '') + (gl > 0 ? '&gaeste=' + gl : '');
     box.querySelector('.pc-form').onsubmit = function (e) {
       e.preventDefault();
       var f = e.target, m = box.querySelector('.pc-fmsg small'), b = f.querySelector('button');
@@ -124,7 +125,7 @@ window.HT = (function () {
       var k = b.getAttribute('data-k'), st = AV.days[k], d = document.createElement('div'); d.className = 'avail noprint';
       if (st === 'busy') { d.className += ' busy'; d.textContent = 'Bei Bride & Light leider ausgebucht'; }
       else if (st === 'res') { d.className += ' res'; d.textContent = 'Bei Bride & Light reserviert'; }
-      else if (k >= AV.from && k <= AV.to) { d.className += ' free'; d.innerHTML = 'Bei Bride &amp; Light noch frei · <a href="https://bride-light.de/?datum=' + encodeURIComponent(k) + '&amp;utm_source=tools&amp;utm_medium=termincheck&amp;utm_campaign=datum">Anfragen</a>'; }
+      else if (k >= AV.from && k <= AV.to) { d.className += ' free'; d.innerHTML = 'Bei Bride &amp; Light noch frei · <a href="https://bride-light.de/?datum=' + encodeURIComponent(k) + '&amp;art=wedding&amp;von=tools-termincheck&amp;utm_source=tools&amp;utm_medium=termincheck&amp;utm_campaign=datum">Anfragen</a>'; }
       else return;
       td.appendChild(d);
     });
