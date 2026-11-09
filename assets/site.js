@@ -156,7 +156,7 @@ window.HT = (function () {
     fetch(API + '/_form/chat/status').then(function (r) { return r.json(); }).then(function (j) {
       if (!j || !j.on) return;
       var cfg = document.createElement('script'); cfg.type = 'application/json'; cfg.id = 'lc-widget-cfg';
-      cfg.textContent = JSON.stringify({ api: API + '/_form/chat', privacy: 'https://bride-light.de/datenschutzerklarung',
+      cfg.textContent = JSON.stringify({ peers: [new URL(API).host], api: API + '/_form/chat', privacy: 'https://bride-light.de/datenschutzerklarung',
         th: { primary: '#8A4F55', onprimary: '#ffffff', bg: '#FBF5F0', surface: '#ffffff', text: '#3B2A2A', line: '#e6d9cf', body: '"Hanken Grotesk",system-ui,sans-serif', head: 'Fraunces,Georgia,serif', r: '15px' },
         t: { title: 'Chat mit Sebastian', on: 'Online – ich antworte sofort', off: 'Gerade nicht da – hinterlasst eine Nachricht', name: 'Vorname', mail: 'E-Mail (optional, für die Antwort)', msg: 'Eure Nachricht', consent: 'Ich bin einverstanden, dass meine Angaben für diesen Chat gespeichert werden.', privacy: 'Datenschutz', start: 'Chat starten', send: 'Senden', write: 'Nachricht schreiben …', err: 'Das hat leider nicht geklappt. Bitte versucht es später noch einmal.', open: 'Chat öffnen', hint_on: 'Fragen zu eurer Hochzeit? Ich bin online und antworte sofort.', hint_off: 'Fragen zu eurer Hochzeit? Hinterlasst mir gern eine Nachricht.', close: 'Schließen' } });
       document.body.appendChild(cfg);
