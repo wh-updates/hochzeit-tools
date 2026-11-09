@@ -1,0 +1,19 @@
+<div class="card">
+<div class="row">
+<div><label for="date">Datum</label><input id="date" type="date"></div>
+<div><label for="loc">Ort</label><select id="loc"></select></div>
+</div>
+<div class="row" id="custom" hidden style="margin-top:.75rem">
+<div><label for="lat">Breitengrad (z. B. 54,31)</label><input id="lat" inputmode="decimal" value="54,31"></div>
+<div><label for="lon">Längengrad (z. B. 13,08)</label><input id="lon" inputmode="decimal" value="13,08"></div>
+</div>
+</div>
+<div class="card">
+<h2 id="h">Sonnenzeiten</h2>
+<table><tbody id="res"></tbody></table>
+<p class="muted">Alle Zeiten in deutscher Ortszeit (Sommer- oder Winterzeit je nach Datum). Berechnet für freien Horizont. Gebäude, Wald, Dünen und Wolken verändern das Licht vor Ort.</p>
+</div>
+<div class="card">
+<h2>Übersicht: Sonnenuntergang und Goldene Stunde im Jahresverlauf</h2>
+<div style="overflow-x:auto"><table><thead><tr><th>Datum (1.)</th><th class="num">Sonnenaufgang</th><th class="num">Goldene Stunde ab</th><th class="num">Sonnenuntergang</th></tr></thead><tbody id="year"></tbody></table></div>
+</div>

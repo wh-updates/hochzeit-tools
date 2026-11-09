@@ -10,12 +10,22 @@ TOOLS = {"budgetrechner": "Hochzeitsbudget-Rechner", "gaesteliste": "Gästeliste
 ARTICLES = {"ratgeber/heiraten-auf-ruegen": "Heiraten auf Rügen", "ratgeber/strandhochzeit-mv": "Strandhochzeit in Mecklenburg-Vorpommern",
             "ratgeber/hochzeitslocations-ruegen-ostsee": "Hochzeitslocations auf Rügen und an der Ostsee", "ratgeber/kosten-hochzeit-mv": "Kosten einer Hochzeit in Mecklenburg-Vorpommern",
             "ratgeber/hochzeitsfotograf-finden": "Hochzeitsfotograf finden – 10 Fragen", "ratgeber/heiraten-im-winter-ostsee": "Heiraten im Winter an der Ostsee"}
+import sys
+sys.path.insert(0, str(R / "tools"))
+from content import ARTICLE_TITLES
+ARTICLES.update(ARTICLE_TITLES)
+try:
+    from content.extra import TOOL_TITLES, LOCAL_TITLES
+except Exception:
+    TOOL_TITLES, LOCAL_TITLES = {}, {}
+TOOLS.update(TOOL_TITLES)
+LOCAL = dict(LOCAL_TITLES)
 def git(*a): return subprocess.run(["git", "-C", str(R), *a], capture_output=True, text=True).stdout.strip()
 def dates(rel):
     l = git("log", "--format=%cs", "--", rel).splitlines()
     return (l[-1] if l else datetime.date.today().isoformat()), (l[0] if l else datetime.date.today().isoformat())
 def pages():
-    return ["index.html"] + [f"{k}/index.html" for k in TOOLS] + ["ratgeber/index.html"] + [f"{k}/index.html" for k in ARTICLES]
+    return ["index.html"] + [f"{k}/index.html" for k in TOOLS] + ["ratgeber/index.html"] + [f"{k}/index.html" for k in ARTICLES] + [f"{k}/index.html" for k in LOCAL]
 def faq(src):
     m = re.search(r"<section[^>]*class=\"[^\"]*faq[^\"]*\"[^>]*>(.*?)</section>", src, re.S)
     if not m: return []
@@ -36,6 +46,8 @@ def block(rel, src):
     if key in TOOLS: crumbs.append((TOOLS[key], url))
     elif key == "ratgeber": crumbs.append(("Ratgeber", url))
     elif key in ARTICLES: crumbs += [("Ratgeber", B + "ratgeber/"), (ARTICLES[key], url)]
+    elif key == "hochzeitsfotograf": crumbs.append((LOCAL[key], url))
+    elif key in LOCAL: crumbs += [(LOCAL["hochzeitsfotograf"], B + "hochzeitsfotograf/"), (LOCAL[key], url)]
     g = [ORG, SITE]
     page = {"@type": "CollectionPage" if key in ("", "ratgeber") else "WebPage", "@id": url + "#webpage", "url": url, "name": t, "description": d, "inLanguage": "de-DE", "isPartOf": {"@id": B + "#website"},
             "primaryImageOfPage": {"@type": "ImageObject", "url": OGIMG}, "dateModified": last}
@@ -86,6 +98,7 @@ for rel in pages():
 bots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "Claude-SearchBot", "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot", "Bingbot", "Googlebot"]
 (R / "robots.txt").write_text("User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {B}sitemap.xml\n", encoding="utf-8")
 tool_lines = "\n".join(f"- [{n}]({B}{k}/): {html.unescape(re.search(r'<meta name=\"description\" content=\"(.*?)\">', (R / k / 'index.html').read_text(encoding='utf-8'), re.S).group(1))}" for k, n in TOOLS.items())
+loc_lines = "\n".join(f"- [{n}]({B}{k}/): {html.unescape(re.search(r'<meta name=\"description\" content=\"(.*?)\">', (R / k / 'index.html').read_text(encoding='utf-8'), re.S).group(1))}" for k, n in LOCAL.items())
 art_lines = "\n".join(f"- [{n}]({B}{k}/): {html.unescape(re.search(r'<meta name=\"description\" content=\"(.*?)\">', (R / k / 'index.html').read_text(encoding='utf-8'), re.S).group(1))}" for k, n in ARTICLES.items())
 (R / "llms.txt").write_text(f"""# Hochzeits-Tools von Bride & Light
 
@@ -97,6 +110,9 @@ art_lines = "\n".join(f"- [{n}]({B}{k}/): {html.unescape(re.search(r'<meta name=
 ## Ratgeber Mecklenburg-Vorpommern
 {art_lines}
 - [Alle Ratgeber]({B}ratgeber/)
+
+## Hochzeitsfotografie in Mecklenburg-Vorpommern
+{loc_lines}
 
 ## Über den Anbieter
 - [Bride & Light – Hochzeitsfotografie und Brautstyling]({MAIN}): Startseite des Studios

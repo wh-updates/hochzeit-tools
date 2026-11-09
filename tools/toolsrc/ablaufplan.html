@@ -1,0 +1,13 @@
+<div class="card noprint">
+<div class="row">
+<div><label for="start">Beginn (Uhrzeit)</label><input id="start" type="time" value="11:00"></div>
+<div><label for="preset">Vorlage laden</label><select id="preset"><option value="">– wählen –</option><option value="std">Standesamt/Trauung + Feier</option><option value="strand">Strandhochzeit mit Feier</option><option value="klein">Kleine Feier (Brunch)</option></select></div>
+</div>
+</div>
+<div class="card">
+<h2 id="ptitle">Ablauf</h2>
+<table id="tbl"><thead><tr><th>Uhrzeit</th><th>Programmpunkt</th><th class="num noprint">Min.</th><th>Notiz</th><th class="noprint"></th></tr></thead><tbody id="rows"></tbody></table>
+<p id="endinfo" class="muted"></p>
+<p class="noprint"><button id="add">+ Programmpunkt</button> <button class="ghost" id="copy">Als Text kopieren</button> <button class="ghost" onclick="print()">Drucken / als PDF speichern</button> <button class="ghost" id="reset">Leeren</button></p>
+<p id="msg" class="muted noprint" role="status"></p>
+</div>

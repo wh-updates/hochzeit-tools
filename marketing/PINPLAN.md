@@ -16,30 +16,30 @@ Läufe: Montag, Dienstag, Donnerstag, Freitag (ca. 28 bis Silvester). Zuerst Win
 
 | # | Slug der Seite | Typ | Haupt-Board | Zweites Board | Motiv-Idee | Saison (from–until) | Status |
 |---|---|---|---|---|---|---|---|
-| 1 | ratgeber/winterhochzeit-outfit | Ratgeber | winter | planung | Mantel, Stola, warme Schuhe | – | offen |
-| 2 | ratgeber/silvester-hochzeit | Ratgeber | winter | planung | Sektgläser und Feuerwerk | 2026-11-25 – 2026-12-28 | offen |
-| 3 | ratgeber/winterhochzeit-deko-licht | Ratgeber | winter | ostsee | Kerzen und Lichterkette | – | offen |
-| 4 | ratgeber/heiraten-weihnachten | Ratgeber | winter | ostsee | Tannenzweig mit Kerze | 2026-11-30 – 2026-12-27 | offen |
-| 5 | ratgeber/winter-fotospots-ruegen | Ratgeber | winter | ostsee | Kreidefelsen im Schnee | – | offen |
-| 6 | ratgeber/verlobung-planen | Ratgeber | planung | winter | Ringschachtel | 2026-11-20 – 2026-12-31 | offen |
-| 7 | ratgeber/unterkuenfte-hochzeitsgaeste-ruegen | Ratgeber | ostsee | planung | Bett, Haus, Koffer | – | offen |
-| 8 | ratgeber/heiraten-usedom | Ratgeber | ostsee | planung | Seebrücke | – | offen |
-| 9 | ratgeber/heiraten-darss | Ratgeber | ostsee | planung | Darßer Wald und Strand | – | offen |
-| 10 | ratgeber/heiraten-stralsund | Ratgeber | ostsee | planung | Backsteingiebel Hafen | – | offen |
-| 11 | ratgeber/freie-trauung-mv | Ratgeber | ostsee | planung | Bogen mit Stühlen | – | offen |
-| 12 | ratgeber/hochzeit-2027-zeitplan | Ratgeber | planung | winter | Kalender | – | offen |
-| 13 | ablaufplan | Tool | planung | ostsee | Uhr mit Zeitstrahl | – | offen |
-| 14 | hochzeitstorte-rechner | Tool | planung | ostsee | Torte | – | offen |
-| 15 | ratgeber/save-the-date-einladung | Ratgeber | planung | winter | Briefumschlag | – | offen |
-| 16 | ratgeber/trauzeugen-aufgaben | Ratgeber | planung | ostsee | zwei Gläser, Liste | – | offen |
-| 17 | ratgeber/hochzeitsrede-tipps | Ratgeber | planung | ostsee | Mikrofon und Karten | – | offen |
-| 18 | ratgeber/standesamt-unterlagen | Ratgeber | planung | ostsee | Mappe mit Stempel | – | offen |
-| 19 | ratgeber/brautstyling-probe | Ratgeber | planung | ostsee | Spiegel und Bürste | – | offen |
-| 20 | ratgeber/hochzeitsfotos-tipps-paare | Ratgeber | planung | ostsee | Kamera mit Herz | – | offen |
-| 21 | ratgeber/sitzordnung-tipps | Ratgeber | planung | ostsee | Tisch mit Namenskärtchen | – | offen |
-| 22 | ratgeber/hochzeitsgeschenke-wunschliste | Ratgeber | planung | winter | Geschenkpaket | – | offen |
-| 23 | ratgeber/flitterwochen-budget | Ratgeber | planung | winter | Koffer und Flugzeug | – | offen |
-| 24 | ratgeber/hochzeitsnacht-hotel-ruegen | Ratgeber | ostsee | planung | Hotelbett mit Meerblick | – | offen |
+| 1 | ratgeber/winterhochzeit-outfit | Ratgeber | winter | planung | Mantel, Stola, warme Schuhe | – | gebaut (2026-11-09) |
+| 2 | ratgeber/silvester-hochzeit | Ratgeber | winter | planung | Sektgläser und Feuerwerk | 2026-11-25 – 2026-12-28 | gebaut (2026-11-09) |
+| 3 | ratgeber/winterhochzeit-deko-licht | Ratgeber | winter | ostsee | Kerzen und Lichterkette | – | gebaut (2026-11-09) |
+| 4 | ratgeber/heiraten-weihnachten | Ratgeber | winter | ostsee | Tannenzweig mit Kerze | 2026-11-30 – 2026-12-27 | gebaut (2026-11-09) |
+| 5 | ratgeber/winter-fotospots-ruegen | Ratgeber | winter | ostsee | Kreidefelsen im Schnee | – | gebaut (2026-11-09) |
+| 6 | ratgeber/verlobung-planen | Ratgeber | planung | winter | Ringschachtel | 2026-11-20 – 2026-12-31 | gebaut (2026-11-09) |
+| 7 | ratgeber/unterkuenfte-hochzeitsgaeste-ruegen | Ratgeber | ostsee | planung | Bett, Haus, Koffer | – | gebaut (2026-11-09) |
+| 8 | ratgeber/heiraten-usedom | Ratgeber | ostsee | planung | Seebrücke | – | gebaut (2026-11-09) |
+| 9 | ratgeber/heiraten-darss | Ratgeber | ostsee | planung | Darßer Wald und Strand | – | gebaut (2026-11-09) |
+| 10 | ratgeber/heiraten-stralsund | Ratgeber | ostsee | planung | Backsteingiebel Hafen | – | gebaut (2026-11-09) |
+| 11 | ratgeber/freie-trauung-mv | Ratgeber | ostsee | planung | Bogen mit Stühlen | – | gebaut (2026-11-09) |
+| 12 | ratgeber/hochzeit-2027-zeitplan | Ratgeber | planung | winter | Kalender | – | gebaut (2026-11-09) |
+| 13 | ablaufplan | Tool | planung | ostsee | Uhr mit Zeitstrahl | – | gebaut (2026-11-09) |
+| 14 | hochzeitstorte-rechner | Tool | planung | ostsee | Torte | – | gebaut (2026-11-09) |
+| 15 | ratgeber/save-the-date-einladung | Ratgeber | planung | winter | Briefumschlag | – | gebaut (2026-11-09) |
+| 16 | ratgeber/trauzeugen-aufgaben | Ratgeber | planung | ostsee | zwei Gläser, Liste | – | gebaut (2026-11-09) |
+| 17 | ratgeber/hochzeitsrede-tipps | Ratgeber | planung | ostsee | Mikrofon und Karten | – | gebaut (2026-11-09) |
+| 18 | ratgeber/standesamt-unterlagen | Ratgeber | planung | ostsee | Mappe mit Stempel | – | gebaut (2026-11-09) |
+| 19 | ratgeber/brautstyling-probe | Ratgeber | planung | ostsee | Spiegel und Bürste | – | gebaut (2026-11-09) |
+| 20 | ratgeber/hochzeitsfotos-tipps-paare | Ratgeber | planung | ostsee | Kamera mit Herz | – | gebaut (2026-11-09) |
+| 21 | ratgeber/sitzordnung-tipps | Ratgeber | planung | ostsee | Tisch mit Namenskärtchen | – | gebaut (2026-11-09) |
+| 22 | ratgeber/hochzeitsgeschenke-wunschliste | Ratgeber | planung | winter | Geschenkpaket | – | gebaut (2026-11-09) |
+| 23 | ratgeber/flitterwochen-budget | Ratgeber | planung | winter | Koffer und Flugzeug | – | gebaut (2026-11-09) |
+| 24 | ratgeber/hochzeitsnacht-hotel-ruegen | Ratgeber | ostsee | planung | Hotelbett mit Meerblick | – | gebaut (2026-11-09) |
 
 Rechnung: 24 Seiten × 6 Pins = 144 neue Pins + 29 vorhandene = 173 ≥ 156 Slots.
-Der Status wird von der Bau-Aufgabe auf „gebaut (Datum)“ gesetzt.
+Alle 24 Seiten sind gebaut (2026-11-09). Zusätzlich: 3 Winter-Ratgeber (winterhochzeit-brautstrauss, -menue-getraenke, -zeitplan) und 6 Tool-/Ortsseiten (fotostunden-rechner, goldene-stunde, tischkarten, hochzeitstyp, hochzeitsfotograf/ + 6 Orte). Weitere Seiten: Generatoren `tools/build_pages.py` (Ratgeber), `tools/build_tools.py` (Tools, Ortsseiten).

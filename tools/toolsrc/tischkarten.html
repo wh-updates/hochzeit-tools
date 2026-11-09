@@ -1,0 +1,25 @@
+<div class="card noprint">
+<div class="row">
+<div><label for="mode">Was soll gedruckt werden?</label><select id="mode"><option value="tent">Tischkarten (zum Falten)</option><option value="menu">Menükarte</option></select></div>
+<div><label for="col">Farbe</label><select id="col"><option value="#8a4a50">Altrosa</option><option value="#3d5a6c">Ostseeblau</option><option value="#5c7355">Salbeigrün</option><option value="#b08d57">Gold</option><option value="#333333">Schwarz</option></select></div>
+<div><label for="font">Schrift</label><select id="font"><option value="Georgia,serif">Serif (klassisch)</option><option value="'Segoe Script','Brush Script MT',cursive">Schreibschrift</option><option value="Arial,Helvetica,sans-serif">Schlicht (Sans)</option></select></div>
+<div><label for="frame">Rahmen</label><select id="frame"><option value="1">Mit Rahmen</option><option value="0">Ohne Rahmen</option></select></div>
+</div>
+</div>
+<div class="card noprint" id="tentin">
+<label for="names">Namen (eine Zeile pro Karte, optional mit Tisch: „Anna Muster; Tisch 3“)</label>
+<textarea id="names" rows="8" placeholder="Anna Muster; Tisch 1&#10;Ben Beispiel; Tisch 1"></textarea>
+<p><button class="ghost" id="imp">Aus Sitzplan übernehmen</button> <button class="ghost" onclick="print()">Drucken / als PDF speichern</button> <span id="msg" class="muted" role="status"></span></p>
+<p class="muted">Druckt auf A4 mit 100 % Skalierung (nicht „An Seite anpassen“). Je Karte 100 × 60 mm, 8 Karten pro Blatt. Faltet an der gestrichelten Linie.</p>
+</div>
+<div class="card noprint" id="menuin" hidden>
+<div class="row">
+<div><label for="mtitle">Titel</label><input id="mtitle" value="Unser Hochzeitsmenü"></div>
+<div><label for="mdate">Datum/Ort</label><input id="mdate" placeholder="z. B. 12. Juni 2027 · Stralsund"></div>
+<div><label for="msize">Größe</label><select id="msize"><option value="a6">A6 (4 pro A4)</option><option value="a5">A5 (1 pro A4)</option></select></div>
+</div>
+<label for="mcourses" style="margin-top:.75rem">Gänge (eine Zeile pro Gericht, leere Zeile = neuer Abschnitt)</label>
+<textarea id="mcourses" rows="8"></textarea>
+<p><button class="ghost" onclick="print()">Drucken / als PDF speichern</button></p>
+</div>
+<div id="sheetwrap"><div id="sheet"></div></div>

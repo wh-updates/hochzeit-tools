@@ -1,0 +1,27 @@
+#sheet .pg{display:grid;grid-template-columns:repeat(2,100mm);gap:0;justify-content:center;margin:1rem 0}
+#sheet .tc{width:100mm;height:60mm;box-sizing:border-box;display:grid;grid-template-rows:30mm 30mm;position:relative;background:#fff}
+#sheet .half{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:0 4mm}
+#sheet .nm{font-size:20pt;line-height:1.15}
+#sheet .tb{font-size:10pt;margin-top:1.5mm;opacity:.8;letter-spacing:.05em}
+#sheet .fold{position:absolute;left:0;right:0;top:30mm;border-top:1px dashed #aaa}
+#sheet .pg6{grid-template-columns:repeat(2,105mm)}
+#sheet .pg5{grid-template-columns:148mm}
+#sheet .mc{box-sizing:border-box;text-align:center;background:#fff;padding:10mm 8mm;overflow:hidden}
+#sheet .mc.a6{width:105mm;height:148mm}
+#sheet .mc.a5{width:148mm;height:210mm;padding:18mm 14mm}
+#sheet .mt{font-size:19pt;margin-bottom:2mm}
+#sheet .a5 .mt{font-size:26pt}
+#sheet .md{font-size:10pt;opacity:.8}
+#sheet .mrule{height:1px;width:30mm;margin:5mm auto}
+#sheet .mb{margin:4mm 0;font-size:11pt;line-height:1.4}
+#sheet .a5 .mb{font-size:13pt;margin:7mm 0}
+#sheet .mb b{display:block;font-size:10pt;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1mm}
+@media (max-width:700px){#sheet{overflow-x:auto}}
+@media print{
+ @page{size:A4;margin:0}
+ main>*:not(#sheetwrap){display:none!important}
+ main{padding:0!important;max-width:none!important}
+ #sheet .pg{margin:0;page-break-after:always;break-after:page}
+ #sheet .pg:not(.pg5):not(.pg6){grid-template-columns:repeat(2,100mm);padding:8mm 5mm;grid-auto-rows:60mm}
+ #sheet .pg6,#sheet .pg5{margin:0 auto}
+}

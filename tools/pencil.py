@@ -255,3 +255,9 @@ def winterliste():
 <path d="M200 650 Q500 630 800 650"/>'''
 
 MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf}
+
+try:
+    from pencil_neu import MOTIVE_NEU
+    MOTIVE.update(MOTIVE_NEU)
+except ImportError:
+    pass

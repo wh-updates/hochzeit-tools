@@ -1,0 +1,16 @@
+<div class="card">
+<div class="row">
+<div><label for="guests">Anzahl Gäste</label><input id="guests" inputmode="numeric" value="60"></div>
+<div><label for="pct">Davon essen Torte (%)</label><input id="pct" inputmode="numeric" value="90"></div>
+<div><label for="size">Stückgröße</label><select id="size"><option value="20">Klein (Hochzeitsportion)</option><option value="28" selected>Normal</option><option value="38">Groß</option></select></div>
+<div><label for="tiers">Etagen</label><select id="tiers"><option>1</option><option>2</option><option selected>3</option><option>4</option></select></div>
+</div>
+</div>
+<div class="card">
+<h2>Ergebnis</h2>
+<p id="sum" style="font-size:1.15rem"></p>
+<div id="viz" style="max-width:360px;margin:1rem auto"></div>
+<table><thead><tr><th>Etage</th><th class="num">Durchmesser</th><th class="num">Portionen</th><th class="num">Gewicht ca.</th></tr></thead><tbody id="rows"></tbody><tfoot><tr><th>Gesamt</th><th></th><th class="num" id="tp"></th><th class="num" id="tw"></th></tr></tfoot></table>
+<p class="muted">Richtwerte: Etagenhöhe etwa 10 cm, Teig und Füllung zusammen etwa 0,85 g pro cm³. Die Konditorei kann je nach Rezept abweichen. Fragt dort immer nach den genauen Maßen.</p>
+<p class="noprint"><button class="ghost" onclick="print()">Drucken / als PDF speichern</button></p>
+</div>

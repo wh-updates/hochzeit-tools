@@ -113,3 +113,19 @@ footer.site h3{font-family:var(--serif);font-weight:normal;font-size:1.05rem;col
 .promo p{margin:0}
 .promo .btn{flex:none}
 @media(max-width:600px){.promo-in{flex-direction:column;align-items:flex-start}}
+
+/* Auswahlmenü „Weitere Tools“ (ohne Skript) */
+.navmore{position:relative}
+.navmore summary{list-style:none;cursor:pointer;font-size:.95rem;padding:.25rem 0;border-bottom:2px solid transparent}
+.navmore summary::-webkit-details-marker{display:none}
+.navmore summary::after{content:" ▾";font-size:.8em;color:var(--muted)}
+.navmore summary:hover,.navmore summary[aria-current],.navmore[open] summary{border-bottom-color:var(--gold)}
+.navmore-in{position:absolute;top:100%;left:0;z-index:30;display:flex;flex-direction:column;min-width:210px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.4rem .8rem;box-shadow:0 12px 28px -14px rgba(138,74,80,.35)}
+.navmore-in a{padding:.45rem 0;border-bottom:1px solid var(--line)}
+.navmore-in a:last-child{border-bottom:0}
+@media(max-width:720px){.navmore-in{position:static;box-shadow:none;margin-top:.3rem}}
+@media print{.navmore{display:none}}
+/* Tool-Seiten: Druck-Hilfen */
+.printonly{display:none}
+@media print{.printonly{display:inline}#rows input{display:none!important}}
+[hidden]{display:none!important}
