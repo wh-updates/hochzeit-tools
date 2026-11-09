@@ -1,0 +1,22 @@
+<div class="card">
+<div class="row">
+<div><label for="g">Anzahl Geschenke</label><input id="g" inputmode="numeric" value="60"></div>
+<div><label for="res">Reserve (%)</label><input id="res" inputmode="numeric" value="10"></div>
+<div><label for="mode">Was ist bekannt?</label><select id="mode"><option value="budget">Gesamtbudget, Preis pro Stück gesucht</option><option value="price">Preis pro Stück, Gesamtkosten gesucht</option></select></div>
+<div><label for="val" id="vallabel">Gesamtbudget (€)</label><input id="val" inputmode="decimal" value="300"></div>
+</div>
+<div class="row" style="margin-top:.75rem">
+<div><label for="pack">Verpackung/Anhänger pro Stück (€)</label><input id="pack" inputmode="decimal" value="0,50"></div>
+<div><label for="wd">Hochzeitsdatum</label><input id="wd" type="date"></div>
+</div>
+</div>
+<div class="card">
+<h2>Ergebnis</h2>
+<p id="sum" style="font-size:1.15rem"></p>
+<p id="when" class="muted"></p>
+</div>
+<div class="card">
+<h2>Ideen nach Preis pro Stück</h2>
+<div id="ideas"></div>
+<p class="muted">Ideen zur Anregung, ohne Preisgarantie. Vergleicht Angebote und bestellt Selbstgemachtes oder Individuelles rechtzeitig.</p>
+</div>

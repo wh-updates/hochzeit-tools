@@ -129,3 +129,5 @@ footer.site h3{font-family:var(--serif);font-weight:normal;font-size:1.05rem;col
 .printonly{display:none}
 @media print{.printonly{display:inline}#rows input{display:none!important}}
 [hidden]{display:none!important}
+.related ul{columns:2;column-gap:2rem;margin:.4rem 0 0;padding-left:1.1rem}.related li{margin:.3rem 0;break-inside:avoid}
+@media(max-width:600px){.related ul{columns:1}}

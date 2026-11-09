@@ -1,0 +1,13 @@
+<div class="card">
+<div class="row">
+<div><label for="date">Hochzeitsdatum</label><input id="date" type="date"></div>
+<div><label for="upto">Anzeigen bis (Jahre)</label><select id="upto"><option>10</option><option selected>25</option><option>50</option><option>75</option></select></div>
+</div>
+<p id="next" style="font-size:1.1rem;margin-top:1rem"></p>
+</div>
+<div class="card">
+<h2>Eure Hochzeitstage</h2>
+<div style="overflow-x:auto"><table><thead><tr><th>Jahre</th><th>Bezeichnung</th><th>Datum</th><th class="num">Noch</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="muted">Die Namen der Hochzeitstage sind Tradition und variieren regional. Manche Quellen nennen für einzelne Jahre andere Bezeichnungen.</p>
+<p class="noprint"><button class="ghost" onclick="print()">Drucken / als PDF speichern</button></p>
+</div>

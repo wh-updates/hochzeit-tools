@@ -1,0 +1,25 @@
+<div class="card">
+<div class="row">
+<div><label for="g">Anzahl Gäste</label><input id="g" inputmode="numeric" value="60"></div>
+<div><label for="h">Davon Haushalte (Paare/Familien zählen einmal)</label><input id="h" inputmode="numeric" value="35"></div>
+<div><label for="res">Reserve (%)</label><input id="res" inputmode="numeric" value="10"></div>
+<div><label for="wd">Hochzeitsdatum</label><input id="wd" type="date"></div>
+</div>
+<div class="row" style="margin-top:.75rem">
+<div><label for="std">Save-the-Date verschicken?</label><select id="std"><option value="1">Ja</option><option value="0">Nein</option></select></div>
+<div><label for="ck">Kosten Karte + Umschlag (€ pro Stück)</label><input id="ck" inputmode="decimal" value="1,50"></div>
+<div><label for="porto">Porto pro Brief (€)</label><input id="porto" inputmode="decimal" value="0,95"></div>
+</div>
+<p class="muted">Das Porto ist ein Beispielwert. Bitte aktuellen Preis und Gewicht (Briefformat) bei der Post prüfen.</p>
+</div>
+<div class="card">
+<h2>Ergebnis</h2>
+<p id="sum" style="font-size:1.15rem"></p>
+<table><tbody id="rows"></tbody></table>
+</div>
+<div class="card">
+<h2>Zeitplan</h2>
+<table><thead><tr><th>Wann</th><th>Was</th></tr></thead><tbody id="plan"></tbody></table>
+<p class="muted">Orientierung: Save-the-Date früh, Einladung etwa zwei bis vier Monate vorher, Rückmeldefrist einige Wochen vor der Feier. Bei Auslandsgästen oder Ferienzeit lieber früher.</p>
+<p class="noprint"><button class="ghost" onclick="print()">Drucken / als PDF speichern</button></p>
+</div>

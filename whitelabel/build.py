@@ -4,7 +4,7 @@ Ohne Bride-&-Light-Bezug, ohne Ratgeber, ohne MV-Banner, ohne Eigenwerbung. Rein
 Aufruf: python3 whitelabel/build.py whitelabel/kunde.beispiel.json   → whitelabel/out/<slug>/ und whitelabel/out/<slug>.zip"""
 import sys,re,json,html,shutil,pathlib,zipfile
 W=pathlib.Path(__file__).resolve().parent; R=W.parent
-TOOLS=['budgetrechner','gaesteliste','sitzplan','getraenkerechner','checkliste','ablaufplan','fotostunden-rechner','goldene-stunde','hochzeitstorte-rechner','tischkarten','hochzeitstyp']
+TOOLS=['budgetrechner','gaesteliste','sitzplan','getraenkerechner','checkliste','hochzeitsdatum-finder','hochzeitstyp','ablaufplan','einladungs-rechner','brautstrauss-konfigurator','tischkarten','gastgeschenke-rechner','hochzeitstorte-rechner','fotostunden-rechner','goldene-stunde','foto-wunschliste','fotograf-test','packliste-hochzeit','hochzeitstag-rechner']
 NAV5=['budgetrechner','gaesteliste','sitzplan','getraenkerechner','checkliste']
 CITIES=[['Hamburg',53.5511,9.9937],['Berlin',52.52,13.405],['Bremen',53.0793,8.8017],['Hannover',52.3759,9.732],['Düsseldorf',51.2277,6.7735],['Köln',50.9375,6.9603],['Frankfurt am Main',50.1109,8.6821],['Leipzig',51.3397,12.3731],['Dresden',51.0504,13.7373],['Nürnberg',49.4521,11.0767],['Stuttgart',48.7758,9.1829],['München',48.1351,11.582]]
 E_=lambda s:html.escape(s,quote=True)
@@ -13,7 +13,7 @@ def cfg_load(p):
     for k in ('slug','name','domain','site_url','contact_url','imprint_url','privacy_url'):
         if not c.get(k): sys.exit(f'Konfiguration: Feld "{k}" fehlt')
     for k in ('tagline','logo_url','instagram_url','about_title','about_text','about_image_url','contact_text'): c.setdefault(k,'')
-    c.setdefault('color','#8a4a50'); c.setdefault('color_dark','#6f3a40'); c.setdefault('orte',[]); c.setdefault('credit',False)
+    c.setdefault('color','#8a4a50'); c.setdefault('color_dark','#6f3a40'); c.setdefault('orte',[]); c.setdefault('credit',False); c.setdefault('bundesland','Berlin')
     c['domain']=c['domain'].rstrip('/'); c['contact_text']=c['contact_text'] or 'Jetzt anfragen'
     for k in ('color','color_dark'):
         if not re.fullmatch(r'#[0-9a-fA-F]{6}',c[k]): sys.exit(f'Konfiguration: {k} muss wie #8a4a50 aussehen')
@@ -47,7 +47,7 @@ def about(c):
     return f'<section class="about noprint"><div class="about-in wrap" style="{"" if img else "grid-template-columns:1fr"}">{img}<div class="about-txt"><h2>{E_(c["about_title"] or c["name"])}</h2><p>{E_(c["about_text"])}</p><p class="about-btns"><a class="btn" href="{E_(c["contact_url"])}">{E_(c["contact_text"])}</a></p></div></div></section>\n'
 def clean(s,c,slug,t):
     host=c['domain'].split('://',1)[1]
-    for b in ('SEO','PROMO','PIN','ABOUT'): s=re.sub(r'\n?<!--%s-->.*?<!--/%s-->'%(b,b),'',s,flags=re.S)
+    for b in ('SEO','PROMO','PIN','ABOUT','RELATED'): s=re.sub(r'\n?<!--%s-->.*?<!--/%s-->'%(b,b),'',s,flags=re.S)
     s=re.sub(r'<link rel="canonical"[^>]*>\n?','',s)
     title=re.search(r'<title>(.*?)</title>',s,re.S).group(1); desc=re.search(r'<meta name="description" content="(.*?)">',s).group(1)
     desc=re.sub(r'Rechner für Rügen, Usedom, Stralsund und ganz Deutschland','Rechner für ganz Deutschland',desc)
@@ -65,12 +65,16 @@ def clean(s,c,slug,t):
     s=re.sub(r'<p>Weiter planen: (.*?)</p>',weiter,s)
     s=s.replace('placeholder="z. B. 12. Juni 2027 · Stralsund"','placeholder="z. B. 12. Juni 2027 · Ort"')
     s=s.replace('PRODID:-//Bride & Light//Hochzeit-Tools//DE',f'PRODID:-//{c["name"]}//Hochzeit-Tools//DE').replace('@tools.bride-light.de','@'+host).replace('https://tools.bride-light.de/checkliste/',f'{c["domain"]}/checkliste/')
-    s=s.replace('https://kunden.bride-light.de/?utm_source=tools&amp;utm_medium=quiz&amp;utm_campaign=hochzeitstyp',E_(c['contact_url']))
+    s=re.sub(r'https://kunden\.bride-light\.de/\?utm_source=tools&amp;utm_medium=quiz&amp;utm_campaign=[a-z\-]+',lambda m:E_(c['contact_url']),s)
+    s=s.replace('Beliebte Samstage zwischen Mai und September sind oft lange vorher vergeben, besonders auf Rügen und an der Ostsee.','Beliebte Samstage zwischen Mai und September sind oft lange vorher vergeben.')
+    s=re.sub(r"<p id=\"links\"></p>",'',s) if False else s
     s=s.replace('>Unverbindlich anfragen<',f'>{E_(c["contact_text"])}<')
     s=re.sub(r'(site\.js|style\.css)\?v=\d+',r'\1?v=wl1',s)
     return s
 GENERIC_ORTE={'klassisch':'Gutshaus, Schloss, Hotel oder Kirche: Orte mit Platz für Gäste und einem festlichen Rahmen.','boho':'Wiese, Waldrand, Strand, Scheune oder Gartenfest: Orte mit viel Natur.','modern':'Moderne Hotels, Lofts und Design-Locations mit klarer Architektur.','maritim':'Strand, Seebrücke, Hafen oder Leuchtturm: Orte am Wasser.','vintage':'Alte Gutshäuser, Gärten, Dorfkirchen und Scheunen mit Charme.'}
 def tool_specific(s,slug,c):
+    if slug=='hochzeitsdatum-finder': s=s.replace("s: 'Mecklenburg-Vorpommern'","s: "+json.dumps(c['bundesland'],ensure_ascii=False))
+    if slug=='fotograf-test': s=re.sub(r"\$\('links'\)\.innerHTML = 'Weiter planen:.*?;\n","",s,count=1,flags=re.S)
     if slug=='goldene-stunde':
         places=c['orte'] or CITIES
         s=re.sub(r'var PLACES = \[.*?\];\n','var PLACES = '+json.dumps(places,ensure_ascii=False)+';\n',s,count=1,flags=re.S)
@@ -143,7 +147,7 @@ Hinweise
         if f.is_file() and f.suffix in ('.html','.js','.css','.xml','.txt'):
             s=f.read_text(encoding='utf-8')
             for pat in ('bride-light','Bride &','Bride &amp;','Rügen','Stralsund','kunden.bride','ratgeber/','hochzeitsfotograf/','Mecklenburg','Etsy','etsy'):
-                if pat in s and not (pat=='Rügen' and False): bad.append((str(f.relative_to(out)),pat))
+                if pat in s and not (pat=='Mecklenburg' and f.parent.name=='hochzeitsdatum-finder'): bad.append((str(f.relative_to(out)),pat))
     if bad: sys.exit('Leck-Prüfung fehlgeschlagen: '+str(bad[:12]))
     z=W/'out'/f'{c["slug"]}.zip'
     with zipfile.ZipFile(z,'w',zipfile.ZIP_DEFLATED) as zf:

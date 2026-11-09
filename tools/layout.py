@@ -11,7 +11,7 @@ FOTO='https://bride-light.de/medien/44/1600-waehrend-der-trauung.webp?v=1'
 UTM=lambda m,c:f'?utm_source=tools&amp;utm_medium={m}&amp;utm_campaign={c}'
 NAV=[('budgetrechner','Budget'),('gaesteliste','Gästeliste'),('sitzplan','Sitzplan'),('getraenkerechner','Getränke'),('checkliste','Checkliste'),('ratgeber','Ratgeber')]
 # Weitere Tools (Auswahlmenü im Kopf) in Planungs-Reihenfolge: Ablauf → Fotos → Licht → Torte → Tischkarten → Test
-MORE=[('ablaufplan','Ablaufplan'),('fotostunden-rechner','Fotostunden-Rechner'),('goldene-stunde','Goldene Stunde'),('hochzeitstorte-rechner','Hochzeitstorte'),('tischkarten','Tischkarten'),('hochzeitstyp','Hochzeitstyp-Test')]
+MORE=[('hochzeitsdatum-finder','Hochzeitsdatum-Finder'),('hochzeitstyp','Hochzeitstyp-Test'),('ablaufplan','Ablaufplan'),('einladungs-rechner','Einladungs-Rechner'),('brautstrauss-konfigurator','Brautstrauß'),('tischkarten','Tischkarten'),('gastgeschenke-rechner','Gastgeschenke'),('hochzeitstorte-rechner','Hochzeitstorte'),('fotostunden-rechner','Fotostunden-Rechner'),('goldene-stunde','Goldene Stunde'),('foto-wunschliste','Foto-Wunschliste'),('fotograf-test','Fotografen-Test'),('packliste-hochzeit','Packliste'),('hochzeitstag-rechner','Hochzeitstage')]
 def header(p,active):
     def a(d,t): return f'<a href="{p}{d}/"{" aria-current=\"page\"" if d==active else ""}>{t}</a>'
     mact=any(d==active for d,_ in MORE)
@@ -68,6 +68,14 @@ PROMO={
  'checkliste':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
  'ablaufplan':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
  'hochzeitstorte-rechner':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'einladungs-rechner':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'brautstrauss-konfigurator':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'gastgeschenke-rechner':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'packliste-hochzeit':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'hochzeitstag-rechner':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
+ 'hochzeitsdatum-finder':('kunden','Hochzeit auf Rügen oder an der Ostsee?','Habt ihr euer Datum? Wir halten gerne einen Termin für Fotos und Brautstyling frei, unverbindlich anfragen.','Termin anfragen'),
+ 'foto-wunschliste':('kunden','Eure Wunschliste, unsere Bilder','Schickt uns Datum und Wünsche. Wir melden uns persönlich bei euch.','Jetzt anfragen'),
+ 'fotograf-test':('kunden','Passt unser Stil zu euch?','Lernt uns unverbindlich kennen: Fotos und Brautstyling auf Rügen und in ganz MV.','Kennenlernen anfragen'),
  'tischkarten':('etsy','Mehr Vorlagen für eure Hochzeitsplanung','Planer, Checklisten und Vorlagen zum Sofort-Download in unserem Etsy-Shop.','Zum Etsy-Shop'),
  'fotostunden-rechner':('kunden','Wie viele Stunden braucht ihr wirklich?','Wir beraten euch zu Ablauf und Fotozeit – persönlich und unverbindlich.','Fotos anfragen'),
  'goldene-stunde':('kunden','Das schönste Licht für eure Fotos','Wir planen Trauung und Paarshooting mit euch rund um das beste Licht.','Fotos anfragen'),
@@ -83,8 +91,16 @@ def promo(rel):
     if kind=='etsy': url=ETSY+UTM('promo',rel[0])
     return f'''<!--PROMO--><aside class="promo noprint" aria-label="Eigenwerbung"><p class="promo-label">Eigenwerbung</p>
 <div class="promo-in"><div><h2>{h}</h2><p>{t}</p></div><a class="btn" href="{url}" target="_blank" rel="noopener">{b}</a></div></aside><!--/PROMO-->'''
+def related_block(p,rel):
+    import sys
+    sys.path.insert(0,str(R/'tools'))
+    from content.clusters import related,TITLES
+    key='/'.join(rel); keys=related(key)
+    if not keys: return ''
+    li=''.join(f'<li><a href="{p}{k}/">{html.escape(TITLES[k],quote=False)}</a></li>' for k in keys)
+    return f'<!--RELATED--><section class="card related noprint" aria-label="Mehr zum Thema"><h2>Mehr zum Thema</h2><ul>{li}</ul></section><!--/RELATED-->'
 def pages():
-    return [f for f in R.rglob('index.html') if not any(x in f.parts for x in ('marketing','node_modules','.git'))]
+    return [f for f in R.rglob('index.html') if not any(x in f.parts for x in ('marketing','node_modules','.git','whitelabel'))]
 def run():
     for f in pages():
         rel=f.relative_to(R).parent.parts; p='../'*len(rel); active=rel[0] if rel else ''
@@ -96,6 +112,9 @@ def run():
         s=re.sub(r'<!--ABOUT-->.*?<!--/ABOUT-->\s*','',s,flags=re.S)
         s=re.sub(r'\n?<!--NEWSLETTER-->.*?<!--/NEWSLETTER-->','',s,flags=re.S)
         if rel==('checkliste',) and newsletter(): s=s.replace('<!--ICS-->','<!--ICS-->\n'+newsletter(),1)
+        s=re.sub(r'\n?<!--RELATED-->.*?<!--/RELATED-->','',s,flags=re.S)
+        rb=related_block(p,rel) if rel and rel[0] not in ('shop',) else ''
+        if rb: s=s.replace('</main>',rb+'\n</main>',1)
         pb=pinbox(p,'/'.join(rel)) if rel else ''
         pm=promo(rel) if rel and rel[0]!='shop' else ''
         if pm or pb: s=s.replace('</main>',pm+('\n' if pm and pb else '')+pb+'\n</main>',1)

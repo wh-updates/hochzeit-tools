@@ -1,0 +1,21 @@
+<div class="card">
+<div class="row">
+<div><label for="year">Jahr</label><select id="year"></select></div>
+<div><label for="state">Bundesland (für Feiertage)</label><select id="state"></select></div>
+<div><label for="wd">Wochentag</label><select id="wd"><option value="6">Samstag</option><option value="5">Freitag</option><option value="0">Sonntag</option><option value="4">Donnerstag</option></select></div>
+</div>
+<p style="margin-top:.8rem"><b>Monate</b></p>
+<div id="months" style="display:flex;flex-wrap:wrap;gap:.4rem .9rem"></div>
+<p style="margin-top:.8rem"><label style="display:flex;gap:.5rem;align-items:center;margin:0"><input type="checkbox" id="onlyspecial" style="width:auto"> Nur besondere Daten (Doppeltag, Jahreszahl-Tag, Feiertag)</label></p>
+</div>
+<div class="card">
+<h2>Termine</h2>
+<p id="count" class="muted"></p>
+<div style="overflow-x:auto"><table><thead><tr><th>Datum</th><th>Besonderes</th><th class="noprint">Merken</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="muted">Feiertage ändern sich je nach Bundesland. Ferientermine und Standesamt-Zeiten prüft bitte direkt bei den zuständigen Stellen.</p>
+</div>
+<div class="card" id="favcard" hidden>
+<h2>Eure Favoriten</h2>
+<ul id="favs"></ul>
+<p class="noprint"><button class="ghost" onclick="print()">Drucken / als PDF speichern</button></p>
+</div>

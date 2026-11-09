@@ -261,3 +261,9 @@ try:
     MOTIVE.update(MOTIVE_NEU)
 except ImportError:
     pass
+
+try:
+    from pencil_neu2 import MOTIVE_NEU2
+    MOTIVE.update(MOTIVE_NEU2)
+except ImportError:
+    pass

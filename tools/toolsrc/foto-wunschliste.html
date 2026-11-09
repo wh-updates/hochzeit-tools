@@ -1,0 +1,23 @@
+<div class="card noprint">
+<div class="row">
+<div><label for="names">Eure Namen</label><input id="names" placeholder="z. B. Anna & Ben"></div>
+<div><label for="wd">Hochzeitsdatum</label><input id="wd" type="date"></div>
+<div><label for="loc">Ort / Location</label><input id="loc" placeholder="z. B. Strand bei Binz"></div>
+</div>
+</div>
+<div id="groups"></div>
+<div class="card">
+<h2>Gruppenfotos</h2>
+<p class="muted noprint">Eine Gruppe pro Zeile, zum Beispiel „Brautpaar mit Eltern der Braut“. Mit Namen oder Rollen, damit niemand gesucht werden muss.</p>
+<textarea id="grp" rows="6" class="noprint" placeholder="Brautpaar mit Eltern der Braut&#10;Brautpaar mit Trauzeugen"></textarea>
+<p id="grpinfo" class="muted"></p>
+</div>
+<div class="card">
+<h2>Besondere Wünsche</h2>
+<textarea id="note" rows="4" class="noprint" placeholder="Menschen, Orte oder Situationen, die euch besonders wichtig sind. Was soll nicht fotografiert werden?"></textarea>
+</div>
+<div class="card">
+<h2>Eure Liste</h2>
+<pre id="out" style="white-space:pre-wrap;font:inherit;background:var(--rose);padding:1rem;border-radius:12px"></pre>
+<p class="noprint"><button id="copy">Liste kopieren</button> <button class="ghost" onclick="print()">Drucken / als PDF speichern</button> <a class="btn ghost" id="mail" href="#">Per E-Mail teilen</a> <span id="msg" class="muted" role="status"></span></p>
+</div>
