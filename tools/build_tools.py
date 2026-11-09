@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Baut die Tool-Seiten (Quelle: tools/content/extra.py + tools/toolsrc/<slug>.html/.js) und die lokalen Fotografen-Seiten (hochzeitsfotograf/).
 Aufruf: python3 tools/build_tools.py [--force]   (danach layout.py, seo_apply.py, build_feed.py)"""
-import sys,json,html,pathlib,subprocess
+import re,sys,json,html,pathlib,subprocess
 T=pathlib.Path(__file__).resolve().parent; R=T.parent
 sys.path.insert(0,str(T))
 import make_pin, make_icons
 from content.extra import TOOLPAGES,LOCAL,LOCAL_INDEX
 from build_pages import card,E
+from content.tooltexte import render as text_render
 KUNDEN='https://kunden.bride-light.de/'
 def head(title,desc,canon,up):
     return f'''<!doctype html>
@@ -35,7 +36,7 @@ def tool_html(pg):
     return head(pg['title'],pg['desc'],pg['slug']+'/','../')+f'''<h1>{E(pg['h1'])}</h1>
 <p class="lead">{E(pg['lead'])}</p>
 {st}{body}
-{faq_html(pg['faq'])}{weiter_html(pg['weiter'],'../')}<p class="muted"><small>Stand: November 2026. Alle Eingaben bleiben in eurem Browser gespeichert, es wird nichts übertragen. Die Ergebnisse sind Richtwerte zur Orientierung.</small></p>
+{text_render(pg['slug'],'../')}{faq_html(pg['faq'])}{weiter_html(pg['weiter'],'../')}<p class="muted"><small>Stand: November 2026. Alle Eingaben bleiben in eurem Browser gespeichert, es wird nichts übertragen. Die Ergebnisse sind Richtwerte zur Orientierung.</small></p>
 </main>
 <footer class="site"></footer>
 <script src="../assets/site.js?v=7"></script>
@@ -85,12 +86,24 @@ def register_pins(pg,force=False):
     for x in new:
         png=R/'marketing'/'pins'/f"{x['slug']}.png"
         if force or not png.exists(): make_pin.make(x['slug'],x['t1'],x['t2'],x['sub'],x['board'],x['variant'])
+def inject_old():
+    from content.tooltexte import T,render
+    for slug in ('budgetrechner','gaesteliste','sitzplan','getraenkerechner','checkliste'):
+        f=R/slug/'index.html'
+        h=f.read_text()
+        h=re.sub(r'\n?<!--TEXT-->.*?<!--/TEXT-->','',h,flags=re.S)
+        blk=render(slug,'../')
+        assert '<section class="faq"' in h,slug
+        h=h.replace('<section class="faq"',blk+'\n<section class="faq"',1)
+        f.write_text(h)
+
 def main(args):
     force='--force' in args
     for pg in TOOLPAGES:
         d=R/pg['slug']; d.mkdir(exist_ok=True); (d/'index.html').write_text(tool_html(pg),encoding='utf-8')
         if force or not (R/'assets'/'img'/f"{pg['motif']}.webp").exists(): make_icons.icon(pg['motif'])
         register_pins(pg,force); print('Tool',pg['slug'])
+    inject_old()
     h=R/'hochzeitsfotograf'; h.mkdir(exist_ok=True); (h/'index.html').write_text(local_index(),encoding='utf-8')
     for p in LOCAL:
         (h/p['slug']).mkdir(exist_ok=True); (h/p['slug']/'index.html').write_text(local_html(p),encoding='utf-8')
