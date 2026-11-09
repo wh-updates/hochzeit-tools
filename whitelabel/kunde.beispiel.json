@@ -1,0 +1,20 @@
+{
+  "slug": "beispiel-fotografie",
+  "name": "Beispiel Fotografie",
+  "tagline": "Hochzeitsfotografie",
+  "domain": "https://tools.beispiel-fotografie.de",
+  "logo_url": "https://www.beispiel-fotografie.de/logo.png",
+  "site_url": "https://www.beispiel-fotografie.de/",
+  "contact_url": "https://www.beispiel-fotografie.de/kontakt",
+  "contact_text": "Jetzt anfragen",
+  "imprint_url": "https://www.beispiel-fotografie.de/impressum",
+  "privacy_url": "https://www.beispiel-fotografie.de/datenschutz",
+  "instagram_url": "",
+  "color": "#8a4a50",
+  "color_dark": "#6f3a40",
+  "about_title": "Hinter den Tools",
+  "about_text": "Wir begleiten Brautpaare mit Hochzeitsfotografie. Diese Tools sind unser Geschenk an euch, damit ihr eure Planung mit Ruhe angeht.",
+  "about_image_url": "",
+  "orte": [],
+  "credit": false
+}
