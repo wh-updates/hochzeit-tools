@@ -80,8 +80,28 @@ window.HT = (function () {
       '<p>Habt ihr bei uns gebucht, könnt ihr eure Planung aus den Tools mit einem Klick in euren Kundenbereich übernehmen. Das spart doppeltes Tippen.</p>' +
       '<p class="muted"><small>Gefunden in diesem Browser: ' + HT.esc(c.parts.join(', ')) + '. Der Code wird nur erzeugt, wenn ihr auf den Knopf klickt. Es wird nichts gesendet. Erst wenn ihr ihn selbst bei uns einfügt, sehen wir die Daten.</small></p>' +
       '<p><button type="button" class="pc-go">Planung als Code kopieren</button></p>' +
-      '<div class="pc-out" hidden><textarea class="pc-ta" rows="3" readonly aria-label="Euer Planungscode"></textarea><p class="pc-msg muted"><small></small></p></div>';
+      '<div class="pc-out" hidden><textarea class="pc-ta" rows="3" readonly aria-label="Euer Planungscode"></textarea><p class="pc-msg muted"><small></small></p></div>' +
+      '<details class="pc-mail"><summary>Oder die Planung per E-Mail bekommen</summary>' +
+      '<form class="pc-form" novalidate><p><label>Name<br><input name="name" required maxlength="80" autocomplete="name"></label></p>' +
+      '<p><label>E-Mail<br><input name="email" type="email" required maxlength="200" autocomplete="email"></label></p>' +
+      '<p style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></p>' +
+      '<p><label><input type="checkbox" name="consent" value="1"> Ich bin einverstanden, dass Bride &amp; Light meine Planung und E-Mail-Adresse verarbeitet, um mir diese E-Mail zu senden. <a href="https://bride-light.de/datenschutzerklarung">Datenschutzerklärung</a></label></p>' +
+      '<p><label><input type="checkbox" name="newsletter" value="1"> Ja, ich möchte außerdem Hochzeitstipps und Neuigkeiten von Bride &amp; Light per E-Mail (jederzeit abbestellbar, Bestätigungslink folgt)</label></p>' +
+      '<p><button type="submit">Planung per E-Mail senden</button></p><p class="pc-fmsg muted" role="status"><small></small></p></form></details>' +
+      '<p><a class="btn ghost pc-ask" href="#">Jetzt bei Bride &amp; Light anfragen</a> <small class="muted">Den Code könnt ihr im Anfrageformular einfügen.</small></p>';
     main.appendChild(box);
+    var ask = box.querySelector('.pc-ask'), fav = (HT.load('datum', {}).fav || [])[0];
+    ask.href = 'https://bride-light.de/?utm_source=tools&utm_medium=paarcode&utm_campaign=anfrage' + (fav ? '&datum=' + encodeURIComponent(fav) : '');
+    box.querySelector('.pc-form').onsubmit = function (e) {
+      e.preventDefault();
+      var f = e.target, m = box.querySelector('.pc-fmsg small'), b = f.querySelector('button');
+      if (!f.name.value.trim() || !/^\S+@\S+\.\S+$/.test(f.email.value.trim())) { m.textContent = 'Bitte Namen und eine gültige E-Mail-Adresse eingeben.'; return; }
+      if (!f.consent.checked) { m.textContent = 'Bitte der Verarbeitung zustimmen.'; return; }
+      var fd = new FormData(f); fd.append('code', encode(collect().d)); b.disabled = true; m.textContent = 'Wird gesendet …';
+      fetch((window.HT_API || 'https://bride-light.de') + '/api/tools-plan', { method: 'POST', body: fd }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
+        m.textContent = j.ok ? 'Gesendet. Bitte schaut in euer Postfach' + (f.newsletter.checked ? ' und bestätigt den Newsletter.' : '.') : (j.error || 'Das hat leider nicht geklappt. Bitte versucht es später noch einmal.'); b.disabled = false;
+      }, function () { m.textContent = 'Das hat leider nicht geklappt. Bitte versucht es später noch einmal.'; b.disabled = false; });
+    };
     box.querySelector('.pc-go').onclick = function () {
       var cur = collect(), code = encode(cur.d), out = box.querySelector('.pc-out'), ta = box.querySelector('.pc-ta'), msg = box.querySelector('.pc-msg small');
       ta.value = code; out.hidden = false; ta.focus(); ta.select();
@@ -89,6 +109,31 @@ window.HT = (function () {
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(function () { done(true); }, function () { done(false); });
       else { try { done(document.execCommand('copy')); } catch (e) { done(false); } }
     };
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+
+// Termin-Check im Hochzeitsdatum-Finder: zeigt je Wunschtermin, ob Bride & Light noch frei ist (öffentlicher Kalender von bride-light.de)
+(function () {
+  if (location.pathname.replace(/\/+$/, '').split('/').pop() !== 'hochzeitsdatum-finder') return;
+  var API = window.HT_API || 'https://bride-light.de', AV = null, obs;
+  function paint() {
+    if (!AV) return; var rows = document.querySelectorAll('#rows tr'); if (obs) obs.disconnect();
+    [].forEach.call(rows, function (tr) {
+      var b = tr.querySelector('button[data-k]'), td = tr.querySelector('td'); if (!b || !td || td.querySelector('.avail')) return;
+      var k = b.getAttribute('data-k'), st = AV.days[k], d = document.createElement('div'); d.className = 'avail noprint';
+      if (st === 'busy') { d.className += ' busy'; d.textContent = 'Bei Bride & Light leider ausgebucht'; }
+      else if (st === 'res') { d.className += ' res'; d.textContent = 'Bei Bride & Light reserviert'; }
+      else if (k >= AV.from && k <= AV.to) { d.className += ' free'; d.innerHTML = 'Bei Bride &amp; Light noch frei · <a href="https://bride-light.de/?datum=' + encodeURIComponent(k) + '&amp;utm_source=tools&amp;utm_medium=termincheck&amp;utm_campaign=datum">Anfragen</a>'; }
+      else return;
+      td.appendChild(d);
+    });
+    watch();
+  }
+  function watch() { var r = document.getElementById('rows'); if (r && window.MutationObserver) { obs = obs || new MutationObserver(paint); obs.observe(r, { childList: true }); } }
+  function init() {
+    watch();
+    fetch(API + '/verfuegbarkeit.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { if (j && j.days) { AV = j; paint(); } }, function () {});
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

@@ -39,7 +39,7 @@ def tool_html(pg):
 {text_render(pg['slug'],'../')}{faq_html(pg['faq'])}{weiter_html(pg['weiter'],'../')}<p class="muted"><small>Stand: November 2026. Alle Eingaben bleiben in eurem Browser gespeichert, es wird nichts übertragen. Die Ergebnisse sind Richtwerte zur Orientierung.</small></p>
 </main>
 <footer class="site"></footer>
-<script src="../assets/site.js?v=8"></script>
+<script src="../assets/site.js?v=9"></script>
 <script>
 {js}</script>
 </body>
@@ -54,7 +54,7 @@ def local_html(pg):
 {cta(pg['h1'].replace('Hochzeitsfotograf ',''))}{faq_html(pg['faq'])}{weiter_html(pg['weiter'],'../../')}<p class="muted"><small>Stand: November 2026. Orte, Regeln und Genehmigungen ändern sich – bitte vor dem Termin bei der jeweiligen Stelle bestätigen lassen.</small></p>
 </main>
 <footer class="site"></footer>
-<script src="../../assets/site.js?v=8"></script>
+<script src="../../assets/site.js?v=9"></script>
 </body>
 </html>
 '''
@@ -70,7 +70,7 @@ def local_index():
 {cta('Mecklenburg-Vorpommern')}<p>Weiter planen: <a href="../goldene-stunde/">Goldene Stunde berechnen</a> · <a href="../fotostunden-rechner/">Fotostunden-Rechner</a> · <a href="../ratgeber/hochzeitsfotograf-finden/">Hochzeitsfotograf finden</a></p>
 </main>
 <footer class="site"></footer>
-<script src="../assets/site.js?v=8"></script>
+<script src="../assets/site.js?v=9"></script>
 </body>
 </html>
 '''
