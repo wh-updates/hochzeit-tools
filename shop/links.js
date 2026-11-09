@@ -10,5 +10,5 @@ window.SHOP_LINKS = {
   "hochzeitsrede": "https://www.checkout-ds24.com/product/762274",
   "jga-planer": "https://www.checkout-ds24.com/product/762275",
   "trauzeugen-handbuch": "https://www.checkout-ds24.com/product/762276",
-  "hochzeits-bundle": "",
+  "hochzeits-bundle": "https://www.checkout-ds24.com/product/762282",
 };
