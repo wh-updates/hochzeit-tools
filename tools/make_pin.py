@@ -5,6 +5,7 @@ Ergebnis: marketing/pins/<slug>.png  (braucht rsvg-convert + DejaVu-Schriften)""
 import sys,html,subprocess,pathlib
 sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
 from pencil import MOTIVE
+import pencil_orte
 # (Hintergrund, Akzent) je Board und Variante
 COL={'planung':[('#e6cdbf','#8f6452'),('#dccaae','#7d6548'),('#e3d0d3','#8a5f6b')],
      'winter':[('#d3dde6','#4e6178'),('#dfe6ea','#5a7384'),('#cdd8e0','#3f5568')],
