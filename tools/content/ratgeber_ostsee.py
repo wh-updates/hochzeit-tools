@@ -28,7 +28,7 @@ dict(slug='unterkuenfte-hochzeitsgaeste-ruegen',group='ort',motif='unterkunft',s
 
 dict(slug='heiraten-usedom',group='ort',motif='seebruecke',short='Heiraten auf Usedom',
  title='Heiraten auf Usedom: Kaiserbäder, Seebrücken & Strand',
- desc='Hochzeit auf Usedom planen: Kaiserbäder, Seebrücken, Strand und Haff, Anmeldung beim Standesamt, Jahreszeit und Tipps für Gäste.',
+ desc='Hochzeit auf Usedom planen: Kaiserbäder, Seebrücken, Strand und Haff, Anmeldung beim Standesamt, Jahreszeit und Tipps für Gäste. Ratgeber von Bride & Light.',
  h1='Heiraten auf Usedom: Seebrücke, Strand und Haff',
  lead='Usedom bietet Sandstrände, Seebäder mit historischer Architektur und Seebrücken, die auf Fotos wie gemalt wirken. Das macht die Insel zu einem beliebten Ziel für Hochzeiten an der Ostsee.',
  tile='Kaiserbäder, Seebrücken, Strand und Haff: Was Usedom für Hochzeiten bietet.',
@@ -76,7 +76,7 @@ dict(slug='heiraten-darss',group='ort',motif='darss',short='Heiraten auf dem Dar
 
 dict(slug='heiraten-stralsund',group='ort',motif='giebel',short='Heiraten in Stralsund',
  title='Heiraten in Stralsund: Backsteingotik, Hafen & Altstadt',
- desc='Hochzeit in Stralsund: Altstadt als Welterbe, Backsteingotik, Hafen, Trauorte, Fotospots, Anreise und Tipps für Gäste.',
+ desc='Hochzeit in Stralsund: Altstadt als Welterbe, Backsteingotik, Hafen, Trauorte, Fotospots, Anreise und Tipps für Gäste. Ratgeber von Bride & Light.',
  h1='Heiraten in Stralsund: Altstadt, Hafen und Backsteingotik',
  lead='Stralsund liegt am Strelasund, gegenüber von Rügen, und bietet eine Altstadt mit Backsteingiebeln, Kirchen und Hafen. Eine Kulisse, die auf Hochzeitsfotos gleichzeitig historisch und maritim wirkt.',
  tile='Altstadt, Hafen und Backsteingiebel: Orte und Tipps für eure Hochzeit in Stralsund.',

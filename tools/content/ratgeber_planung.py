@@ -3,7 +3,7 @@ L_CHECK=('checkliste','Checkliste')
 PAGES=[
 dict(slug='hochzeit-2027-zeitplan',group='planung',motif='kalender',short='Hochzeit 2027: Zeitplan',
  title='Hochzeit 2027 planen: Zeitplan Monat für Monat',
- desc='Zeitplan für die Hochzeit 2027: Was ihr ab Winter 2026 Monat für Monat erledigt, Wunschtermine, Samstage im Sommer und Puffer.',
+ desc='Zeitplan für die Hochzeit 2027: Was ihr ab Winter 2026 Monat für Monat erledigt, Wunschtermine, Samstage im Sommer und Puffer. Ratgeber von Bride & Light.',
  h1='Hochzeit 2027 planen: Zeitplan Monat für Monat',
  lead='Wer 2027 heiraten möchte, sollte jetzt mit den wichtigsten Entscheidungen starten: Datum, Budget und Location. Der Rest folgt dann in einer klaren Reihenfolge.',
  tile='Von Datum und Location bis zum Feinschliff: der Plan für alle, die 2027 heiraten.',
@@ -51,7 +51,7 @@ dict(slug='save-the-date-einladung',group='planung',motif='umschlag',short='Save
 
 dict(slug='trauzeugen-aufgaben',group='planung',motif='trauzeugen',short='Trauzeugen: Aufgaben',
  title='Trauzeugen: Aufgaben, Rolle und Checkliste',
- desc='Trauzeugen bei der Hochzeit: Rolle, Aufgaben vor und am Hochzeitstag, rechtliche Seite und Checkliste für Paare und Trauzeugen.',
+ desc='Trauzeugen bei der Hochzeit: Rolle, Aufgaben vor und am Hochzeitstag, rechtliche Seite und Checkliste für Paare und Trauzeugen. Ratgeber von Bride & Light.',
  h1='Trauzeugen: Aufgaben und Rolle am Hochzeitstag',
  lead='Trauzeugen sind Vertraute, Helfer und manchmal Retter in der Not. Wenn ihr klärt, was ihr euch wünscht, wird die Rolle für alle Beteiligten leichter.',
  tile='Aufgaben vor und am Hochzeitstag und was rechtlich gilt.',
@@ -75,7 +75,7 @@ dict(slug='trauzeugen-aufgaben',group='planung',motif='trauzeugen',short='Trauze
 
 dict(slug='hochzeitsrede-tipps',group='planung',motif='rede',short='Hochzeitsrede: Tipps',
  title='Hochzeitsrede schreiben: Aufbau, Länge & Tipps',
- desc='Hochzeitsrede halten: Aufbau, Länge, Humor, Karten, Üben und Anstoßen. Tipps für Trauzeugen, Eltern, Freunde und das Brautpaar.',
+ desc='Hochzeitsrede halten: Aufbau, Länge, Humor, Karten, Üben und Anstoßen. Tipps für Trauzeugen, Eltern, Freunde und das Brautpaar. Ratgeber von Bride & Light.',
  h1='Hochzeitsrede: Aufbau und Tipps',
  lead='Eine gute Hochzeitsrede ist kurz, persönlich und warmherzig. Mit einem klaren Aufbau und etwas Übung wird sie zu einem Höhepunkt der Feier.',
  tile='Aufbau, Länge, Humor und Tipps zum Vortragen.',
@@ -147,7 +147,7 @@ dict(slug='brautstyling-probe',group='foto',motif='styling',short='Brautstyling-
 
 dict(slug='hochzeitsfotos-tipps-paare',group='foto',motif='paarfotos',short='Hochzeitsfotos: Tipps für Paare',
  title='Hochzeitsfotos: 12 Tipps für entspannte Paarbilder',
- desc='Tipps für schöne Hochzeitsfotos: Zeitplan, Licht, natürliche Posen, Kennenlern-Shooting, Gruppenfotos, Pausen und Notfallset.',
+ desc='Tipps für schöne Hochzeitsfotos: Zeitplan, Licht, natürliche Posen, Kennenlern-Shooting, Gruppenfotos, Pausen und Notfallset. Ratgeber von Bride & Light.',
  h1='Hochzeitsfotos: Tipps für entspannte Paarbilder',
  lead='Die schönsten Hochzeitsfotos entstehen, wenn ihr euch wohlfühlt. Ein guter Zeitplan, ein bisschen Vertrauen und Zeit füreinander machen mehr aus als jede Pose.',
  tile='Zeitplan, Licht, Gruppenfotos und natürliche Posen für schöne Hochzeitsbilder.',
@@ -171,7 +171,7 @@ dict(slug='hochzeitsfotos-tipps-paare',group='foto',motif='paarfotos',short='Hoc
 
 dict(slug='sitzordnung-tipps',group='planung',motif='tisch',short='Sitzordnung: Tipps',
  title='Sitzordnung bei der Hochzeit: Tipps für die Tische',
- desc='Sitzordnung planen: Tischformen, Brauttisch, Familie, Kinder, Singles und Konflikte, mit Tipps zu Tischkarten und Sitzplan.',
+ desc='Sitzordnung planen: Tischformen, Brauttisch, Familie, Kinder, Singles und Konflikte, mit Tipps zu Tischkarten und Sitzplan. Ratgeber von Bride & Light.',
  h1='Sitzordnung bei der Hochzeit: Tipps für die Tische',
  lead='Eine gute Sitzordnung bringt Menschen zusammen und beugt Missstimmung vor. Mit etwas Überlegung wird der Sitzplan zum stillen Gastgeber.',
  tile='Tischformen, Brauttisch, Kinder, Singles und Konflikte: So gelingt der Sitzplan.',
@@ -195,7 +195,7 @@ dict(slug='sitzordnung-tipps',group='planung',motif='tisch',short='Sitzordnung: 
 
 dict(slug='hochzeitsgeschenke-wunschliste',group='planung',motif='geschenk',short='Hochzeitsgeschenke & Wunschliste',
  title='Hochzeitsgeschenke: Wunschliste und Geldgeschenk',
- desc='Hochzeitsgeschenke: Wunschliste anlegen, Geldgeschenk höflich erbitten, Spendenwunsch, Hochzeitstisch und Dank an Gäste.',
+ desc='Hochzeitsgeschenke: Wunschliste anlegen, Geldgeschenk höflich erbitten, Spendenwunsch, Hochzeitstisch und Dank an Gäste. Ratgeber von Bride & Light.',
  h1='Hochzeitsgeschenke: Wunschliste und Geldgeschenk',
  lead='Viele Gäste möchten euch etwas schenken und fragen, was ihr euch wünscht. Eine klare, freundliche Antwort hilft allen und verhindert doppelte Geschenke.',
  tile='Wunschliste, Geldgeschenk, Spendenwunsch und freundliche Formulierungen.',

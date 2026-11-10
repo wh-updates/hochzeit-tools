@@ -27,7 +27,7 @@ dict(slug='winterhochzeit-brautstrauss',group='winter',motif='strauss',short='Br
 
 dict(slug='winterhochzeit-menue-getraenke',group='winter',motif='gluehwein',short='Winterhochzeit: Menü & Getränke',
  title='Winterhochzeit: Menü, Glühwein & warme Getränke',
- desc='Menü-Ideen für die Winterhochzeit: Wintergerichte, Glühwein, Punsch, heiße Getränke zum Empfang, Torte und Mengenplanung.',
+ desc='Menü-Ideen für die Winterhochzeit: Wintergerichte, Glühwein, Punsch, heiße Getränke zum Empfang, Torte und Mengenplanung. Ratgeber von Bride & Light.',
  h1='Winterhochzeit: Menü, Glühwein und warme Getränke',
  lead='Im Winter schmeckt Essen, das wärmt. Ein Empfang mit heißen Getränken und ein Menü mit saisonalen Zutaten machen die Feier gemütlich und bleiben in Erinnerung.',
  tile='Wintermenü, Glühwein-Empfang, Punsch und Mengenplanung für kalte Tage.',

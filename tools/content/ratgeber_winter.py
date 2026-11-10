@@ -27,7 +27,7 @@ dict(slug='winterhochzeit-outfit',group='winter',motif='outfit',short='Winterhoc
 
 dict(slug='silvester-hochzeit',group='winter',motif='silvester',short='Silvesterhochzeit',season=('2026-11-25','2026-12-28'),
  title='Silvesterhochzeit: Planung, Zeitplan & Mitternacht',
- desc='Heiraten an Silvester: Vor- und Nachteile, Zeitplan vom Ja-Wort bis Mitternacht, Gästeplanung, Unterkunft, Feuerwerk und Fotos.',
+ desc='Heiraten an Silvester: Vor- und Nachteile, Zeitplan vom Ja-Wort bis Mitternacht, Gästeplanung, Unterkunft, Feuerwerk und Fotos. Ratgeber von Bride & Light.',
  h1='Silvesterhochzeit: So wird die Feier zum Jahreswechsel',
  lead='Ein Ja-Wort am letzten Tag des Jahres ist ein besonderer Start in ein gemeinsames neues Jahr. Damit der Abend entspannt bleibt, braucht er etwas mehr Vorlauf als eine normale Hochzeit.',
  tile='Ablauf vom Ja-Wort bis Mitternacht, Gästeplanung, Feuerwerk und Fotos.',
@@ -50,7 +50,7 @@ dict(slug='silvester-hochzeit',group='winter',motif='silvester',short='Silvester
 
 dict(slug='winterhochzeit-deko-licht',group='winter',motif='lichter',short='Winterhochzeit Deko & Licht',
  title='Winterhochzeit Deko: Kerzen, Lichterketten & Laternen',
- desc='Deko-Ideen für die Winterhochzeit: Kerzen, Lichterketten, Laternen, Naturmaterialien und Tipps zu Sicherheit und warmem Licht.',
+ desc='Deko-Ideen für die Winterhochzeit: Kerzen, Lichterketten, Laternen, Naturmaterialien und Tipps zu Sicherheit und warmem Licht. Ratgeber von Bride & Light.',
  h1='Winterhochzeit Deko: Kerzenlicht und Lichterketten',
  lead='Im Winter wird es früh dunkel – das ist eure Chance. Warmes Licht macht jeden Raum und jedes Foto gemütlich, und mit wenig Aufwand entsteht eine Stimmung, die man spürt.',
  tile='Kerzen, Lichterketten und Laternen: Deko-Ideen mit Sicherheitstipps.',
@@ -74,7 +74,7 @@ dict(slug='winterhochzeit-deko-licht',group='winter',motif='lichter',short='Wint
 
 dict(slug='heiraten-weihnachten',group='winter',motif='tannenzweig',short='Heiraten an Weihnachten',season=('2026-11-30','2026-12-27'),
  title='Heiraten an Weihnachten: Termine, Gäste & Stimmung',
- desc='Hochzeit zu Weihnachten oder zwischen den Jahren: Standesamt-Termine, Gäste, Kosten, Deko und Ideen für eine winterliche Feier.',
+ desc='Hochzeit zu Weihnachten oder zwischen den Jahren: Standesamt-Termine, Gäste, Kosten, Deko und Ideen für eine winterliche Feier. Ratgeber von Bride & Light.',
  h1='Heiraten an Weihnachten und zwischen den Jahren',
  lead='Lichter, Tannenduft und Familie, die ohnehin zusammenkommt: Weihnachten kann eine herzliche Zeit für eine Hochzeit sein. Mit ein paar Absprachen im Vorfeld bleibt sie auch entspannt.',
  tile='Termine, Gäste, Kosten und Deko für eine Hochzeit zu Weihnachten.',
