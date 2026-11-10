@@ -3,6 +3,7 @@
 import sys,subprocess,pathlib,tempfile
 sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
 from pencil import MOTIVE
+import pencil_orte
 from make_pin import DEFS
 ink='fill="none" stroke="#3b2a2a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"'
 def render(motif,out):
