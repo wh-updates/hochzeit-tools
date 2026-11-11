@@ -2,6 +2,12 @@
 
 > Kostenlose Online-Tools und Ratgeber für die Hochzeitsplanung, besonders für Hochzeiten an der Ostsee, auf Rügen und in Mecklenburg-Vorpommern. Alle Tools laufen ohne Anmeldung im Browser; Eingaben bleiben im eigenen Browser gespeichert (localStorage). Herausgeber ist Bride & Light, Hochzeitsfotografie und Brautstyling auf Rügen, in Stralsund und in ganz Mecklenburg-Vorpommern (https://bride-light.de/).
 
+## Herausgeber
+- Bride & Light, Hochzeitsfotografie und Brautstyling, https://bride-light.de/
+- Einsatzgebiet: Rügen, Stralsund, Mecklenburg-Vorpommern. Sprachen: Deutsch, Englisch
+- Kontakt: info@bride-light.de, +49 152 26726728 (Mo-Fr 9-18 Uhr)
+- Hochzeitsfotografie ab 690 €
+
 ## Planungs-Tools (kostenlos)
 - [Hochzeitsbudget-Rechner](https://tools.bride-light.de/budgetrechner/): Kostenloser Hochzeitsbudget-Rechner: Budget auf Location, Essen, Fotograf, Kleid & Co. verteilen und tatsächliche Kosten vergleichen. Ohne Anmeldung.
 - [Gästelisten-Planer](https://tools.bride-light.de/gaesteliste/): Kostenloser Gästelisten-Planer: Zusagen, Begleitung, Kinder und Essenswünsche erfassen, Kosten pro Kopf berechnen und als CSV exportieren.

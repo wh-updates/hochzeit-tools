@@ -33,9 +33,20 @@ def faq(src):
     for q, a in re.findall(r"<h3>(.*?)</h3>\s*<p>(.*?)</p>", m.group(1), re.S):
         out.append((html.unescape(re.sub(r"<[^>]+>", "", q)).strip(), html.unescape(re.sub(r"<[^>]+>", "", a)).strip()))
     return out
+SAMEAS = ["https://www.instagram.com/_bride_light_/", "https://www.hochzeiten-in-mv.de/portfolio/bride-light/", "https://bridebook.com/de/wedding-photographers/bride-light-i-hochzeitsfotografie-und-brautstyling-parchtitz-mecklenburg-vorpommern-deZgjKJ3mY",
+          "https://web2.cylex.de/firma-home/bride-_-light---hochzeitsfotografie-_-brautstyling-17043807.html", "https://hochzeit.click/hochzeitsfotografen/bride-light/", "https://www.gelbeseiten.de/gsbiz/5cd74846-5113-4315-beab-943c00ec9efe",
+          "https://www.provenexpert.com/de-de/bride-light-i-hochzeitsfotografie-und-brautstyling/", "https://www.hochzeitsportal24.de/branchenbuch/hochzeitsfotos/bride-und-light-parchtitz/",
+          "https://www.unternehmensverzeichnis.org/bride--light-i-hochzeitsfotografie-und-brautstyling-auf-ruegen-parchtitz-2503230475511", "https://www.listando.com/de-de/auftragnehmer/bride-light?serviceId=rEY5oL2IiD",
+          "https://www.11880.com/branchenbuch/parchtitz/150996671B113399729/bride-light-i-hochzeitsfotografie-und-brautstyling.html", "https://www.yellowmap.de/Details/I3XTGbC92eiSEKokUH5IcA==.aspx",
+          "https://www.allefotografen.de/sebastian-krueger", "https://maps.app.goo.gl/ogEHwYqu63yqEZDPA"]
 ORG = {"@type": ["Organization", "ProfessionalService"], "@id": MAIN + "#organization", "name": "Bride & Light", "url": MAIN, "logo": {"@type": "ImageObject", "url": LOGO},
        "description": "Hochzeitsfotografie und Brautstyling auf Rügen, in Stralsund und in ganz Mecklenburg-Vorpommern.",
-       "areaServed": [{"@type": "AdministrativeArea", "name": "Mecklenburg-Vorpommern"}, {"@type": "Place", "name": "Rügen"}, {"@type": "City", "name": "Stralsund"}]}
+       "areaServed": [{"@type": "AdministrativeArea", "name": "Mecklenburg-Vorpommern"}, {"@type": "Place", "name": "Rügen"}, {"@type": "City", "name": "Stralsund"}],
+       "telephone": "+49 152 26726728", "email": "info@bride-light.de", "priceRange": "ab 690 €", "knowsLanguage": ["Deutsch", "Englisch"],
+       "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00"}],
+       "aggregateRating": {"@type": "AggregateRating", "ratingValue": 5, "reviewCount": 18, "bestRating": 5, "worstRating": 1},
+       "employee": [{"@type": "Person", "name": "Sebastian Krüger", "jobTitle": "Hochzeitsfotograf"}, {"@type": "Person", "name": "Christine", "jobTitle": "Friseurmeisterin, Brautstyling"}],
+       "sameAs": SAMEAS}
 SITE = {"@type": "WebSite", "@id": B + "#website", "url": B, "name": "Hochzeits-Tools von Bride & Light", "inLanguage": "de-DE", "publisher": {"@id": MAIN + "#organization"}}
 def block(rel, src):
     url = B + ("" if rel == "index.html" else rel[:-len("index.html")])
@@ -103,6 +114,12 @@ art_lines = "\n".join(f"- [{n}]({B}{k}/): {html.unescape(re.search(r'<meta name=
 (R / "llms.txt").write_text(f"""# Hochzeits-Tools von Bride & Light
 
 > Kostenlose Online-Tools und Ratgeber für die Hochzeitsplanung, besonders für Hochzeiten an der Ostsee, auf Rügen und in Mecklenburg-Vorpommern. Alle Tools laufen ohne Anmeldung im Browser; Eingaben bleiben im eigenen Browser gespeichert (localStorage). Herausgeber ist Bride & Light, Hochzeitsfotografie und Brautstyling auf Rügen, in Stralsund und in ganz Mecklenburg-Vorpommern ({MAIN}).
+
+## Herausgeber
+- Bride & Light, Hochzeitsfotografie und Brautstyling, https://bride-light.de/
+- Einsatzgebiet: Rügen, Stralsund, Mecklenburg-Vorpommern. Sprachen: Deutsch, Englisch
+- Kontakt: info@bride-light.de, +49 152 26726728 (Mo-Fr 9-18 Uhr)
+- Hochzeitsfotografie ab 690 €
 
 ## Planungs-Tools (kostenlos)
 {tool_lines}
