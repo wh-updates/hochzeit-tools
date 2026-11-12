@@ -137,3 +137,5 @@ footer.site h3{font-family:var(--serif);font-weight:normal;font-size:1.05rem;col
 
 /* 10.9.179: Chat-Fenster nicht mitdrucken */
 @media print { .lc-noprint { display: none !important; } }
+.geo-meta{font-size:.88rem;color:var(--muted,#6b5a58);margin:-4px 0 18px}.geo-meta a{color:inherit}
+.geo-how p,.geo-src li{font-size:.95rem}.geo-src ul{margin:.3rem 0 .6rem;padding-left:1.2rem}

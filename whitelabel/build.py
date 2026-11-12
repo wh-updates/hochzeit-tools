@@ -47,7 +47,7 @@ def about(c):
     return f'<section class="about noprint"><div class="about-in wrap" style="{"" if img else "grid-template-columns:1fr"}">{img}<div class="about-txt"><h2>{E_(c["about_title"] or c["name"])}</h2><p>{E_(c["about_text"])}</p><p class="about-btns"><a class="btn" href="{E_(c["contact_url"])}">{E_(c["contact_text"])}</a></p></div></div></section>\n'
 def clean(s,c,slug,t):
     host=c['domain'].split('://',1)[1]
-    for b in ('SEO','PROMO','PIN','ABOUT','RELATED','TEXT'): s=re.sub(r'\n?<!--%s-->.*?<!--/%s-->'%(b,b),'',s,flags=re.S)
+    for b in ('SEO','GEO','PROMO','PIN','ABOUT','RELATED','TEXT'): s=re.sub(r'\n?<!--%s-->.*?<!--/%s-->'%(b,b),'',s,flags=re.S)
     s=re.sub(r'<link rel="canonical"[^>]*>\n?','',s)
     title=re.search(r'<title>(.*?)</title>',s,re.S).group(1); desc=re.search(r'<meta name="description" content="(.*?)">',s).group(1)
     desc=re.sub(r'Rechner für Rügen, Usedom, Stralsund und ganz Deutschland','Rechner für ganz Deutschland',desc)

@@ -13,6 +13,7 @@ ARTICLES = {"ratgeber/heiraten-auf-ruegen": "Heiraten auf Rügen", "ratgeber/str
 import sys
 sys.path.insert(0, str(R / "tools"))
 from content import ARTICLE_TITLES
+import geo
 ARTICLES.update(ARTICLE_TITLES)
 try:
     from content.extra import TOOL_TITLES, LOCAL_TITLES
@@ -23,7 +24,9 @@ LOCAL = dict(LOCAL_TITLES)
 def git(*a): return subprocess.run(["git", "-C", str(R), *a], capture_output=True, text=True).stdout.strip()
 def dates(rel):
     l = git("log", "--format=%cs", "--", rel).splitlines()
-    return (l[-1] if l else datetime.date.today().isoformat()), (l[0] if l else datetime.date.today().isoformat())
+    today = datetime.date.today().isoformat()
+    changed = bool(git("status", "--porcelain", "--", rel))   # ungespeicherte Änderung = heute geändert
+    return (l[-1] if l else today), (today if (changed or not l) else l[0])
 def pages():
     return ["index.html"] + [f"{k}/index.html" for k in TOOLS] + ["ratgeber/index.html"] + [f"{k}/index.html" for k in ARTICLES] + [f"{k}/index.html" for k in LOCAL]
 def faq(src):
@@ -63,6 +66,8 @@ def block(rel, src):
     page = {"@type": "CollectionPage" if key in ("", "ratgeber") else "WebPage", "@id": url + "#webpage", "url": url, "name": t, "description": d, "inLanguage": "de-DE", "isPartOf": {"@id": B + "#website"},
             "primaryImageOfPage": {"@type": "ImageObject", "url": OGIMG}, "dateModified": last}
     if len(crumbs) > 1: page["breadcrumb"] = {"@id": url + "#breadcrumb"}
+    cit = geo.sources_for(rel)
+    if cit: page["citation"] = [{"@type": "CreativeWork", "name": n, "url": u} for n, u, _ in cit]
     g.append(page)
     if len(crumbs) > 1:
         g.append({"@type": "BreadcrumbList", "@id": url + "#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]})
@@ -91,12 +96,16 @@ def block(rel, src):
 <script type="application/ld+json">{ld}</script>
 <!--/SEO-->'''
     return head, crumbs, url, last
+for rel in pages():   # Vorlauf: GEO-Blöcke einfügen (Datum folgt in der Hauptschleife, damit dates() die Änderung sieht)
+    p = R / rel; s0 = p.read_text(encoding="utf-8"); s1 = geo.apply(rel, s0, "@@STANDISO@@", geo.STAND)
+    if s1 != s0: p.write_text(s1, encoding="utf-8")
 sitemap = []
 for rel in pages():
     p = R / rel; s = p.read_text(encoding="utf-8")
     s = re.sub(r"\n?<!--SEO-->.*?<!--/SEO-->", "", s, flags=re.S)
     s = re.sub(r'\n?<link rel="alternate" type="application/rss\+xml"[^>]*>', "", s)   # alter Einzeleintrag (jetzt im Block)
     head, crumbs, url, last = block(rel, s)
+    s = s.replace("@@STANDISO@@", last).replace(geo.STAND, datetime.date.fromisoformat(last).strftime("%d.%m.%Y"))
     s = s.replace("</head>", head + "\n</head>", 1)
     s = re.sub(r'<nav class="crumbs".*?</nav>\n?', "", s, flags=re.S)
     if len(crumbs) > 1:
@@ -137,6 +146,7 @@ art_lines = "\n".join(f"- [{n}]({B}{k}/): {html.unescape(re.search(r'<meta name=
 
 ## Hinweise
 - Sprache: Deutsch. Preise: alle Tools kostenlos. Es werden keine personenbezogenen Daten an einen Server gesendet.
+- Methodik: Rechner-Seiten erklären unter „So rechnet das Tool“ die verwendeten Formeln und Standardwerte; Rechtsthemen nennen Quellen (Gesetze im Internet).
 - Zitieren erwünscht, bitte mit Link auf die jeweilige Seite von {B}.
 """, encoding="utf-8")
 print("Seiten:", len(sitemap))

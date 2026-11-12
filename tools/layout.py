@@ -5,7 +5,7 @@ in jeder index.html und setzt die Cache-Version. Neue Seiten: einfach Kopf/Fuß 
 <header class="site"></header> / <footer class="site"></footer> setzen und dieses Skript ausführen."""
 import re,pathlib,json,subprocess,urllib.parse,html
 R=pathlib.Path(__file__).resolve().parent.parent
-VER=7
+VER=14
 LOGO='https://bride-light.de/medien/70/480-weisses-herz-logo-mit-make-up-puder-pinsel-und-text-bride-un.webp?v=1'
 FOTO='https://bride-light.de/medien/44/1600-waehrend-der-trauung.webp?v=1'
 UTM=lambda m,c:f'?utm_source=tools&amp;utm_medium={m}&amp;utm_campaign={c}'

@@ -92,4 +92,5 @@
 
 ## Hinweise
 - Sprache: Deutsch. Preise: alle Tools kostenlos. Es werden keine personenbezogenen Daten an einen Server gesendet.
+- Methodik: Rechner-Seiten erklären unter „So rechnet das Tool“ die verwendeten Formeln und Standardwerte; Rechtsthemen nennen Quellen (Gesetze im Internet).
 - Zitieren erwünscht, bitte mit Link auf die jeweilige Seite von https://tools.bride-light.de/.
