@@ -50,6 +50,9 @@ ORG = {"@type": ["Organization", "ProfessionalService"], "@id": MAIN + "#organiz
        "aggregateRating": {"@type": "AggregateRating", "ratingValue": 5, "reviewCount": 18, "bestRating": 5, "worstRating": 1},
        "employee": [{"@type": "Person", "name": "Sebastian Krüger", "jobTitle": "Hochzeitsfotograf"}, {"@type": "Person", "name": "Christine", "jobTitle": "Friseurmeisterin, Brautstyling"}],
        "sameAs": SAMEAS}
+PERSON = {"@type": "Person", "@id": MAIN + "#sebastian-krueger", "name": "Sebastian Krüger", "jobTitle": "Hochzeitsfotograf", "worksFor": {"@id": MAIN + "#organization"},
+          "knowsAbout": ["Hochzeitsfotografie", "Hochzeit auf Rügen", "Hochzeit in Mecklenburg-Vorpommern"], "sameAs": ["https://www.allefotografen.de/sebastian-krueger"]}
+AUTHOR = {"@id": PERSON["@id"]}
 SITE = {"@type": "WebSite", "@id": B + "#website", "url": B, "name": "Hochzeits-Tools von Bride & Light", "inLanguage": "de-DE", "publisher": {"@id": MAIN + "#organization"}}
 def block(rel, src):
     url = B + ("" if rel == "index.html" else rel[:-len("index.html")])
@@ -62,9 +65,10 @@ def block(rel, src):
     elif key in ARTICLES: crumbs += [("Ratgeber", B + "ratgeber/"), (ARTICLES[key], url)]
     elif key == "hochzeitsfotograf": crumbs.append((LOCAL[key], url))
     elif key in LOCAL: crumbs += [(LOCAL["hochzeitsfotograf"], B + "hochzeitsfotograf/"), (LOCAL[key], url)]
-    g = [ORG, SITE]
+    g = [ORG, PERSON, SITE]
     page = {"@type": "CollectionPage" if key in ("", "ratgeber") else "WebPage", "@id": url + "#webpage", "url": url, "name": t, "description": d, "inLanguage": "de-DE", "isPartOf": {"@id": B + "#website"},
             "primaryImageOfPage": {"@type": "ImageObject", "url": OGIMG}, "dateModified": last}
+    if key not in ("", "ratgeber"): page["author"] = AUTHOR; page["publisher"] = {"@id": MAIN + "#organization"}
     if len(crumbs) > 1: page["breadcrumb"] = {"@id": url + "#breadcrumb"}
     cit = geo.sources_for(rel)
     if cit: page["citation"] = [{"@type": "CreativeWork", "name": n, "url": u} for n, u, _ in cit]
@@ -73,11 +77,11 @@ def block(rel, src):
         g.append({"@type": "BreadcrumbList", "@id": url + "#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]})
     if key in TOOLS:
         g.append({"@type": "WebApplication", "@id": url + "#app", "name": TOOLS[key], "url": url, "description": d, "applicationCategory": "LifestyleApplication", "operatingSystem": "Alle (Browser)", "browserRequirements": "Benötigt JavaScript",
-                  "inLanguage": "de-DE", "isAccessibleForFree": True, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@id": MAIN + "#organization"}, "mainEntityOfPage": {"@id": url + "#webpage"}})
+                  "inLanguage": "de-DE", "isAccessibleForFree": True, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "author": AUTHOR, "publisher": {"@id": MAIN + "#organization"}, "mainEntityOfPage": {"@id": url + "#webpage"}})
     if key in ARTICLES:
         h1 = html.unescape(re.sub(r"<[^>]+>", "", re.search(r"<h1>(.*?)</h1>", src, re.S).group(1)))
         g.append({"@type": "Article", "@id": url + "#article", "headline": h1, "description": d, "inLanguage": "de-DE", "image": OGIMG, "datePublished": first, "dateModified": last,
-                  "author": {"@id": MAIN + "#organization"}, "publisher": {"@id": MAIN + "#organization"}, "mainEntityOfPage": {"@id": url + "#webpage"}})
+                  "author": AUTHOR, "publisher": {"@id": MAIN + "#organization"}, "mainEntityOfPage": {"@id": url + "#webpage"}})
     fq = faq(src)
     if fq: g.append({"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in fq]})
     ld = json.dumps({"@context": "https://schema.org", "@graph": g}, ensure_ascii=False, separators=(",", ":"))

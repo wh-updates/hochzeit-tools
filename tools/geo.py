@@ -38,6 +38,7 @@ QUELLEN = {
     "ratgeber/freie-trauung-mv": [Q_BGB, Q_PSTG],
     "ratgeber/strandhochzeit-mv": [Q_PSTG, Q_BGB],
     "goldene-stunde": [Q_NOAA],
+    "hochzeitsdatum-finder": [("Feiertage Mecklenburg-Vorpommern – schulferien.org", "https://www.schulferien.org/deutschland/feiertage/mecklenburg-vorpommern/", "Gesetzliche Feiertage in MV je Jahr (u. a. Internationaler Frauentag, Reformationstag)")],
 }
 HINWEIS_RECHT = "Welche Unterlagen und Fristen konkret gelten, entscheidet das zuständige Standesamt – bitte dort rechtzeitig nachfragen. Dieser Beitrag ersetzt keine Rechtsberatung."
 
@@ -45,7 +46,7 @@ HINWEIS_RECHT = "Welche Unterlagen und Fristen konkret gelten, entscheidet das z
 def _byline(rel):
     kind = "Rechner" if rel.split("/")[0] in METHODE else ("Beitrag" if rel.startswith("ratgeber/") or rel.startswith("hochzeitsfotograf") else "Tool")
     kostenlos = " · kostenlos, ohne Anmeldung" if kind != "Beitrag" else ""
-    return (f'<p class="geo-meta noprint">Herausgeber: <a href="https://bride-light.de/">Bride &amp; Light</a>, Hochzeitsfotografie und Brautstyling auf Rügen · '
+    return (f'<p class="geo-meta noprint">Autor: Sebastian Krüger, Hochzeitsfotograf · Herausgeber: <a href="https://bride-light.de/">Bride &amp; Light</a>, Hochzeitsfotografie und Brautstyling auf Rügen · '
             f'Stand: <time datetime="@@STANDISO@@">{STAND}</time>{kostenlos}</p>')
 
 
