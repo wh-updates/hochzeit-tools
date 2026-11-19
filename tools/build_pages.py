@@ -51,7 +51,7 @@ def register_pins(pg,force=False):
     keep=[x for x in d if x['link']!=link]; old={x['slug']:x for x in d if x['link']==link}
     new=[]
     for i,(board,t1,t2,sub,title,desc) in enumerate(pg['pins']):
-        slug=f"{pg['motif']}-{i+1}"
+        slug=f"{pg['motif']}-{i+1}" if not pg.get('motif2') else (f"{pg['motif']}-{i+1}" if i<3 else f"{pg['motif2']}-{i-2}")
         assert len(t1)<=17 and len(t2)<=22,(slug,t1,t2)
         x=dict(slug=slug,board=board,title=title,desc=desc,link=link,live=old.get(slug,{}).get('live',False),date=old.get(slug,{}).get('date','2026-11-09T12:00:00+00:00'),t1=t1,t2=t2,sub=sub,variant=i%3)
         if pg.get('season'): x['from'],x['until']=pg['season']

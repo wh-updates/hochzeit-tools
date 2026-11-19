@@ -254,7 +254,51 @@ def winterliste():
 {flake_s(300,330,28)}{flake_s(720,300,24)}{flake_s(700,470,18)}{flake_s(260,500,20)}
 <path d="M200 650 Q500 630 800 650"/>'''
 
-MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf}
+def decken():
+    rolls=''
+    for i,(x,y) in enumerate([(310,345),(420,335),(530,345),(640,335),(700,350)]):
+        rolls+=f'<ellipse cx="{x}" cy="{y}" rx="46" ry="46" fill="#fbf5f0"/><ellipse cx="{x}" cy="{y}" rx="46" ry="46"/>'
+        rolls+=f'<path d="M{x} {y} m-30 0 a30 30 0 1 1 30 30 a20 20 0 1 1 -20 -20 a10 10 0 1 1 10 10" stroke-width="3"/>'
+        if i%2==0: rolls+=f'<path d="M{x-44} {y-14} L{x+44} {y-14} M{x-44} {y+14} L{x+44} {y+14}" stroke-width="2"/>'
+        else: rolls+=f'<path d="M{x-14} {y-44} L{x-14} {y+44} M{x+14} {y-44} L{x+14} {y+44}" stroke-width="2"/>'
+    weave=''.join(f'<path d="M{262+k*36} 395 L{280+k*30} 610" stroke-width="2"/>' for k in range(14))
+    weave+=''.join(f'<path d="M{258+j*3} {430+j*45} Q500 {445+j*45} {742-j*3} {430+j*45}" stroke-width="3"/>' for j in range(4))
+    return f'''
+<path d="M250 390 L750 390 L720 615 Q500 640 280 615Z" fill="#fbf5f0"/>
+{rolls}
+<path d="M250 390 L750 390 L720 615 Q500 640 280 615Z" stroke-width="4"/><path d="M250 390 L750 390 L720 615 Q500 640 280 615Z" {H}/>
+{weave}
+<path d="M240 380 Q500 400 760 380 L760 400 Q500 420 240 400Z" {H2}/><path d="M240 380 Q500 400 760 380 L760 400 Q500 420 240 400Z"/>
+<path d="M360 240 L640 240 L640 300 L360 300Z" fill="#fbf5f0"/><path d="M360 240 L640 240 L640 300 L360 300Z" stroke-width="4"/><path d="M360 255 L640 255 M360 285 L640 285 M430 240 L430 300 M570 240 L570 300" stroke-width="3"/><path d="M362 242 L428 242 L428 298 L362 298Z" {H}/><path d="M572 242 L638 242 L638 298 L572 298Z" {H}/>
+<path d="M370 300 l0 18 M390 300 l0 18 M410 300 l0 18 M590 300 l0 18 M610 300 l0 18 M630 300 l0 18" stroke-width="2"/>
+<path d="M640 470 L700 455 L712 505 L652 520Z" fill="#fbf5f0"/><path d="M640 470 L700 455 L712 505 L652 520Z" stroke-width="3"/><circle cx="650" cy="478" r="4"/><path d="M650 478 Q610 440 600 400" stroke-width="2"/>
+<path d="M664 492 l30 -8" stroke-width="2"/>
+{flake_s(230,200,20)}{flake_s(780,220,16)}
+<path d="M200 650 Q500 630 800 650"/>'''
+
+def handwaermer():
+    def mitt(x,y,rot,flip=1):
+        return f'''<g transform="translate({x},{y}) rotate({rot}) scale({flip},1)">
+<path d="M-70 120 L-70 -40 Q-70 -130 10 -130 Q80 -130 80 -40 L80 120Z" fill="#fbf5f0"/>
+<path d="M-70 10 Q-130 -10 -120 -70 Q-110 -110 -78 -80 L-70 -40" fill="#fbf5f0"/><path d="M-70 10 Q-130 -10 -120 -70 Q-110 -110 -78 -80 L-70 -40" stroke-width="4"/>
+<path d="M-70 120 L-70 -40 Q-70 -130 10 -130 Q80 -130 80 -40 L80 120Z" stroke-width="4"/>
+<path d="M-70 -20 L80 -20 M-70 30 L80 30" stroke-width="3"/>
+<path d="M-40 -5 l15 -12 l15 12 l15 -12 l15 12 l15 -12 l15 12 l15 -12 l15 12" stroke-width="3"/>
+<rect x="-80" y="120" width="170" height="60" rx="8" fill="#fbf5f0"/><rect x="-80" y="120" width="170" height="60" rx="8" stroke-width="4"/>
+{''.join(f'<path d="M{-66+k*16} 124 L{-66+k*16} 176" stroke-width="2"/>' for k in range(10))}
+<rect x="-78" y="122" width="166" height="56" rx="8" {H2}/>
+<path d="M-60 60 Q10 75 70 60 M-60 90 Q10 105 70 90" stroke-width="2"/><rect x="-68" y="40" width="146" height="78" {H}/>
+</g>'''
+    return f'''{mitt(380,370,-14)}{mitt(600,360,14,-1)}
+<rect x="430" y="555" width="120" height="80" rx="16" fill="#fbf5f0"/><rect x="430" y="555" width="120" height="80" rx="16" stroke-width="4"/><rect x="432" y="557" width="116" height="76" rx="14" {H}/>
+<path d="M455 595 q10 -20 20 0 t20 0 t20 0" stroke-width="3"/>
+<rect x="580" y="565" width="110" height="72" rx="16" fill="#fbf5f0"/><rect x="580" y="565" width="110" height="72" rx="16" stroke-width="4"/>
+<path d="M610 590 q6 -16 0 -30 M635 590 q6 -16 0 -30 M660 590 q6 -16 0 -30" stroke-width="3"/>
+<path d="M300 610 L300 570 L360 570 L380 590 L360 610Z" fill="#fbf5f0"/><path d="M300 610 L300 570 L360 570 L380 590 L360 610Z" stroke-width="3"/><circle cx="362" cy="590" r="5"/>
+{flake_s(240,190,18)}{flake_s(770,200,22)}
+<path d="M200 655 Q500 640 800 655"/>'''
+
+MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer}
 
 try:
     from pencil_neu import MOTIVE_NEU
