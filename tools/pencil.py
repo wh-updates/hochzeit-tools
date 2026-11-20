@@ -298,7 +298,50 @@ def handwaermer():
 {flake_s(240,190,18)}{flake_s(770,200,22)}
 <path d="M200 655 Q500 640 800 655"/>'''
 
-MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer}
+def brautmakeup():
+    bristles=''.join(f'<path d="M{-12+k*6} -42 Q{-30+k*15} -110 {-14+k*7} -158" stroke-width="2"/>' for k in range(5))
+    return f'''
+<circle cx="400" cy="290" r="118" fill="#fbf5f0"/><circle cx="400" cy="290" r="118" stroke-width="5"/><circle cx="400" cy="290" r="98"/>
+<path d="M340 240 L380 200 M335 280 L420 195 M350 320 L440 230" stroke-width="3"/><circle cx="400" cy="290" r="98" {H}/>
+<rect x="370" y="405" width="60" height="22" rx="6" fill="#fbf5f0"/><rect x="370" y="405" width="60" height="22" rx="6" stroke-width="4"/>
+<path d="M265 520 Q265 600 400 600 Q535 600 535 520" fill="#fbf5f0"/><path d="M265 520 Q265 600 400 600 Q535 600 535 520" stroke-width="5"/>
+<ellipse cx="400" cy="515" rx="135" ry="72" fill="#fbf5f0"/><ellipse cx="400" cy="515" rx="135" ry="72" stroke-width="5"/>
+<ellipse cx="400" cy="515" rx="104" ry="52"/><ellipse cx="400" cy="515" rx="104" ry="52" {H2}/>
+<path d="M330 505 q30 -22 70 -10 M350 535 q40 -18 90 -6" stroke-width="3"/>
+<g transform="translate(620,470) rotate(24)">
+<rect x="-14" y="0" width="28" height="190" rx="12" fill="#fbf5f0"/><rect x="-14" y="0" width="28" height="190" rx="12" stroke-width="4"/><rect x="-12" y="40" width="24" height="148" rx="10" {H2}/>
+<rect x="-18" y="-42" width="36" height="44" rx="4" fill="#fbf5f0"/><rect x="-18" y="-42" width="36" height="44" rx="4" stroke-width="4"/><path d="M-18 -28 L18 -28 M-18 -14 L18 -14" stroke-width="2"/>
+<path d="M-18 -42 Q-62 -110 0 -172 Q62 -110 18 -42Z" fill="#fbf5f0"/><path d="M-18 -42 Q-62 -110 0 -172 Q62 -110 18 -42Z" stroke-width="4"/>{bristles}
+</g>
+<rect x="706" y="500" width="56" height="140" rx="6" fill="#fbf5f0"/><rect x="706" y="500" width="56" height="140" rx="6" stroke-width="4"/><rect x="708" y="560" width="52" height="78" {H2}/><path d="M706 560 L762 560" stroke-width="3"/>
+<rect x="714" y="456" width="40" height="46" fill="#fbf5f0"/><rect x="714" y="456" width="40" height="46" stroke-width="4"/>
+<path d="M718 456 L718 398 L750 372 L750 456Z" fill="#fbf5f0"/><path d="M718 456 L718 398 L750 372 L750 456Z" stroke-width="4"/><path d="M720 454 L720 400 L748 378 L748 454Z" {H}/>
+{flake_s(245,180,18)}{flake_s(790,250,14)}
+<path d="M200 652 Q500 636 800 652"/>'''
+
+def brautmakeupb():
+    teeth=''.join(f'<path d="M{238+k*12} 622 L{238+k*12} 646" stroke-width="2"/>' for k in range(15))
+    dots=''.join(f'<circle cx="{x}" cy="{y}" r="4"/>' for x in range(-45,50,18) for y in range(-24,30,16))
+    return f'''
+<rect x="315" y="440" width="34" height="160" rx="14" fill="#fbf5f0"/><rect x="315" y="440" width="34" height="160" rx="14" stroke-width="4"/><rect x="317" y="470" width="30" height="128" rx="12" {H2}/>
+<ellipse cx="332" cy="310" rx="112" ry="138" fill="#fbf5f0"/><ellipse cx="332" cy="310" rx="112" ry="138" stroke-width="5"/><ellipse cx="332" cy="310" rx="92" ry="116"/>
+<ellipse cx="332" cy="310" rx="92" ry="116" {H}/><path d="M280 250 L330 205 M272 300 L360 220 M290 340 L380 260" stroke-width="3"/>
+<circle cx="560" cy="290" r="88" fill="#fbf5f0"/><circle cx="560" cy="290" r="88" stroke-width="5"/><circle cx="560" cy="290" r="58"/><circle cx="560" cy="290" r="30"/><circle cx="560" cy="290" r="58" {H2}/>
+<path d="M600 222 L765 250 L765 330 L600 358" fill="#fbf5f0"/><path d="M600 222 L765 250 L765 330 L600 358" stroke-width="5"/><path d="M640 232 L640 348 M690 240 L690 340" stroke-width="2"/><path d="M640 232 L765 252 L765 328 L640 348Z" {H}/>
+<path d="M765 256 L795 266 L795 314 L765 324Z" fill="#fbf5f0"/><path d="M765 256 L795 266 L795 314 L765 324Z" stroke-width="4"/>
+<path d="M530 370 L505 520 Q502 540 525 542 L560 542 Q578 540 575 520 L590 372" fill="#fbf5f0"/><path d="M530 370 L505 520 Q502 540 525 542 L560 542 Q578 540 575 520 L590 372" stroke-width="5"/>
+<path d="M520 450 L582 450 M516 480 L578 480" stroke-width="2"/><rect x="536" y="400" width="22" height="30" rx="4" stroke-width="3"/>
+<path d="M540 542 Q530 600 460 590 Q410 585 420 620" stroke-width="3"/>
+<g transform="translate(650,590) rotate(-12)">
+<ellipse cx="0" cy="0" rx="62" ry="40" fill="#fbf5f0"/><ellipse cx="0" cy="0" rx="62" ry="40" stroke-width="4"/>{dots}
+<rect x="58" y="-12" width="110" height="24" rx="10" fill="#fbf5f0"/><rect x="58" y="-12" width="110" height="24" rx="10" stroke-width="4"/><rect x="60" y="-10" width="106" height="20" rx="8" {H2}/>
+</g>
+<rect x="230" y="606" width="190" height="18" rx="4" fill="#fbf5f0"/><rect x="230" y="606" width="190" height="18" rx="4" stroke-width="4"/>{teeth}
+<path d="M450 625 L470 575 L478 625" stroke-width="3"/><path d="M490 630 L505 582 L515 630" stroke-width="3"/>
+{flake_s(225,175,16)}{flake_s(470,165,14)}
+<path d="M200 655 Q500 642 800 655"/>'''
+
+MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb}
 
 try:
     from pencil_neu import MOTIVE_NEU

@@ -41,6 +41,7 @@ Läufe: Montag, Dienstag, Donnerstag, Freitag (ca. 28 bis Silvester). Zuerst Win
 | 23 | ratgeber/flitterwochen-budget | Ratgeber | planung | winter | Koffer und Flugzeug | – | gebaut (2026-11-09) |
 | 24 | ratgeber/hochzeitsnacht-hotel-ruegen | Ratgeber | ostsee | planung | Hotelbett mit Meerblick | – | gebaut (2026-11-09) |
 | 25 | ratgeber/winterhochzeit-gaeste-warm | Ratgeber | winter | planung | Korb mit Wolldecken (decken) / Fäustlinge mit Wärmekissen (handwaermer) | 2026-11-19 – 2027-02-28 | gebaut (2026-11-19) |
+| 26 | ratgeber/winterhochzeit-brautstyling | Ratgeber | winter | planung | Puderdose, Pinsel, Lippenstift (brautmakeup) / Handspiegel, Föhn, Bürste, Kamm (brautmakeupb) | 2026-11-20 – 2027-02-28 | gebaut (2026-11-20) |
 
 Rechnung: 24 Seiten × 6 Pins = 144 neue Pins + 29 vorhandene = 173 ≥ 156 Slots.
 Alle 24 Seiten sind gebaut (2026-11-09). Zusätzlich: 3 Winter-Ratgeber (winterhochzeit-brautstrauss, -menue-getraenke, -zeitplan) und 6 Tool-/Ortsseiten (fotostunden-rechner, goldene-stunde, tischkarten, hochzeitstyp, hochzeitsfotograf/ + 6 Orte). Weitere Seiten: Generatoren `tools/build_pages.py` (Ratgeber), `tools/build_tools.py` (Tools, Ortsseiten).
