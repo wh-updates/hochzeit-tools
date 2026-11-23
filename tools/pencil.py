@@ -341,7 +341,69 @@ def brautmakeupb():
 {flake_s(225,175,16)}{flake_s(470,165,14)}
 <path d="M200 655 Q500 642 800 655"/>'''
 
-MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb}
+
+def _heart(x,y,s=1):
+    return f'M{x} {y+40*s:.0f} C{x-70*s:.0f} {y-5*s:.0f} {x-50*s:.0f} {y-60*s:.0f} {x} {y-30*s:.0f} C{x+50*s:.0f} {y-60*s:.0f} {x+70*s:.0f} {y-5*s:.0f} {x} {y+40*s:.0f}Z'
+
+def valentin():
+    spir=''.join(f'<ellipse cx="{262+k*44}" cy="200" rx="9" ry="20" stroke-width="4"/>' for k in range(7))
+    lines=''.join(f'<path d="M270 {560+k*18} L{420-k*30} {560+k*18}" stroke-width="2"/>' for k in range(3))
+    hh=_heart(480,560,0.55)
+    return f'''
+<path d="M236 214 L254 626 L548 618 L548 214Z" fill="#fbf5f0"/><path d="M236 214 L254 626 L548 618 L548 214Z" stroke-width="3"/>
+<rect x="222" y="200" width="330" height="410" rx="10" fill="#fbf5f0"/><rect x="222" y="200" width="330" height="410" rx="10" stroke-width="5"/>
+<rect x="222" y="200" width="330" height="78" rx="10" {H2}/><path d="M222 278 L552 278" stroke-width="4"/>
+{spir}
+<rect x="300" y="226" width="174" height="40" rx="6" fill="#faf7f4" stroke="none"/><text x="387" y="257" font-family="DejaVu Serif" font-size="32" text-anchor="middle" stroke="none" fill="#2b2622" font-style="italic">Februar</text>
+<text x="387" y="480" font-family="DejaVu Serif" font-size="170" text-anchor="middle" stroke="none" fill="#2b2622">14</text>
+<path d="{hh}" fill="#fbf5f0"/><path d="{hh}" stroke-width="4"/><path d="{hh}" {H}/>
+{lines}
+<circle cx="640" cy="470" r="82" stroke-width="5"/><circle cx="640" cy="470" r="66" stroke-width="4"/>
+<path d="M558 470 A82 82 0 0 1 640 388 L640 404 A66 66 0 0 0 574 470Z" {H2}/>
+<circle cx="725" cy="540" r="72" stroke-width="5"/><circle cx="725" cy="540" r="58" stroke-width="4"/>
+<path d="M725 612 A72 72 0 0 0 797 540 L783 540 A58 58 0 0 1 725 598Z" {H2}/>
+<path d="M626 388 L640 360 L654 388Z" fill="#fbf5f0"/><path d="M626 388 L640 360 L654 388Z M626 388 L654 388" stroke-width="3"/>
+<path d="M632 372 L648 372" stroke-width="2"/>
+<path d="{_heart(700,250,0.75)}" fill="#fbf5f0"/><path d="{_heart(700,250,0.75)}" stroke-width="4"/><path d="{_heart(700,250,0.75)}" {H}/>
+<path d="{_heart(785,320,0.4)}" stroke-width="3"/>
+{flake_s(760,170,16)}{flake_s(600,630,12)}
+<path d="M200 652 Q500 638 800 652"/>'''
+
+def valentinb():
+    def rose(x,y,r):
+        pet=''
+        for k in range(7):
+            a0=math.radians(k*360/7-90); a1=math.radians((k+1)*360/7-90); am=(a0+a1)/2
+            pet+=(f'{"M" if k==0 else "L"}{x+r*math.cos(a0):.0f} {y+r*0.9*math.sin(a0):.0f} '
+                  f'Q{x+r*1.28*math.cos(am):.0f} {y+r*1.15*math.sin(am):.0f} {x+r*math.cos(a1):.0f} {y+r*0.9*math.sin(a1):.0f} ')
+        sp=f'M{x} {y}'
+        for i in range(1,26):
+            t=i*0.55; rr=r*0.06*t
+            sp+=f' L{x+rr*math.cos(t):.1f} {y+rr*0.85*math.sin(t):.1f}'
+        inner=''.join(f'<path d="M{x+r*0.75*math.cos(math.radians(d)):.0f} {y+r*0.68*math.sin(math.radians(d)):.0f} Q{x+r*0.95*math.cos(math.radians(d+25)):.0f} {y+r*0.85*math.sin(math.radians(d+25)):.0f} {x+r*0.62*math.cos(math.radians(d+55)):.0f} {y+r*0.55*math.sin(math.radians(d+55)):.0f}" stroke-width="2.5"/>' for d in (20,140,260))
+        return f'''<path d="{pet}Z" fill="#fbf5f0"/><path d="{pet}Z" stroke-width="4"/><path d="{pet}Z" {H}/>
+<ellipse cx="{x}" cy="{y}" rx="{r*0.62:.0f}" ry="{r*0.54:.0f}" fill="#fbf5f0" stroke-width="3"/>{inner}<path d="{sp}" stroke-width="3"/>'''
+    def leaf(x,y,a):
+        return f'<g transform="translate({x},{y}) rotate({a})"><path d="M0 0 Q30 -26 64 0 Q30 26 0 0Z" fill="#fbf5f0"/><path d="M0 0 Q30 -26 64 0 Q30 26 0 0Z M4 0 L58 0" stroke-width="3"/><path d="M0 0 Q30 -26 64 0Z" {H2}/></g>'
+    pts=[(330,300),(420,230),(530,250),(600,330),(470,340)]
+    stems=''.join(f'<path d="M{x} {y} Q{(x+465)//2} 440 {450+k*10} 640" stroke-width="4"/>' for k,(x,y) in enumerate(pts))
+    hb=_heart(690,470,1.1)
+    return f'''
+{stems}
+{leaf(350,380,-150)}{leaf(575,400,-30)}{leaf(400,310,-120)}{leaf(600,290,-50)}
+{rose(330,300,52)}{rose(600,330,50)}{rose(420,230,58)}{rose(530,250,56)}{rose(470,340,54)}
+<path d="M470 512 Q400 470 380 520 Q400 560 470 512 Q540 470 560 520 Q540 560 470 512Z" fill="#fbf5f0"/><path d="M470 512 Q400 470 380 520 Q400 560 470 512 Q540 470 560 520 Q540 560 470 512Z" stroke-width="4"/>
+<path d="M470 512 Q400 490 390 520Z M470 512 Q540 490 550 520Z" {H2}/>
+<path d="M465 520 Q440 580 410 620 M478 520 Q500 585 530 625" stroke-width="4"/>
+<circle cx="470" cy="512" r="12" fill="#fbf5f0"/><circle cx="470" cy="512" r="12" stroke-width="4"/>
+<path d="M556 515 Q610 470 650 446" stroke-width="2"/>
+<path d="{hb}" fill="#fbf5f0"/><path d="{hb}" stroke-width="5"/><path d="{_heart(690,472,0.9)}" stroke-width="2"/>
+<circle cx="690" cy="452" r="6" stroke-width="3"/>
+<text x="690" y="492" font-family="DejaVu Serif" font-size="30" text-anchor="middle" stroke="none" fill="#2b2622" font-style="italic">Ja!</text>
+{flake_s(250,190,16)}{flake_s(760,220,20)}{flake_s(240,560,12)}
+<path d="M200 655 Q500 642 800 655"/>'''
+
+MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb,'valentin':valentin,'valentinb':valentinb}
 
 try:
     from pencil_neu import MOTIVE_NEU
