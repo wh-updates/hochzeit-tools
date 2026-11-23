@@ -8,7 +8,7 @@
   "mit_bild": 9,
   "volltext": 10,
   "neuester": "2026-11-02",
-  "alter_tage": 13
+  "alter_tage": 20
  },
  {
   "name": "Green Wedding Shoes",
@@ -18,7 +18,7 @@
   "items": 24,
   "mit_bild": 24,
   "volltext": 0,
-  "neuester": "2026-11-13",
+  "neuester": "2026-11-20",
   "alter_tage": 2
  },
  {
@@ -30,7 +30,7 @@
   "mit_bild": 10,
   "volltext": 10,
   "neuester": "2026-11-10",
-  "alter_tage": 5
+  "alter_tage": 12
  },
  {
   "name": "Rock n Roll Bride",
@@ -40,18 +40,7 @@
   "items": 5,
   "mit_bild": 5,
   "volltext": 5,
-  "neuester": "2026-11-13",
+  "neuester": "2026-11-20",
   "alter_tage": 2
- },
- {
-  "name": "Reddit r/weddingplanning",
-  "url": "https://www.reddit.com/r/weddingplanning/.rss",
-  "ok": true,
-  "http": 200,
-  "items": 25,
-  "mit_bild": 2,
-  "volltext": 6,
-  "neuester": "2026-11-16",
-  "alter_tage": 0
  }
 ]
