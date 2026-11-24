@@ -403,7 +403,65 @@ def valentinb():
 {flake_s(250,190,16)}{flake_s(760,220,20)}{flake_s(240,560,12)}
 <path d="M200 655 Q500 642 800 655"/>'''
 
-MOTIVE={'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb,'valentin':valentin,'valentinb':valentinb}
+def wintergeschenk():
+    # Einmachglas mit Kakao-Mix und Marshmallows, Schleife, Anhaenger "Danke"
+    layers=''.join(f'<path d="M318 {y} Q450 {y+10} 582 {y}" stroke-width="2.5"/>' for y in (470,520,570))
+    mallow=''.join(f'<rect x="{x}" y="{y}" width="34" height="28" rx="8" fill="#fbf5f0" stroke-width="3" transform="rotate({r} {x+17} {y+14})"/>' for x,y,r in [(330,400,-10),(372,392,6),(416,404,-4),(460,394,12),(506,402,-8),(546,396,5),(352,432,8),(440,430,-6),(522,432,10)])
+    return f'''
+<path d="M316 330 L316 600 Q316 640 356 640 L544 640 Q584 640 584 600 L584 330Z" fill="#fbf5f0"/>
+<path d="M318 470 Q450 480 582 470 L584 600 Q584 640 544 640 L356 640 Q316 640 316 600Z" {H2}/>
+<path d="M318 470 Q450 480 582 470 L582 520 Q450 530 318 520Z" {H}/>
+{layers}{mallow}
+<path d="M316 330 L316 600 Q316 640 356 640 L544 640 Q584 640 584 600 L584 330" stroke-width="5"/>
+<path d="M340 360 L340 600" stroke-width="3" stroke-dasharray="40 18"/>
+<path d="M286 300 Q450 190 614 300Z" fill="#fbf5f0"/><path d="M286 300 Q450 190 614 300" stroke-width="4"/>
+<path d="M300 300 Q450 230 600 300Z" {H}/>
+<path d="M330 268 L340 244 M380 240 L384 218 M450 232 L450 208 M520 240 L516 218 M570 268 L560 244" stroke-width="2"/>
+<rect x="300" y="300" width="300" height="34" rx="8" fill="#fbf5f0"/><rect x="300" y="300" width="300" height="34" rx="8" stroke-width="5"/>
+<path d="M450 316 Q390 266 370 306 Q380 336 450 320Z" fill="#fbf5f0"/><path d="M450 316 Q390 266 370 306 Q380 336 450 320Z" stroke-width="4"/>
+<path d="M450 316 Q510 266 530 306 Q520 336 450 320Z" fill="#fbf5f0"/><path d="M450 316 Q510 266 530 306 Q520 336 450 320Z" stroke-width="4"/>
+<path d="M450 316 Q400 286 386 308Z" {H2}/><path d="M450 316 Q500 286 514 308Z" {H2}/>
+<circle cx="450" cy="318" r="12" fill="#fbf5f0" stroke-width="4"/>
+<path d="M444 328 Q420 370 432 392 M456 328 Q480 360 470 384" stroke-width="3"/>
+<path d="M584 318 Q640 340 660 404" stroke-width="3"/>
+<g transform="rotate(12 690 470)"><path d="M630 400 L720 400 L750 430 L750 540 L630 540Z" fill="#fbf5f0"/><path d="M630 400 L720 400 L750 430 L750 540 L630 540Z" stroke-width="4"/>
+<circle cx="720" cy="428" r="8" stroke-width="3"/>
+<text x="688" y="484" font-family="DejaVu Serif" font-size="30" text-anchor="middle" stroke="none" fill="#2b2622" font-style="italic">Danke</text>
+<path d="M650 505 L728 505 M660 522 L716 522" stroke-width="2"/></g>
+{flake_s(240,220,18)}{flake_s(720,220,14)}{flake_s(250,560,12)}
+<path d="M200 652 Q500 640 800 652"/>'''
+
+def wintergeschenkb():
+    # Kerze im Glas mit Etikett, zwei Tee-Tuetchen, kleines Paeckchen mit Schleife
+    return f'''
+<path d="M250 380 L250 610 Q250 636 276 636 L424 636 Q450 636 450 610 L450 380Z" fill="#fbf5f0"/>
+<path d="M258 470 Q350 486 442 470 L442 610 Q442 628 424 628 L276 628 Q258 628 258 610Z" {H}/>
+<path d="M250 380 L250 610 Q250 636 276 636 L424 636 Q450 636 450 610 L450 380" stroke-width="5"/>
+<ellipse cx="350" cy="380" rx="100" ry="16" stroke-width="4"/>
+<ellipse cx="350" cy="470" rx="92" ry="14" fill="#fbf5f0" stroke-width="3"/>
+<path d="M350 470 L350 440" stroke-width="3"/>
+<path d="M350 440 Q322 410 350 356 Q378 410 350 440Z" fill="#fbf5f0" stroke-width="4"/>
+<path d="M350 432 Q340 414 350 392 Q360 414 350 432Z" {H2}/>
+<path d="M300 340 Q290 320 300 300 M400 340 Q410 320 400 300" stroke-width="2" stroke-dasharray="8 8"/>
+<path d="M272 400 L272 510" stroke-width="3" stroke-dasharray="30 20"/>
+<rect x="262" y="520" width="176" height="56" rx="4" fill="#fbf5f0" stroke-width="4"/>
+<text x="350" y="558" font-family="DejaVu Serif" font-size="28" text-anchor="middle" stroke="none" fill="#2b2622" font-style="italic">Zimt</text>
+<g transform="rotate(-8 560 420)"><rect x="500" y="300" width="120" height="170" rx="6" fill="#fbf5f0"/><rect x="500" y="300" width="120" height="170" rx="6" stroke-width="4"/>
+<path d="M500 330 L620 330" stroke-width="3"/><rect x="500" y="420" width="120" height="50" {H}/>
+<path d="M560 300 L560 236" stroke-width="2"/><rect x="540" y="200" width="40" height="36" rx="4" fill="#fbf5f0" stroke-width="3"/>
+<text x="560" y="392" font-family="DejaVu Serif" font-size="28" text-anchor="middle" stroke="none" fill="#2b2622">Tee</text></g>
+<g transform="rotate(10 690 410)"><rect x="640" y="320" width="110" height="160" rx="6" fill="#fbf5f0"/><rect x="640" y="320" width="110" height="160" rx="6" stroke-width="4"/>
+<path d="M640 350 L750 350" stroke-width="3"/><path d="M650 370 L740 470 M650 410 L700 470 M690 370 L740 420" stroke-width="2"/>
+<path d="M695 320 L695 262" stroke-width="2"/><rect x="678" y="230" width="34" height="32" rx="4" fill="#fbf5f0" stroke-width="3"/></g>
+<rect x="520" y="540" width="240" height="96" rx="4" fill="#fbf5f0"/><rect x="520" y="540" width="240" height="96" rx="4" stroke-width="5"/>
+<rect x="508" y="520" width="264" height="30" rx="4" fill="#fbf5f0" stroke-width="4"/>
+<rect x="626" y="520" width="28" height="116" {H2}/><path d="M626 520 L626 636 M654 520 L654 636" stroke-width="3"/>
+<path d="M640 520 Q590 470 580 510 Q600 530 640 522Z M640 520 Q690 470 700 510 Q680 530 640 522Z" fill="#fbf5f0" stroke-width="4"/>
+<path d="M540 570 L610 570 M670 570 L740 570" stroke-width="2"/>
+{flake_s(230,240,16)}{flake_s(790,260,14)}{flake_s(460,220,10)}
+<path d="M200 652 Q500 640 800 652"/>'''
+
+MOTIVE={'wintergeschenk':wintergeschenk,'wintergeschenkb':wintergeschenkb,'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb,'valentin':valentin,'valentinb':valentinb}
 
 try:
     from pencil_neu import MOTIVE_NEU
