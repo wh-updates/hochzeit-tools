@@ -461,7 +461,57 @@ def wintergeschenkb():
 {flake_s(230,240,16)}{flake_s(790,260,14)}{flake_s(460,220,10)}
 <path d="M200 652 Q500 640 800 652"/>'''
 
-MOTIVE={'wintergeschenk':wintergeschenk,'wintergeschenkb':wintergeschenkb,'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb,'valentin':valentin,'valentinb':valentinb}
+def kinderwinter():
+    # Kindertisch: aufgeschlagenes Malheft mit Schneemann-Zeichnung, Buntstifte, Becher mit Stiften
+    pens=''.join(f'<g transform="rotate({r} {x} {y})"><rect x="{x}" y="{y}" width="150" height="20" rx="3" fill="#fbf5f0" stroke-width="3"/><path d="M{x+150} {y} L{x+184} {y+10} L{x+150} {y+20}" fill="#fbf5f0" stroke-width="3"/><path d="M{x+172} {y+6} L{x+184} {y+10} L{x+172} {y+14}" {H2}/><rect x="{x}" y="{y}" width="24" height="20" {H}/></g>' for x,y,r in [(250,612,-4),(430,618,3)])
+    cup=''.join(f'<g transform="rotate({r} {x} 360)"><rect x="{x-9}" y="210" width="18" height="150" rx="3" fill="#fbf5f0" stroke-width="3"/><path d="M{x-9} 210 L{x} 180 L{x+9} 210Z" fill="#fbf5f0" stroke-width="3"/><path d="M{x-4} 194 L{x} 180 L{x+4} 194Z" {H2}/></g>' for x,r in [(660,-14),(684,-4),(706,6),(728,16)])
+    return f'''
+<path d="M220 600 L240 300 L480 330 L480 640Z" fill="#fbf5f0"/><path d="M480 330 L720 300 L740 600 L480 640" fill="#fbf5f0"/>
+<path d="M220 600 L240 300 L480 330 L720 300 L740 600 L480 640Z" stroke-width="5"/><path d="M480 330 L480 640" stroke-width="4"/>
+<path d="M480 340 Q470 490 480 630" stroke-width="2"/>
+<path d="M232 610 L480 650 L748 610" stroke-width="3"/>
+<circle cx="360" cy="540" r="58" stroke-width="4"/><circle cx="360" cy="440" r="40" stroke-width="4"/>
+<path d="M310 520 Q330 500 350 520 M370 560 Q390 540 410 560" {H2}/>
+<circle cx="347" cy="432" r="5" fill="#2b2622"/><circle cx="373" cy="432" r="5" fill="#2b2622"/>
+<path d="M360 444 L392 452 L360 452Z" stroke-width="3"/><path d="M344 462 Q360 472 376 462" stroke-width="2"/>
+<path d="M326 400 L394 400 L386 370 L334 370Z" fill="#fbf5f0" stroke-width="4"/><rect x="326" y="396" width="68" height="10" {H}/>
+<path d="M322 476 Q360 494 398 476 L404 500 L390 504" stroke-width="3"/>
+<path d="M320 520 L278 490 M400 520 L444 486 M282 478 L278 490 L268 494" stroke-width="3"/>
+<circle cx="360" cy="520" r="4" fill="#2b2622"/><circle cx="360" cy="548" r="4" fill="#2b2622"/>
+<path d="M254 340 L262 352 M268 330 L262 352 M250 356 L262 352" stroke-width="2"/>
+<path d="M520 380 L690 360 M520 420 L640 406 M520 460 L670 446" stroke-width="2" stroke-dasharray="14 10"/>
+<rect x="530" y="500" width="70" height="70" rx="6" stroke-width="3"/><path d="M542 540 L560 556 L590 514" stroke-width="4"/>
+{pens}
+<path d="M640 360 L740 360 L728 470 L652 470Z" fill="#fbf5f0"/>{cup}
+<path d="M640 360 L740 360 L728 470 L652 470Z" stroke-width="5"/><path d="M646 400 L734 400 L730 430 L650 430Z" {H}/>
+{flake_s(250,210,18)}{flake_s(470,190,14)}{flake_s(780,240,12)}
+<path d="M200 655 Q500 642 800 655"/>'''
+
+def kinderwinterb():
+    # Holzschlitten mit Kinder-Bommelmuetze und Faeustlingen, Schneehuegel
+    runner='<path d="M230 560 L700 560 Q780 560 780 500 Q780 470 752 470" stroke-width="6"/><path d="M230 560 Q200 560 204 530" stroke-width="6"/>'
+    struts=''.join(f'<path d="M{x} 560 L{x} 500" stroke-width="5"/>' for x in (290,420,560,680))
+    slats=''.join(f'<rect x="250" y="{y}" width="470" height="22" rx="6" fill="#fbf5f0" stroke-width="4"/>' for y in (470,494))
+    grain=''.join(f'<path d="M{x} {y} Q{x+40} {y-4} {x+80} {y}" stroke-width="1.6"/>' for x,y in [(280,481),(420,479),(560,483),(320,505),(480,503),(620,507)])
+    return f'''
+<path d="M200 600 Q360 580 520 590 Q680 600 800 584" stroke-width="3"/><path d="M240 620 L300 616 M420 612 L500 614 M640 608 L720 604" stroke-width="2"/>
+{runner}{struts}{slats}{grain}
+<path d="M250 470 Q230 420 270 410" stroke-width="5"/><path d="M270 410 Q310 400 300 450" stroke-width="3"/>
+<path d="M400 470 Q380 360 470 330 Q560 300 600 380 Q614 420 610 470Z" fill="#fbf5f0"/>
+<path d="M400 470 Q380 360 470 330 Q560 300 600 380 Q614 420 610 470" stroke-width="5"/>
+<path d="M430 450 Q430 380 490 350 M480 456 Q480 390 530 352 M540 460 Q548 400 580 372" stroke-width="2"/>
+<path d="M406 420 Q500 438 606 420" stroke-width="3"/><path d="M402 452 Q500 470 610 450 L610 470 L400 470Z" {H}/>
+<circle cx="500" cy="300" r="38" fill="#fbf5f0" stroke-width="4"/>
+<path d="M478 284 L522 316 M472 304 L528 296 M486 272 L514 328 M500 264 L500 336" stroke-width="2"/>
+<g transform="rotate(-18 300 420)"><path d="M250 470 L250 400 Q250 360 290 360 Q330 360 330 400 L330 470Z" fill="#fbf5f0"/><path d="M250 470 L250 400 Q250 360 290 360 Q330 360 330 400 L330 470" stroke-width="4"/>
+<path d="M250 410 Q228 400 230 380 Q236 362 256 376" fill="#fbf5f0" stroke-width="4"/><rect x="246" y="450" width="88" height="22" rx="6" {H2}/></g>
+<g transform="rotate(14 680 420)"><path d="M640 470 L640 400 Q640 360 680 360 Q720 360 720 400 L720 470Z" fill="#fbf5f0"/><path d="M640 470 L640 400 Q640 360 680 360 Q720 360 720 400 L720 470" stroke-width="4"/>
+<path d="M720 410 Q742 400 740 380 Q734 362 714 376" fill="#fbf5f0" stroke-width="4"/><rect x="636" y="450" width="88" height="22" rx="6" {H2}/></g>
+<path d="M330 420 Q420 400 470 470" stroke-width="2.5"/>
+{flake_s(240,230,18)}{flake_s(720,200,16)}{flake_s(380,180,12)}{flake_s(780,320,10)}
+<path d="M200 655 Q500 642 800 655"/>'''
+
+MOTIVE={'kinderwinter':kinderwinter,'kinderwinterb':kinderwinterb,'wintergeschenk':wintergeschenk,'wintergeschenkb':wintergeschenkb,'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb,'valentin':valentin,'valentinb':valentinb}
 
 try:
     from pencil_neu import MOTIVE_NEU
