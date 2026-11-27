@@ -45,6 +45,7 @@ Läufe: Montag, Dienstag, Donnerstag, Freitag (ca. 28 bis Silvester). Zuerst Win
 | 27 | ratgeber/heiraten-valentinstag | Ratgeber | winter | planung | Abreißkalender „14 Februar“ mit Eheringen (valentin) / Rosenstrauß mit Schleife und Herz-Anhänger (valentinb) | 2026-11-23 – 2027-02-28 | gebaut (2026-11-23) |
 | 28 | ratgeber/winterhochzeit-gastgeschenke | Ratgeber | winter | planung | Einmachglas mit Kakao, Marshmallows und Danke-Anhänger (wintergeschenk) / Kerze im Glas, Tee-Tütchen und Päckchen (wintergeschenkb) | 2026-11-24 – 2027-02-28 | gebaut (2026-11-24) |
 | 29 | ratgeber/winterhochzeit-kinder | Ratgeber | winter | planung | Malheft mit Schneemann, Buntstifte, Stiftebecher (kinderwinter) / Holzschlitten mit Bommelmütze und Fäustlingen (kinderwinterb) | 2026-11-26 – 2027-02-28 | gebaut (2026-11-26) |
+| 30 | ratgeber/winterhochzeit-torte | Ratgeber | winter | planung | Etagentorte mit Tannenzweigen, Beeren und Puderzucker auf Tortenständer (wintertorte) / Tortenstück auf Teller mit Gabel, Zimtstangen und Sternanis (wintertorteb) | 2026-11-27 – 2027-02-28 | gebaut (2026-11-27) |
 
 Rechnung: 24 Seiten × 6 Pins = 144 neue Pins + 29 vorhandene = 173 ≥ 156 Slots.
 Alle 24 Seiten sind gebaut (2026-11-09). Zusätzlich: 3 Winter-Ratgeber (winterhochzeit-brautstrauss, -menue-getraenke, -zeitplan) und 6 Tool-/Ortsseiten (fotostunden-rechner, goldene-stunde, tischkarten, hochzeitstyp, hochzeitsfotograf/ + 6 Orte). Weitere Seiten: Generatoren `tools/build_pages.py` (Ratgeber), `tools/build_tools.py` (Tools, Ortsseiten).

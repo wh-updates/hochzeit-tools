@@ -511,7 +511,47 @@ def kinderwinterb():
 {flake_s(240,230,18)}{flake_s(720,200,16)}{flake_s(380,180,12)}{flake_s(780,320,10)}
 <path d="M200 655 Q500 642 800 655"/>'''
 
-MOTIVE={'kinderwinter':kinderwinter,'kinderwinterb':kinderwinterb,'wintergeschenk':wintergeschenk,'wintergeschenkb':wintergeschenkb,'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb,'valentin':valentin,'valentinb':valentinb}
+def wintertorte():
+    # Dreistoeckige Torte mit Tannenzweigen, Beeren und Puderzucker-Schnee auf Tortenstaender
+    def tier(cx,y,w,h):
+        drip=''.join(f'<path d="M{cx-w/2+12+i*(w-24)/7:.0f} {y+6} q4 {18+(i%3)*8} 8 0" stroke-width="2.5"/>' for i in range(8))
+        hatch=f'<path d="M{cx+w/2-50} {y+14} L{cx+w/2-50} {y+h-4} L{cx+w/2} {y+h} L{cx+w/2} {y}Z" {H}/>'
+        return f'<path d="M{cx-w/2} {y} L{cx-w/2} {y+h} Q{cx} {y+h+16} {cx+w/2} {y+h} L{cx+w/2} {y}" fill="#fbf5f0" stroke-width="5"/><ellipse cx="{cx}" cy="{y}" rx="{w/2}" ry="14" fill="#fbf5f0" stroke-width="4"/>{hatch}{drip}'
+    def sprig(x,y,r):
+        n=''.join(f'<path d="M{x+i*12} {y} l-10 -16 M{x+i*12} {y} l-10 16" stroke-width="2.5"/>' for i in range(1,7))
+        return f'<g transform="rotate({r} {x} {y})"><path d="M{x} {y} L{x+84} {y}" stroke-width="3.5"/>{n}</g>'
+    berries=''.join(f'<circle cx="{x}" cy="{y}" r="8" {H2}/><circle cx="{x}" cy="{y}" r="8" stroke-width="3"/>' for x,y in [(452,348),(468,356),(560,458),(574,450),(414,236),(510,232)])
+    return f'''
+<path d="M330 600 L670 600 L640 616 L360 616Z" fill="#fbf5f0" stroke-width="4"/><path d="M490 616 L470 650 L530 650 L510 616" stroke-width="4"/><path d="M440 652 L560 652" stroke-width="5"/>
+{tier(500,470,380,120)}{tier(500,350,270,110)}{tier(500,240,170,100)}
+{sprig(400,354,-12)}{sprig(520,462,-8)}{sprig(350,466,10)}{sprig(430,240,-20)}{sprig(520,238,15)}
+{berries}
+<path d="M470 228 Q500 210 530 228" stroke-width="2"/>
+<path d="M500 226 L500 196" stroke-width="3"/>{flake_s(500,184,14)}
+{flake_s(250,230,18)}{flake_s(760,260,16)}{flake_s(290,420,10)}{flake_s(730,420,12)}
+<path d="M220 655 Q500 640 780 655"/>'''
+
+def wintertorteb():
+    # Tortenstueck auf Teller mit Gabel, Zimtstangen und Sternanis daneben
+    layers=''.join(f'<path d="M330 {y} L560 {y-60} L680 {y-10}" stroke-width="2.5"/>' for y in (470,520))
+    star=''.join(f'<path d="M770 420 L{770+46*math.cos(k*0.7854):.0f} {420+46*math.sin(k*0.7854):.0f}" stroke-width="3"/><circle cx="{770+32*math.cos(k*0.7854):.0f}" cy="{420+32*math.sin(k*0.7854):.0f}" r="5" stroke-width="2"/>' for k in range(8))
+    return f'''
+<ellipse cx="480" cy="580" rx="280" ry="70" fill="#fbf5f0" stroke-width="5"/><ellipse cx="480" cy="580" rx="220" ry="50" stroke-width="2.5"/>
+<path d="M330 430 L330 560 L680 600 L680 470Z" fill="#fbf5f0"/>
+<path d="M330 430 L560 380 L680 470 L330 430" fill="#fbf5f0" stroke-width="5"/>
+<path d="M330 430 L330 560 L680 600 L680 470" stroke-width="5"/><path d="M560 380 L560 420" stroke-width="2"/>
+<path d="M330 500 L680 540 M330 470 L680 505" stroke-width="2.5"/>
+<path d="M330 505 L680 545 L680 600 L330 560Z" {H}/><path d="M330 470 L680 505 L680 540 L330 500Z" {H2}/>
+<path d="M360 432 q6 20 12 0 M420 440 q6 24 12 0 M480 446 q6 18 12 0 M560 456 q6 22 12 0 M630 462 q6 18 12 0" stroke-width="2.5"/>
+<path d="M500 410 L520 380 M520 380 l-10 -14 M520 380 l14 -8 M510 396 l-12 -6 M510 396 l12 -10" stroke-width="2.5"/><circle cx="470" cy="416" r="8" stroke-width="3"/><circle cx="486" cy="420" r="8" {H2}/>
+<g transform="rotate(-24 260 460)"><path d="M230 300 L250 300 L250 470 Q250 490 240 490 Q230 490 230 470Z" fill="#fbf5f0" stroke-width="4"/><path d="M222 300 L258 300 L258 250 M240 300 L240 250 M222 300 L222 250" stroke-width="4"/></g>
+<rect x="660" y="250" width="110" height="20" rx="10" fill="#fbf5f0" stroke-width="4" transform="rotate(-10 715 260)"/><path d="M670 252 Q715 246 760 238" stroke-width="2" transform="rotate(-10 715 260)"/>
+<rect x="650" y="290" width="120" height="20" rx="10" fill="#fbf5f0" stroke-width="4" transform="rotate(-4 710 300)"/><path d="M660 296 Q710 292 760 290" stroke-width="2" transform="rotate(-4 710 300)"/>
+{star}<circle cx="770" cy="420" r="10" {H2}/>
+{flake_s(300,190,16)}{flake_s(470,170,12)}{flake_s(780,180,14)}
+<path d="M200 655 Q500 642 800 655"/>'''
+
+MOTIVE={'wintertorte':wintertorte,'wintertorteb':wintertorteb,'kinderwinter':kinderwinter,'kinderwinterb':kinderwinterb,'wintergeschenk':wintergeschenk,'wintergeschenkb':wintergeschenkb,'winterfoto':winterfoto,'wintermakeup':wintermakeup,'winterliste':winterliste,'locations':locations,'kosten':kosten,'fotograf':fotograf,'winter':winter,'ruegen':ruegen,'strand':strand,'budgetrechner':budgetrechner,'gaesteliste':gaesteliste,'sitzplan':sitzplan,'getraenkerechner':getraenke,'checkliste':checkliste,'pdf':pdf,'decken':decken,'handwaermer':handwaermer,'brautmakeup':brautmakeup,'brautmakeupb':brautmakeupb,'valentin':valentin,'valentinb':valentinb}
 
 try:
     from pencil_neu import MOTIVE_NEU
